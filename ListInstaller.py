@@ -99,6 +99,19 @@ class App(tk.Tk):
         try:
             if not os.path.exists(self.json_name):
                 url = 'https://raw.githubusercontent.com/DanShiriNi/list-installer/main/src/json/programs.json'
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
+                    'Accept-Language': 'ru-RU,ru;q=0.9,en;q=0.8',
+                    'Referer': 'https://www.google.com/',
+                }
+                headers.update({
+                    'Accept-Encoding': 'gzip, deflate, br',
+                    'Connection': 'keep-alive',
+                    'Sec-Fetch-Dest': 'image',
+                    'Sec-Fetch-Mode': 'no-cors',
+                    'Sec-Fetch-Site': 'cross-site',
+                })
                 response = requests.get(url)
                 response.raise_for_status()
                 with open(self.json_name, "w", encoding='utf-8') as f:

@@ -1,3 +1,5 @@
 ﻿requests
+requests[socks]
 aiohttp
 pillow
+pysocks
