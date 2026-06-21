@@ -50,7 +50,7 @@
         "IsDownloaded": false
     },
     "PowerPoint": {
-        "Icon": "https://images.icon-icons.com/3053/PNG/512/microsoft_powerpoint_macos_bigsur_icon_189966.png",
+        "Icon": "https://disk.yandex.ru/d/xOVsEl9nlVefuw",
         "URLs": [
             "https://rutracker.org/forum/viewtopic.php?t=6619205"
         ],
@@ -58,7 +58,7 @@
         "IsDownloaded": false
     },
     "Word": {
-        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_word_logo_icon_145724.png",
+        "Icon": "https://disk.yandex.ru/d/xOVsEl9nlVefuw",
         "URLs": [
             "https://rutracker.org/forum/viewtopic.php?t=6619205"
         ],
@@ -66,7 +66,7 @@
         "IsDownloaded": false
     },
     "Excel": {
-        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_excel_logo_icon_145720.png",
+        "Icon": "https://disk.yandex.ru/d/xOVsEl9nlVefuw",
         "URLs": [
             "https://rutracker.org/forum/viewtopic.php?t=6619205"
         ],
@@ -74,27 +74,19 @@
         "IsDownloaded": false
     },
     "Access": {
-        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_access_logo_icon_145727.png",
+        "Icon": "https://disk.yandex.ru/d/xOVsEl9nlVefuw",
         "URLs": [
             "https://rutracker.org/forum/viewtopic.php?t=6619205"
         ],
         "Weight": 0.8,
         "IsDownloaded": false
     },
-    "Yandex": {
-        "Icon": "https://images.icon-icons.com/2552/PNG/512/yandex_browser_logo_icon_152939.png",
+    "FireFox": {
+        "Icon": "https://images.icon-icons.com/2552/PNG/512/firefox_browser_logo_icon_152991.png",
         "URLs": [
-            "https://browser.yandex.ru/"
+            "https://www.firefox.com/ru/"
         ],
-        "Weight": 0.23,
-        "IsDownloaded": false
-    },
-    "Chromium": {
-        "Icon": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Chromium_Material_Icon.png",
-        "URLs": [
-            "https://chromium.woolyss.com/download/"
-        ],
-        "Weight": 0.16,
+        "Weight": 0.7,
         "IsDownloaded": false
     },
     "Python 3.11": {
@@ -119,14 +111,6 @@
             "https://code.visualstudio.com/"
         ],
         "Weight": 0.1,
-        "IsDownloaded": false
-    },
-    "Memory cleaner": {
-        "Icon": "https://raw.githubusercontent.com/DanShiriNi/memory-cleaner/refs/heads/main/icon.ico",
-        "URLs": [
-            "https://github.com/DanShiriNi/memory-cleaner"
-        ],
-        "Weight": 0.02,
         "IsDownloaded": false
     },
     "ExePyler": {
