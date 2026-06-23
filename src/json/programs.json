@@ -262,8 +262,9 @@
     "Minecraft": {
         "Icon": "https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png",
         "URLs": [
-            "https://tlauncher.ru/",
-            "https://www.minecraft.net/ru-ru/store/minecraft-java-bedrock-edition-pc?tabs=%7B%22details%22%3A0%7D"
+            "https://www.minecraft.net/ru-ru/store/minecraft-java-bedrock-edition-pc?tabs=%7B%22details%22%3A0%7D",
+            "https://prismlauncher.org/download/windows/",
+            "https://tlauncher.ru/"
         ],
         "Weight": 0.67,
         "IsDownloaded": false
