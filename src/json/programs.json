@@ -50,33 +50,33 @@
         "IsDownloaded": false
     },
     "PowerPoint": {
-        "Icon": "https://disk.yandex.ru/d/xOVsEl9nlVefuw",
+        "Icon": "https://images.icon-icons.com/3053/PNG/512/microsoft_powerpoint_macos_bigsur_icon_189966.png",
         "URLs": [
-            "https://rutracker.org/forum/viewtopic.php?t=6619205"
+            "https://disk.yandex.ru/d/xOVsEl9nlVefuw"
         ],
         "Weight": 0.8,
         "IsDownloaded": false
     },
     "Word": {
-        "Icon": "https://disk.yandex.ru/d/xOVsEl9nlVefuw",
+        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_word_logo_icon_145724.png",
         "URLs": [
-            "https://rutracker.org/forum/viewtopic.php?t=6619205"
+            "https://disk.yandex.ru/d/xOVsEl9nlVefuw"
         ],
         "Weight": 0.81,
         "IsDownloaded": false
     },
     "Excel": {
-        "Icon": "https://disk.yandex.ru/d/xOVsEl9nlVefuw",
+        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_excel_logo_icon_145720.png",
         "URLs": [
-            "https://rutracker.org/forum/viewtopic.php?t=6619205"
+            "https://disk.yandex.ru/d/xOVsEl9nlVefuw"
         ],
         "Weight": 0.8,
         "IsDownloaded": false
     },
     "Access": {
-        "Icon": "https://disk.yandex.ru/d/xOVsEl9nlVefuw",
+        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_access_logo_icon_145727.png",
         "URLs": [
-            "https://rutracker.org/forum/viewtopic.php?t=6619205"
+            "https://disk.yandex.ru/d/xOVsEl9nlVefuw"
         ],
         "Weight": 0.8,
         "IsDownloaded": false
