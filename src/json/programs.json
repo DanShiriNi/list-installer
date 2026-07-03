@@ -182,7 +182,7 @@
     "VLC": {
         "Icon": "https://images.icon-icons.com/2699/PNG/512/videolan_vlc_logo_icon_168259.png",
         "URLs": [
-            "https://get.videolan.org/vlc/3.0.23/win64/vlc-3.0.23-win64.exe"
+            "https://www.videolan.org/vlc/"
         ],
         "Weight": 0.05,
         "IsDownloaded": false
