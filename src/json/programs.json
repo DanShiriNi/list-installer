@@ -294,6 +294,14 @@
         "Weight": 0.01,
         "IsDownloaded": false
     },
+    "Ventoy": {
+        "Icon": "https://raw.githubusercontent.com/ventoy/Ventoy/refs/heads/master/ICON/logo_512.png",
+        "URLs": [
+            "https://github.com/ventoy/Ventoy/releases"
+        ],
+        "Weight": 0.02,
+        "IsDownloaded": false
+    },
     "Dr.Web Cureit": {
         "Icon": "https://i.pinimg.com/originals/0d/38/90/0d3890e1020238b98bbb1198adf9dd45.png",
         "URLs": [
