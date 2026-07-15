@@ -302,12 +302,12 @@
         "Weight": 0.02,
         "IsDownloaded": false
     },
-    "Dr.Web Cureit": {
-        "Icon": "https://i.pinimg.com/originals/0d/38/90/0d3890e1020238b98bbb1198adf9dd45.png",
+    "Bulk-Crap-Uninstaller": {
+        "Icon": "https://avatars.githubusercontent.com/u/291887161?s=200&v=4",
         "URLs": [
-            "https://free.drweb.ru/download+cureit+free/"
+            "https://github.com/BCUninstaller/Bulk-Crap-Uninstaller/releases"
         ],
-        "Weight": 0.3,
+        "Weight": 0.01,
         "IsDownloaded": false
     },
     "Autoruns": {
