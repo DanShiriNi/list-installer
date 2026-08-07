@@ -246,9 +246,13 @@
     "GTA: San Andreas": {
         "Icon": "https://cdn2.steamgriddb.com/icon/28eeb4998e282cee80f46cd5a67b7e30/32/512x512.png",
         "URLs": [
-            "https://drive.google.com/file/d/1fZovjJYZ5aWxpBxSFj3s4FHE64Cxbfcz/view?usp=sharing"
+            "https://archive.org/details/hlm-gtasa_202404",
+            "https://silentsblog.com/mods/gta-sa/#asiloader",
+            "https://vk.ru/msklocalisations",
+            "https://github.com/CookiePLMonster/SilentPatch/releases",
+            "https://github.com/ThirteenAG/WidescreenFixesPack/releases/tag/gtasa"
         ],
-        "Weight": 3.92,
+        "Weight": 4.12  ,
         "IsDownloaded": false
     },
     "Java": {
@@ -275,14 +279,6 @@
             "https://apps.microsoft.com/detail/9pc9mfx9qcxs?referrer=psi&hl=ru-RU&gl=DE"
         ],
         "Weight": 0.02,
-        "IsDownloaded": false
-    },
-    "Ueli": {
-        "Icon": "https://raw.githubusercontent.com/oliverschwendener/ueli/refs/heads/main/build/icons/512x512.png",
-        "URLs": [
-            "https://ueli.app/"
-        ],
-        "Weight": 0.16,
         "IsDownloaded": false
     },
     "Rufus": {
@@ -315,6 +311,14 @@
             "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"
         ],
         "Weight": 0.01,
+        "IsDownloaded": false
+    },
+    "Kudu": {
+        "Icon": "https://raw.githubusercontent.com/AdventDevInc/kudu/main/logo.png",
+        "URLs": [
+            "https://github.com/pwnapplehat/BitBroom/releases/latest"
+        ],
+        "Weight": 0.12,
         "IsDownloaded": false
     }
 }
