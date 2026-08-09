@@ -321,5 +321,13 @@
         ],
         "Weight": 0.12,
         "IsDownloaded": false
+    },
+    "Process Hacker 2": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/ru/0/0c/Process_Hacker_Logo.png",
+        "URLs": [
+            "https://github.com/winsiderss/systeminformer/releases#release-v2.39"
+        ],
+        "Weight": 0.01,
+        "IsDownloaded": false
     }
 }
