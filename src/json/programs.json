@@ -49,36 +49,29 @@
         "Weight": 0.05,
         "IsDownloaded": false
     },
-    "PowerPoint": {
-        "Icon": "https://images.icon-icons.com/3053/PNG/512/microsoft_powerpoint_macos_bigsur_icon_189966.png",
+    "Microsoft Office": {
+        "Icon": "https://images.icon-icons.com/1156/PNG/512/1486565573-microsoft-office_81557.png",
         "URLs": [
-            "https://disk.yandex.ru/d/xOVsEl9nlVefuw"
+            "https://www.microsoft.com/ru-ru/microsoft-365/get-office-and-microsoft-365-oem-download-page",
+            "https://www.heidoc.net/joomla/component/content/article?id=67:microsoft-windows-and-office-iso-download-tool"
         ],
-        "Weight": 0.8,
+        "Weight": 3.9,
         "IsDownloaded": false
     },
-    "Word": {
-        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_word_logo_icon_145724.png",
+    "WPS Office": {
+        "Icon": "https://i2.wp.com/is2-ssl.mzstatic.com/image/thumb/Purple122/v4/7b/fd/25/7bfd25cc-017e-04f1-c359-df2e44771625/wpsoffice.png/1200x630bb.png",
         "URLs": [
-            "https://disk.yandex.ru/d/xOVsEl9nlVefuw"
+            "https://wps.com/office/windows/"
         ],
-        "Weight": 0.81,
+        "Weight": 1.7,
         "IsDownloaded": false
     },
-    "Excel": {
-        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_excel_logo_icon_145720.png",
+    "Only Office": {
+        "Icon": "https://images.icon-icons.com/3053/PNG/512/onlyoffice_macos_bigsur_icon_189875.png",
         "URLs": [
-            "https://disk.yandex.ru/d/xOVsEl9nlVefuw"
+            "https://github.com/ONLYOFFICE/DesktopEditors/releases/latest"
         ],
-        "Weight": 0.8,
-        "IsDownloaded": false
-    },
-    "Access": {
-        "Icon": "https://images.icon-icons.com/2397/PNG/512/microsoft_office_access_logo_icon_145727.png",
-        "URLs": [
-            "https://disk.yandex.ru/d/xOVsEl9nlVefuw"
-        ],
-        "Weight": 0.8,
+        "Weight": 0.58,
         "IsDownloaded": false
     },
     "FireFox": {
@@ -296,6 +289,14 @@
             "https://github.com/ventoy/Ventoy/releases"
         ],
         "Weight": 0.02,
+        "IsDownloaded": false
+    },
+    "Everything": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/6/68/Everything_%28software%29_icon.png",
+        "URLs": [
+            "https://www.voidtools.com"
+        ],
+        "Weight": 0.01,
         "IsDownloaded": false
     },
     "Bulk-Crap-Uninstaller": {
