@@ -242,12 +242,24 @@
             "https://archive.org/details/hlm-gtasa_202404",
             "https://silentsblog.com/mods/gta-sa/#asiloader",
             "https://vk.ru/msklocalisations",
-            "https://github.com/CookiePLMonster/SilentPatch/releases",
+            "https://github.com/CookiePLMonster/SilentPatch/releases/latest",
             "https://github.com/ThirteenAG/WidescreenFixesPack/releases/tag/gtasa",
-            "https://libertycity.ru/files/gta-san-andreas/127727-framerate-vigilante-ispravlenie-oshibok.html",
+            "https://www.mixmods.com.br/2022/08/iii-vc-sa-framerate-vigilante/",
             "https://github.com/juicermv/GTA-GPS-Redux/releases/latest"
         ],
-        "Weight": 4.12,
+        "Weight": 3.98,
+        "IsDownloaded": false
+    },
+    "GTA: Vice City": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/fr/thumb/f/f0/Grand_Theft_Auto_Vice_City_Logo.png/500px-Grand_Theft_Auto_Vice_City_Logo.png",
+        "URLs": [
+            "https://archive.org/details/grandtheftautovicecity_pc",
+            "https://gamesvoice.ru/product/gtavice",
+            "https://github.com/CookiePLMonster/SilentPatch/releases/latest",
+            "https://github.com/ThirteenAG/WidescreenFixesPack/releases/tag/gtavc",
+            "https://www.mixmods.com.br/2022/08/iii-vc-sa-framerate-vigilante/"
+        ],
+        "Weight": 4.58,
         "IsDownloaded": false
     },
     "Java": {
