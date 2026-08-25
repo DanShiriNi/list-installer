@@ -1,4 +1,12 @@
 {
+    "Visual C++ Redistributable": {
+        "Icon": "https://www.rw-designer.com/icon-image/23790-32x32x4.png",
+        "URLs": [
+            "https://learn.microsoft.com/ru-ru/cpp/windows/latest-supported-vc-redist?view=msvc-170"
+        ],
+        "Weight": 0.05,
+        "IsDownloaded": false
+    },
     "WinRAR": {
         "Icon": "https://www.rw-designer.com/icon-image/21764-256x256x32.png",
         "URLs": [
@@ -35,8 +43,7 @@
     "MakuTweaker": {
         "Icon": "https://adderly.top/icons/1.png",
         "URLs": [
-            "https://adderly.top/makutweaker",
-            "https://boosty.to/adderly/"
+            "https://adderly.top/makutweaker"
         ],
         "Weight": 0.09,
         "IsDownloaded": false
