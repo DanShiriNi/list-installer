@@ -366,5 +366,13 @@
         ],
         "Weight": 0.1,
         "IsDownloaded": false
+    },
+    "VirtualBox": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/VirtualBox_2024_Logo.svg/960px-VirtualBox_2024_Logo.svg.png",
+        "URLs": [
+            "https://www.virtualbox.org/wiki/Downloads"
+        ],
+        "Weight": 0.17,
+        "IsDownloaded": false
     }
 }
