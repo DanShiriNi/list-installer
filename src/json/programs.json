@@ -343,5 +343,13 @@
         ],
         "Weight": 0.01,
         "IsDownloaded": false
+    },
+    "Flow Launcher": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/4/40/Flow_Launcher_Logo.png",
+        "URLs": [
+            "https://github.com/Flow-Launcher/Flow.Launcher/releases/latest"
+        ],
+        "Weight": 0.1,
+        "IsDownloaded": false
     }
 }
