@@ -295,6 +295,14 @@
         "Weight": 0.02,
         "IsDownloaded": false
     },
+    "LocalSend": {
+        "Icon": "https://localsend.org/img/logo.png",
+        "URLs": [
+            "https://localsend.org/ru/download"
+        ],
+        "Weight": 0.02,
+        "IsDownloaded": false
+    },
     "Rufus": {
         "Icon": "https://rufus.ie/pics/rufus-512.png",
         "URLs": [
