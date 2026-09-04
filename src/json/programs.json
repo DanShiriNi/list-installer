@@ -221,14 +221,6 @@
         "Weight": 0,
         "IsDownloaded": false
     },
-    "Steam": {
-        "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/960px-Steam_icon_logo.svg.png",
-        "URLs": [
-            "https://store.steampowered.com/about/"
-        ],
-        "Weight": 0.59,
-        "IsDownloaded": false
-    },
     "OBS": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/OBS_Studio_Logo.svg/960px-OBS_Studio_Logo.svg.png",
         "URLs": [
@@ -243,6 +235,22 @@
             "https://www.bricklink.com/v3/studio/download.page"
         ],
         "Weight": 0.43,
+        "IsDownloaded": false
+    },
+    "Steam": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/960px-Steam_icon_logo.svg.png",
+        "URLs": [
+            "https://store.steampowered.com/about/"
+        ],
+        "Weight": 0.59,
+        "IsDownloaded": false
+    },
+    "Porthole - Local Port Sharing": {
+        "Icon": "https://porthole.sestudio.org/favicon.ico",
+        "URLs": [
+            "https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"
+        ],
+        "Weight": 0.23,
         "IsDownloaded": false
     },
     "GTA: San Andreas": {
