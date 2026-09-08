@@ -108,14 +108,6 @@
         "Weight": 0.07,
         "IsDownloaded": false
     },
-    "Visual Studio Code": {
-        "Icon": "https://images.icon-icons.com/2107/PNG/512/file_type_vscode_icon_130084.png",
-        "URLs": [
-            "https://code.visualstudio.com/"
-        ],
-        "Weight": 0.1,
-        "IsDownloaded": false
-    },
     "ExePyler": {
         "Icon": "https://raw.githubusercontent.com/DanShiriNi/ExePyler/refs/heads/main/icon.ico",
         "URLs": [
@@ -124,12 +116,12 @@
         "Weight": 0.02,
         "IsDownloaded": false
     },
-    "Image Scaller": {
-        "Icon": "https://raw.githubusercontent.com/DanShiriNi/image-scaler/refs/heads/main/icon.ico",
+    "Visual Studio Code": {
+        "Icon": "https://images.icon-icons.com/2107/PNG/512/file_type_vscode_icon_130084.png",
         "URLs": [
-            "https://github.com/DanShiriNi/image-scaler"
+            "https://code.visualstudio.com/"
         ],
-        "Weight": 0.03,
+        "Weight": 0.1,
         "IsDownloaded": false
     },
     "Visual Studio": {
@@ -138,6 +130,14 @@
             "https://visualstudio.microsoft.com/ru/downloads/"
         ],
         "Weight": 3.24,
+        "IsDownloaded": false
+    },
+    "Microsoft SQL Server Management Studio": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/en/b/bc/MSSQL_SSMS_21_icon.png",
+        "URLs": [
+            "https://learn.microsoft.com/ru-ru/ssms/install/install"
+        ],
+        "Weight": 4.04,
         "IsDownloaded": false
     },
     "Docker": {
