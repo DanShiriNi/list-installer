@@ -135,6 +135,7 @@
     "Microsoft SQL Server Management Studio": {
         "Icon": "https://upload.wikimedia.org/wikipedia/en/b/bc/MSSQL_SSMS_21_icon.png",
         "URLs": [
+            "https://www.microsoft.com/ru-ru/sql-server/sql-server-downloads#trysql",
             "https://learn.microsoft.com/ru-ru/ssms/install/install"
         ],
         "Weight": 4.04,
