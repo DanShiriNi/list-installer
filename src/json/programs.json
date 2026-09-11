@@ -337,7 +337,7 @@
     "Ventoy": {
         "Icon": "https://raw.githubusercontent.com/ventoy/Ventoy/refs/heads/master/ICON/logo_512.png",
         "URLs": [
-            "https://github.com/ventoy/Ventoy/releases"
+            "https://github.com/ventoy/Ventoy/releases/latest"
         ],
         "Weight": 0.02,
         "IsDownloaded": false
