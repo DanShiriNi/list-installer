@@ -51,14 +51,6 @@
         "Weight": 0.09,
         "IsDownloaded": false
     },
-    "Avast One Free Antivirus": {
-        "Icon": "https://img.icons8.ru/?size=512&id=jmzcPp7tABkZ&format=png",
-        "URLs": [
-            "https://www.avast.com/free-antivirus-download#pc"
-        ],
-        "Weight": 2,
-        "IsDownloaded": false
-    },
     "qBittorrent": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/New_qBittorrent_Logo.svg/1280px-New_qBittorrent_Logo.svg.png",
         "URLs": [
