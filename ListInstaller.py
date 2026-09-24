@@ -160,13 +160,12 @@ class App(tk.Tk):
                     'Sec-Fetch-Site': 'cross-site',
                 })
             try:
-                response = requests.get(icon_url, stream=True, timeout=10, headers=headers)
+                response = requests.get(icon_url, stream=True, timeout=(5, 30), headers=headers)
                 response.raise_for_status()
                 img = Image.open(response.raw)
                 img.save(cache_path, "PNG")
                 self.after(0, lambda: self._load_icon_from_file(cache_path, callback))
-            except Exception as e:
-                print(e)
+            except requests.RequestException:
                 self.after(0, callback, None)
 
         threading.Thread(target=task, daemon=True).start()
@@ -243,7 +242,7 @@ class App(tk.Tk):
                 'Sec-Fetch-Site': 'cross-site',
             })
         try:
-            response = requests.get(url, stream=True, timeout=10, headers=headers)
+            response = requests.get(url, stream=True, timeout=(5, 30), headers=headers)
             response.raise_for_status()
             img = Image.open(response.raw)
             img.save(cache_path, "PNG")

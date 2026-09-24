@@ -143,7 +143,7 @@
         "IsDownloaded": false
     },
     "1С:Предприятие 8.3, учебная версия": {
-        "Icon": "https://online.1c.ru/upload/training_files.png",
+        "Icon": "https://decast.com/local/templates/decast/components/bitrix/news.detail/iwannbiot/images/1c.webp",
         "URLs": [
             "https://online.1c.ru/catalog/programs/program/28765768/"
         ],
@@ -259,7 +259,7 @@
         "IsDownloaded": false
     },
     "Porthole - Local Port Sharing": {
-        "Icon": "https://porthole.sestudio.org/favicon.ico",
+        "Icon": "https://images.steamusercontent.com/ugc/11207659337737696531/34B170A77EE1D9DFC0504987D231BAA2E8958104/?imw=128&imh=128",
         "URLs": [
             "https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"
         ],
@@ -327,7 +327,7 @@
         "IsDownloaded": false
     },
     "LocalSend": {
-        "Icon": "https://localsend.org/img/logo.png",
+        "Icon": "https://raw.githubusercontent.com/localsend/localsend/refs/heads/main/app/assets/img/logo-512.png",
         "URLs": [
             "https://localsend.org/ru/download"
         ],
