@@ -405,5 +405,13 @@
         ],
         "Weight": 0.17,
         "IsDownloaded": false
+    },
+    "Microsoft Activation Scripts": {
+        "Icon": "https://camo.githubusercontent.com/d010db59ee5f338bc18b852df982e73cac8b6aff17b9ddfb4867d57a820a8475/68747470733a2f2f6d61737367726176652e6465762f696d672f6c6f676f5f736d616c6c2e706e67",
+        "URLs": [
+            "https://github.com/massgravel/Microsoft-Activation-Scripts"
+        ],
+        "Weight": 0.01,
+        "IsDownloaded": false
     }
 }
