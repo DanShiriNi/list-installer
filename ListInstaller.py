@@ -457,18 +457,35 @@ class App(tk.Tk):
             install_icon_label.pack(pady=5, before=self.program_install_title_label)
 
     def show_install_window(self, program_name, urls, mods_urls):
-        win = tk.Toplevel(self)
-        win.title(f"Установка программы {program_name}")
-        win.iconbitmap(sys.argv[0])
-        win.resizable(False, False)
-        win.geometry("500x200")
-        win.update_idletasks()
-        x = (win.winfo_screenwidth() // 2) - 250
-        y = (win.winfo_screenheight() // 2) - 100
-        win.geometry(f"+{x}+{y}")
+        previous_frame = None
+        for frame in (self.program_download_frame, self.program_list_frame):
+            if frame.winfo_ismapped():
+                previous_frame = frame
+                frame.pack_forget()
+                break
 
-        canvas = tk.Canvas(win, borderwidth=0, highlightthickness=0)
-        scrollbar = ttk.Scrollbar(win, orient="vertical", command=canvas.yview)
+        install_frame = tk.Frame(self)
+        install_frame.pack(fill=tk.BOTH, expand=True)
+
+        mousewheel_binding = None
+
+        def close_install_frame():
+            if mousewheel_binding is not None:
+                self.unbind_all("<MouseWheel>")
+            install_frame.destroy()
+            if previous_frame and previous_frame.winfo_exists():
+                previous_frame.pack(fill=tk.BOTH, expand=True)
+
+        close_button = tk.Button(
+            install_frame,
+            text="Закрыть",
+            command=close_install_frame,
+            takefocus=False
+        )
+        close_button.pack(fill=tk.X)
+
+        canvas = tk.Canvas(install_frame, borderwidth=0, highlightthickness=0)
+        scrollbar = ttk.Scrollbar(install_frame, orient="vertical", command=canvas.yview)
         canvas.configure(yscrollcommand=scrollbar.set)
 
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
@@ -485,9 +502,10 @@ class App(tk.Tk):
             "<Configure>",
             lambda e: canvas.itemconfig(canvas_window, width=e.width)
         )
-        canvas.bind_all(
+        mousewheel_binding = canvas.bind_all(
             "<MouseWheel>",
             lambda e: canvas.yview_scroll(int(-1 * (e.delta / 120)), "units")
+            if canvas.winfo_exists() else None
         )
 
         self.program_install_title_label = tk.Label(scrollable_frame, text=f"Установка программы {program_name}", font=("Arial", 14, "bold"))
