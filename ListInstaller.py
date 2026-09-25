@@ -265,6 +265,7 @@ class App(tk.Tk):
         
         program_name = self.undownloaded_programs_list[self.page_index]
         self.program_name_label.config(text=program_name)
+        self.program_categories_label.config(text="\n".join(self.programs[program_name]['Categories']))
 
         program_weight = self.programs[program_name]['Weight']
         if program_weight < 1:
@@ -431,6 +432,9 @@ class App(tk.Tk):
 
         program_frame = tk.Frame(self.program_download_frame)
         program_frame.grid(column=1, row=1, sticky="nsew")
+
+        self.program_categories_label = tk.Label(program_frame, text="", font=("Arial", 10))
+        self.program_categories_label.pack()
 
         self.program_icon_label = tk.Label(program_frame, text="", width=256, height=256)
         self.program_icon_label.pack(pady=5)

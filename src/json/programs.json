@@ -5,6 +5,9 @@
             "https://learn.microsoft.com/ru-ru/cpp/windows/latest-supported-vc-redist?view=msvc-170"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Драйверы и зависимости"
+        ],
         "Weight": 0.05,
         "IsDownloaded": false
     },
@@ -14,6 +17,9 @@
             "https://www.rarlab.com/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Архиваторы"
+        ],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -23,6 +29,9 @@
             "https://www.7-zip.org/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Архиваторы"
+        ],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -34,6 +43,9 @@
         "ModsURLs": [
             "happ://routing/onadd/eyJOYW1lIjoiUm9zY29tVlBOLVBlcnNvbmFsIiwiR2xvYmFsUHJveHkiOiJ0cnVlIiwiVXNlQ2h1bmtGaWxlcyI6InRydWUiLCJSZW1vdGVEbnMiOiIxLjEuMS4xIiwiRG9tZXN0aWNEbnMiOiIxLjEuMS4xIiwiUmVtb3RlRE5TVHlwZSI6IkRvSCIsIlJlbW90ZUROU0RvbWFpbiI6Imh0dHBzOi8vMS4xLjEuMS9kbnMtcXVlcnkiLCJSZW1vdGVETlNJUCI6IjEuMS4xLjEiLCJEb21lc3RpY0ROU1R5cGUiOiJEb0giLCJEb21lc3RpY0ROU0RvbWFpbiI6Imh0dHBzOi8vMS4xLjEuMS9kbnMtcXVlcnkiLCJEb21lc3RpY0ROU0lQIjoiMS4xLjEuMSIsIkdlb2lwdXJsIjoiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL25vdmV2OS9oYXBwLWdlb0BiYjk2YzE3M2ZhNzMxYjkxMDk3NDZlNGIyNWI3NTJkNzg0MzBlNmVjL2dlb2lwLmRhdCIsIkdlb3NpdGV1cmwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvbm92ZXY5L2hhcHAtZ2VvQGJiOTZjMTczZmE3MzFiOTEwOTc0NmU0YjI1Yjc1MmQ3ODQzMGU2ZWMvZ2Vvc2l0ZS5kYXQiLCJMYXN0VXBkYXRlZCI6IjE3NzY1ODAwMDAiLCJEbnNIb3N0cyI6eyJsa2ZsMi5uYWxvZy5ydSI6IjIxMy4yNC42NC4xNzUiLCJsa25wZC5uYWxvZy5ydSI6IjIxMy4yNC42NC4xODEifSwiUm91dGVPcmRlciI6ImJsb2NrLXByb3h5LWRpcmVjdCIsIkRpcmVjdFNpdGVzIjpbImdlb3NpdGU6cHJpdmF0ZSIsImdlb3NpdGU6Y2F0ZWdvcnktcnUiLCJnZW9zaXRlOndoaXRlbGlzdCIsImdlb3NpdGU6bWljcm9zb2Z0IiwiZ2Vvc2l0ZTphcHBsZSIsImdlb3NpdGU6ZXBpY2dhbWVzIiwiZ2Vvc2l0ZTpyaW90IiwiZ2Vvc2l0ZTplc2NhcGVmcm9tdGFya292IiwiZ2Vvc2l0ZTpzdGVhbSIsImdlb3NpdGU6dHdpdGNoIiwiZ2Vvc2l0ZTpwaW50ZXJlc3QiLCJnZW9zaXRlOmZhY2VpdCIsImRvbWFpbjptYWduaXQucnUiLCJkb21haW46bWdjLWxveWFsdHkucnUiXSwiRGlyZWN0SXAiOlsiZ2VvaXA6cHJpdmF0ZSIsImdlb2lwOmRpcmVjdCJdLCJQcm94eVNpdGVzIjpbImdlb3NpdGU6Z29vZ2xlLXBsYXkiLCJnZW9zaXRlOmdpdGh1YiIsImdlb3NpdGU6dHdpdGNoLWFkcyIsImdlb3NpdGU6eW91dHViZSIsImdlb3NpdGU6dGVsZWdyYW0iXSwiUHJveHlJcCI6W10sIkJsb2NrU2l0ZXMiOlsiZ2Vvc2l0ZTp3aW4tc3B5IiwiZ2Vvc2l0ZTp0b3JyZW50IiwiZ2Vvc2l0ZTpjYXRlZ29yeS1hZHMiXSwiQmxvY2tJcCI6W10sIkRvbWFpblN0cmF0ZWd5IjoiSVBJZk5vbk1hdGNoIiwiRmFrZUROUyI6ImZhbHNlIn0="
         ],
+        "Categories": [
+            "VPN"
+        ],
         "Weight": 0.12,
         "IsDownloaded": false
     },
@@ -44,6 +56,9 @@
             "https://github.com/Leadaxe/singbox-launcher/releases"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "VPN"
+        ],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -53,6 +68,9 @@
             "https://adderly.top/makutweaker"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Твикеры, оптимизация и обслуживание системы"
+        ],
         "Weight": 0.09,
         "IsDownloaded": false
     },
@@ -62,6 +80,9 @@
             "https://www.qbittorrent.org/download"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Торрент-клиенты"
+        ],
         "Weight": 0.05,
         "IsDownloaded": false
     },
@@ -73,6 +94,9 @@
             "https://rutracker.org/forum/viewtopic.php?t=6140745"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Офисные пакеты"
+        ],
         "Weight": 7.04,
         "IsDownloaded": false
     },
@@ -82,6 +106,9 @@
             "https://wps.com/office/windows/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Офисные пакеты"
+        ],
         "Weight": 1.7,
         "IsDownloaded": false
     },
@@ -91,6 +118,9 @@
             "https://github.com/ONLYOFFICE/DesktopEditors/releases/latest"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Офисные пакеты"
+        ],
         "Weight": 0.58,
         "IsDownloaded": false
     },
@@ -100,6 +130,9 @@
             "https://www.firefox.com/ru/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Браузеры"
+        ],
         "Weight": 0.7,
         "IsDownloaded": false
     },
@@ -109,6 +142,9 @@
             "https://www.python.org/downloads/release/python-3119/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования"
+        ],
         "Weight": 0.03,
         "IsDownloaded": false
     },
@@ -118,6 +154,9 @@
             "https://git-scm.com/install/windows"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования"
+        ],
         "Weight": 0.07,
         "IsDownloaded": false
     },
@@ -127,6 +166,9 @@
             "https://github.com/DanShiriNi/ExePyler"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования"
+        ],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -136,6 +178,9 @@
             "https://code.visualstudio.com/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования"
+        ],
         "Weight": 0.1,
         "IsDownloaded": false
     },
@@ -145,6 +190,9 @@
             "https://visualstudio.microsoft.com/ru/downloads/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования"
+        ],
         "Weight": 3.24,
         "IsDownloaded": false
     },
@@ -155,6 +203,9 @@
             "https://learn.microsoft.com/ru-ru/ssms/install/install"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования"
+        ],
         "Weight": 4.04,
         "IsDownloaded": false
     },
@@ -164,6 +215,9 @@
             "https://online.1c.ru/catalog/programs/program/28765768/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования"
+        ],
         "Weight": 0.52,
         "IsDownloaded": false
     },
@@ -174,6 +228,9 @@
             "https://www.docker.com/pricing/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования"
+        ],
         "Weight": 0.62,
         "IsDownloaded": false
     },
@@ -183,6 +240,9 @@
             "https://github.com/DanShiriNi/ffmpeg-installer"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
         "Weight": 0.23,
         "IsDownloaded": false
     },
@@ -194,6 +254,9 @@
         "ModsURLs": [
             "https://forums.getpaint.net/applications/core/interface/file/attachment.php?id=10208"
         ],
+        "Categories": [
+            "Графические редакторы"
+        ],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -203,6 +266,9 @@
             "https://github.com/jgraph/drawio-desktop/releases"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Графические редакторы"
+        ],
         "Weight": 0.11,
         "IsDownloaded": false
     },
@@ -212,6 +278,9 @@
             "https://aimp.ru/?do=download&os=windows"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
         "Weight": 0.03,
         "IsDownloaded": false
     },
@@ -221,6 +290,9 @@
             "https://www.videolan.org/vlc/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
         "Weight": 0.05,
         "IsDownloaded": false
     },
@@ -230,6 +302,9 @@
             "https://www.image-line.com/fl-studio/download"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
         "Weight": 0.99,
         "IsDownloaded": false
     },
@@ -239,6 +314,9 @@
             "https://www.capcut.com/activity/download_pc"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
         "Weight": 1.63,
         "IsDownloaded": false
     },
@@ -248,6 +326,9 @@
             "https://www.blackmagicdesign.com/products/davinciresolve#"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
         "Weight": 3.31,
         "IsDownloaded": false
     },
@@ -257,6 +338,9 @@
             "https://disk.yandex.ru/d/gCTlyC8RQm4V3Q"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
         "Weight": 0,
         "IsDownloaded": false
     },
@@ -266,6 +350,9 @@
             "https://obsproject.com/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
         "Weight": 0.15,
         "IsDownloaded": false
     },
@@ -275,6 +362,9 @@
             "https://www.bricklink.com/v3/studio/download.page"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Моделирование"
+        ],
         "Weight": 0.43,
         "IsDownloaded": false
     },
@@ -284,6 +374,9 @@
             "https://store.steampowered.com/about/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Игры и игровые платформы"
+        ],
         "Weight": 0.59,
         "IsDownloaded": false
     },
@@ -293,6 +386,9 @@
             "https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Игры и игровые платформы"
+        ],
         "Weight": 0.23,
         "IsDownloaded": false
     },
@@ -309,6 +405,9 @@
             "https://www.mixmods.com.br/2022/08/iii-vc-sa-framerate-vigilante/",
             "https://github.com/juicermv/GTA-GPS-Redux/releases/latest"
         ],
+        "Categories": [
+            "Игры и игровые платформы"
+        ],
         "Weight": 3.98,
         "IsDownloaded": false
     },
@@ -323,6 +422,9 @@
             "https://github.com/ThirteenAG/WidescreenFixesPack/releases/tag/gtavc",
             "https://www.mixmods.com.br/2022/08/iii-vc-sa-framerate-vigilante/"
         ],
+        "Categories": [
+            "Игры и игровые платформы"
+        ],
         "Weight": 4.58,
         "IsDownloaded": false
     },
@@ -332,6 +434,10 @@
             "https://www.java.com/ru/download/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования",
+            "Драйверы и зависимости"
+        ],
         "Weight": 0.07,
         "IsDownloaded": false
     },
@@ -346,6 +452,9 @@
         "ModsURLs": [
             "https://modrinth.com/modpack/optimized-3d-pixel-edit"
         ],
+        "Categories": [
+            "Игры и игровые платформы"
+        ],
         "Weight": 0.67,
         "IsDownloaded": false
     },
@@ -355,6 +464,9 @@
             "https://www.microsoft.com/store/apps/9PC9MFX9QCXS"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Игры и игровые платформы"
+        ],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -364,6 +476,9 @@
             "https://localsend.org/ru/download"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -373,6 +488,9 @@
             "https://rufus.ie/ru/"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Загрузка iso-образов"
+        ],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -382,6 +500,9 @@
             "https://github.com/ventoy/Ventoy/releases/latest"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Загрузка iso-образов"
+        ],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -391,6 +512,9 @@
             "https://www.voidtools.com"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -400,6 +524,10 @@
             "https://github.com/BCUninstaller/Bulk-Crap-Uninstaller/releases"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Твикеры, оптимизация и обслуживание системы",
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -409,6 +537,10 @@
             "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Твикеры, оптимизация и обслуживание системы",
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -418,6 +550,10 @@
             "https://github.com/pwnapplehat/BitBroom/releases/latest"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Твикеры, оптимизация и обслуживание системы",
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.12,
         "IsDownloaded": false
     },
@@ -427,6 +563,10 @@
             "https://github.com/winsiderss/systeminformer/releases#release-v2.39"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Твикеры, оптимизация и обслуживание системы",
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -436,6 +576,9 @@
             "https://github.com/Flow-Launcher/Flow.Launcher/releases/latest"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.1,
         "IsDownloaded": false
     },
@@ -445,6 +588,9 @@
             "https://www.virtualbox.org/wiki/Downloads"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.17,
         "IsDownloaded": false
     },
@@ -454,6 +600,9 @@
             "https://github.com/massgravel/Microsoft-Activation-Scripts"
         ],
         "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
         "Weight": 0.01,
         "IsDownloaded": false
     }
