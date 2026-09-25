@@ -116,8 +116,11 @@ class App(tk.Tk):
         self.program_download_frame = None
         self.program_list_frame = None
         self.program_icon_label = None
+        self.program_install_icon_label = None
         self.current_icon_image = None
+        self.current_install_icon_image = None
         self.program_name_label = None
+        self.program_install_title_label = None
         self.success_text = None
         self.program_list_progress = None
         self.download_button = None
@@ -127,6 +130,7 @@ class App(tk.Tk):
 
         self.page_index = 0
         self.loading_label = None  # Для хранения лейбла загрузки
+        self.install_loading_label = None  # Для хранения лейбла загрузки
 
         self.load_folders()
         self.load_json()
@@ -225,7 +229,7 @@ class App(tk.Tk):
         safe_name = program_name.lower().replace(' ', '_').replace(':', '')
         return f"src/icons/{safe_name}.png"
 
-    def download_and_cache_icon(self, program_name, callback):
+    def download_and_cache_icon(self, show_loading_label_func, program_name, callback):
         def task():
             icon_url = self.programs[program_name].get("Icon")
             if not icon_url:
@@ -237,7 +241,7 @@ class App(tk.Tk):
                 self.after(0, lambda: self._load_icon_from_file(cache_path, callback))
                 return
             
-            self.show_loading_label()
+            show_loading_label_func()
 
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -286,7 +290,7 @@ class App(tk.Tk):
                     self.program_icon_label.config(image="", text="❌")
                     self.current_icon_image = None
 
-        self.download_and_cache_icon(program_name, set_icon)
+        self.download_and_cache_icon(self.show_loading_label, program_name, set_icon)
     
     def show_loading_label(self):
         """Показывает лейбл с текстом загрузки и скрывает лейбл иконки"""
@@ -403,9 +407,58 @@ class App(tk.Tk):
         self.page_index = (self.page_index + 1) % len(self.undownloaded_programs_list)
         self.show_current_program()
 
-    def show_install_window(self, urls, mods_urls):
+    def update_install_program_icon(self, program_name):
+        install_icon_label = self.program_install_icon_label
+
+        def set_icon(photo):
+            if not install_icon_label or not install_icon_label.winfo_exists():
+                return
+            if self.program_install_icon_label is not install_icon_label:
+                return
+            try:
+                if photo:
+                    self.hide_install_loading_label(install_icon_label)
+                    install_icon_label.config(image=photo, text="")
+                    self.current_install_icon_image = photo
+                else:
+                    install_icon_label.config(image="", text="❌")
+                    self.current_install_icon_image = None
+            except tk.TclError:
+                return
+
+        self.download_and_cache_icon(self.show_install_loading_label, program_name, set_icon)
+
+    def show_install_loading_label(self):
+        """Показывает лейбл с текстом загрузки и скрывает лейбл иконки"""
+        if not self.program_install_icon_label or not self.program_install_icon_label.winfo_exists():
+            return
+        if self.install_loading_label and (
+            not self.install_loading_label.winfo_exists()
+            or self.install_loading_label.master is not self.program_install_icon_label.master
+        ):
+            self.install_loading_label = None
+        if not self.install_loading_label:
+            # Создаём лейбл загрузки, если его ещё нет
+            self.install_loading_label = tk.Label(
+                self.program_install_icon_label.master, 
+                text="⏳ Загрузка...", 
+                font=("Arial", 14)
+            )
+        
+        # Скрываем лейбл иконки
+        self.program_install_icon_label.pack_forget()
+        self.install_loading_label.pack(pady=5, before=self.program_install_title_label)
+    
+    def hide_install_loading_label(self, install_icon_label=None):
+        """Скрывает лейбл загрузки и показывает лейбл иконки"""
+        if self.install_loading_label:
+            self.install_loading_label.pack_forget()
+        if install_icon_label and install_icon_label.winfo_exists():
+            install_icon_label.pack(pady=5, before=self.program_install_title_label)
+
+    def show_install_window(self, program_name, urls, mods_urls):
         win = tk.Toplevel(self)
-        win.title("Установка программы")
+        win.title(f"Установка программы {program_name}")
         win.iconbitmap(sys.argv[0])
         win.resizable(False, False)
         win.geometry("500x200")
@@ -437,6 +490,15 @@ class App(tk.Tk):
             lambda e: canvas.yview_scroll(int(-1 * (e.delta / 120)), "units")
         )
 
+        self.program_install_title_label = tk.Label(scrollable_frame, text=f"Установка программы {program_name}", font=("Arial", 14, "bold"))
+        self.program_install_title_label.pack(pady=(10, 5))
+
+        self.program_install_icon_label = tk.Label(scrollable_frame, text="", width=256, height=256)
+        self.program_install_icon_label.pack(pady=5)
+
+        self.show_install_loading_label()
+        self.update_install_program_icon(program_name)
+
         installer_msg = "Чтобы установить программу, перейдите по ресурсам ниже:\n(иногда, несколько ресурсов могут вести на разные способы установки)"
         tk.Label(scrollable_frame, text=installer_msg, font=("Arial", 10)).pack(pady=(20, 10))
 
@@ -465,7 +527,7 @@ class App(tk.Tk):
     def download_program_by_name(self, program_name):
         urls = self.programs[program_name]["URLs"]
         mods_urls = self.programs[program_name]["ModsURLs"]
-        self.show_install_window(urls, mods_urls)
+        self.show_install_window(program_name, urls, mods_urls)
 
     def download_program(self):
         if not self.undownloaded_programs_list:
