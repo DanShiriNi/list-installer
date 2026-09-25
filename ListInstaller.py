@@ -494,21 +494,31 @@ class App(tk.Tk):
         scrollable_frame = tk.Frame(canvas)
         canvas_window = canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 
+        def update_scroll_region(event=None):
+            canvas.configure(scrollregion=canvas.bbox("all"))
+            content_height = scrollable_frame.winfo_reqheight()
+            if content_height <= canvas.winfo_height():
+                canvas.yview_moveto(0)
+
         scrollable_frame.bind(
             "<Configure>",
-            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+            update_scroll_region
         )
         canvas.bind(
             "<Configure>",
-            lambda e: canvas.itemconfig(canvas_window, width=e.width)
-        )
-        mousewheel_binding = canvas.bind_all(
-            "<MouseWheel>",
-            lambda e: canvas.yview_scroll(int(-1 * (e.delta / 120)), "units")
-            if canvas.winfo_exists() else None
+            lambda e: (canvas.itemconfig(canvas_window, width=e.width), update_scroll_region())
         )
 
-        self.program_install_title_label = tk.Label(scrollable_frame, text=f"Установка программы {program_name}", font=("Arial", 14, "bold"))
+        def scroll_canvas(event):
+            if scrollable_frame.winfo_reqheight() > canvas.winfo_height():
+                canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+        mousewheel_binding = canvas.bind_all(
+            "<MouseWheel>",
+            lambda e: scroll_canvas(e) if canvas.winfo_exists() else None
+        )
+
+        self.program_install_title_label = tk.Label(scrollable_frame, text=f"Установка программы\n{program_name}", font=("Arial", 14, "bold"))
         self.program_install_title_label.pack(pady=(10, 5))
 
         self.program_install_icon_label = tk.Label(scrollable_frame, text="", width=256, height=256)
