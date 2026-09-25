@@ -380,18 +380,6 @@
         "Weight": 0.59,
         "IsDownloaded": false
     },
-    "Porthole - Local Port Sharing": {
-        "Icon": "https://images.steamusercontent.com/ugc/11207659337737696531/34B170A77EE1D9DFC0504987D231BAA2E8958104/?imw=128&imh=128",
-        "URLs": [
-            "https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"
-        ],
-        "ModsURLs": [],
-        "Categories": [
-            "Игры и игровые платформы"
-        ],
-        "Weight": 0.23,
-        "IsDownloaded": false
-    },
     "GTA: San Andreas": {
         "Icon": "https://cdn2.steamgriddb.com/icon/28eeb4998e282cee80f46cd5a67b7e30/32/512x512.png",
         "URLs": [
@@ -456,6 +444,18 @@
             "Игры и игровые платформы"
         ],
         "Weight": 0.67,
+        "IsDownloaded": false
+    },
+    "Porthole - Local Port Sharing": {
+        "Icon": "https://images.steamusercontent.com/ugc/11207659337737696531/34B170A77EE1D9DFC0504987D231BAA2E8958104/?imw=128&imh=128",
+        "URLs": [
+            "https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"
+        ],
+        "ModsURLs": [],
+        "Categories": [
+            "Игры и игровые платформы"
+        ],
+        "Weight": 0.23,
         "IsDownloaded": false
     },
     "JE2PE": {

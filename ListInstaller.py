@@ -317,10 +317,10 @@ class App(tk.Tk):
                 icon_url = prog_data.get("Icon")
                 if not icon_url:
                     continue
-                self._save_icon_from_url(prog_name, icon_url, cache_path)
+                self._save_icon_from_url(icon_url, cache_path)
         threading.Thread(target=task, daemon=True).start()
 
-    def _save_icon_from_url(self, program_name, url, cache_path):
+    def _save_icon_from_url(self, url, cache_path):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
