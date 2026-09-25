@@ -8,6 +8,96 @@ import threading
 import webbrowser
 from PIL import Image, ImageTk
 
+
+class DropdownCheckbox(ttk.Frame):
+    def __init__(self, master, categories, on_change=None, **kwargs):
+        super().__init__(master, **kwargs)
+        self.categories = list(categories)
+        self.on_change = on_change
+
+        self.vars = {c: tk.BooleanVar(value=True) for c in self.categories}
+        self.visible_categories = {c: True for c in self.categories}
+
+        # Кнопка, открывающая список
+        self.button = tk.Button(self, text="Сортировка ▾", command=self.toggle, font=("Arial", 10))
+        self.button.pack(fill="x")
+
+        # Всплывающее окно (создаётся лениво)
+        self.popup = None
+        # Закрывать при клике вне — вешаем обработчик на root
+        self.winfo_toplevel().bind("<Button-1>", self._on_global_click, add="+")
+
+    # ---------- открытие/закрытие ----------
+    def toggle(self):
+        if self.popup is not None and self.popup.winfo_exists():
+            self.close()
+            self.button.config(text="Сортировка ▾")
+        else:
+            self.open()
+            self.button.config(text="Сортировка ▴")
+
+    def open(self):
+        if self.popup is not None and self.popup.winfo_exists():
+            return
+
+        self.popup = tk.Toplevel(self)
+        self.popup.wm_overrideredirect(True)   # без рамки и заголовка
+        self.popup.attributes("-topmost", True)
+
+        # Слегка «утопленная» рамка для вида
+        border = tk.Frame(self.popup, bd=1, relief="solid")
+        border.pack(fill="both", expand=True)
+
+        for cat in self.categories:
+            cb = tk.Checkbutton(
+                border,
+                text=cat,
+                variable=self.vars[cat],
+                anchor="w",
+                command=self._on_check,
+                font=("Arial", 10)
+            )
+            cb.pack(fill="x", padx=4, pady=1)
+
+        # Позиционируем под кнопкой
+        self.update_idletasks()
+        x = self.button.winfo_rootx()
+        y = self.button.winfo_rooty() + self.button.winfo_height()
+        self.popup.geometry(f"+{x}+{y}")
+
+    def close(self):
+        if self.popup is not None and self.popup.winfo_exists():
+            self.popup.destroy()
+        self.popup = None
+        self.button.config(text="Сортировка ▾")
+
+    # ---------- обработчики ----------
+    def _on_check(self):
+        for cat in self.categories:
+            self.visible_categories[cat] = self.vars[cat].get()
+        if self.on_change:
+            self.on_change(self.visible_categories)
+        else:
+            print(self.visible_categories)
+
+    def _on_global_click(self, event):
+        """Закрываем список при клике вне его и вне кнопки."""
+        if self.popup is None or not self.popup.winfo_exists():
+            return
+        # Координаты клика
+        widget = event.widget
+        # Если клик внутри popup — не закрываем
+        w = widget
+        while w is not None:
+            if w == self.popup:
+                return
+            w = getattr(w, "master", None)
+        # Если клик по самой кнопке — toggle сам разберётся
+        if widget == self.button:
+            return
+        self.close()
+
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -19,6 +109,7 @@ class App(tk.Tk):
 
         self.json_name = "src/json/programs.json"
         self.programs = {}
+        self.categories = []
         self.start_programs = {}
         self.undownloaded_programs_list = []
 
@@ -120,6 +211,7 @@ class App(tk.Tk):
                     f.write(response.text)
             with open(self.json_name, "r", encoding='utf-8') as f:
                 self.start_programs = json.load(f)
+                self.categories = list({cat for item in self.start_programs.values() for cat in item["Categories"]})
                 self.programs = self.start_programs.copy()
         except Exception as e:
             messagebox.showerror("Ошибка", f"Ошибка при загрузке JSON-файла: {e}")
@@ -415,6 +507,17 @@ class App(tk.Tk):
             name = self.programs_listbox.get(sel[0])[2:]
             self.download_program_by_name(name)
 
+    def filter_by_categories(self, visible_categories):
+        filtered_programs = []
+        for name, data in self.programs.items():
+            if any(visible_categories.get(cat, False) for cat in data["Categories"]):
+                filtered_programs.append(name)
+        if self.agree_only_undownloaded.get() == 1:
+            filtered_programs = [name for name in filtered_programs if not self.programs[name]["IsDownloaded"]]
+        items = [f"❌ {name}" if not self.programs[name]["IsDownloaded"] else f"✔ {name}"
+                 for name in filtered_programs]
+        self.programs_var.set(items)
+
     def load_structure(self):
         self.program_download_frame = tk.Frame(self)
 
@@ -479,9 +582,15 @@ class App(tk.Tk):
         top_list_frame.grid_columnconfigure(2, weight=1)
         top_list_frame.grid_rowconfigure(0, weight=1)
 
+        top_categories_agree_frame = tk.Frame(self.program_list_frame)
+        top_categories_agree_frame.pack(fill=tk.X)
+
+        categories_checkbox = DropdownCheckbox(top_categories_agree_frame, self.categories, on_change=self.filter_by_categories)
+        categories_checkbox.pack(side=tk.LEFT, fill=tk.Y)
+
         self.agree_only_undownloaded = tk.IntVar()
-        checkbox = tk.Checkbutton(self.program_list_frame, text="Только не установленные", variable=self.agree_only_undownloaded, command=self.update_program_list, font=("Arial", 10))
-        checkbox.pack(anchor=tk.W)
+        checkbox = tk.Checkbutton(top_categories_agree_frame, text="Только не установленные", variable=self.agree_only_undownloaded, command=self.update_program_list, font=("Arial", 10))
+        checkbox.pack(side=tk.RIGHT)
 
         self.programs_var = tk.StringVar(value=[])
         self.programs_listbox = tk.Listbox(self.program_list_frame, listvariable=self.programs_var, font=("Arial", 10))
