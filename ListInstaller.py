@@ -456,7 +456,7 @@ class App(tk.Tk):
             mods_frame = tk.Frame(scrollable_frame)
             mods_frame.pack(pady=5)
             for url in mods_urls:
-                url_text = url if len(url) <= 64 else url[:64] + "..."
+                url_text = url if len(url) <= 72 else url[:72] + "..."
                 lbl = tk.Label(mods_frame, text=url_text, fg="blue", cursor="hand2",
                             font=("Arial", 9, "underline"))
                 lbl.bind("<Button-1>", lambda e, u=url: webbrowser.open(u))
