@@ -19,6 +19,7 @@ class App(tk.Tk):
 
         self.json_name = "src/json/programs.json"
         self.programs = {}
+        self.start_programs = {}
         self.undownloaded_programs_list = []
 
         self.program_download_frame = None
@@ -48,25 +49,26 @@ class App(tk.Tk):
 
     def on_closing(self):
         """Обработчик закрытия окна"""
-        result = messagebox.askyesno(
-            title="Подтверждение выхода",
-            message="Сохранить ли прогресс загрузки? (JSON-файл будет перезаписан)",
-            icon="question"
-        )
-        
-        if result:
-            try:
-                if os.path.exists(self.json_name):
-                    backup_name = self.json_name + ".backup"
-                    try:
-                        import shutil
-                        shutil.copy2(self.json_name, backup_name)
-                    except:
-                        pass
-                with open(self.json_name, "w", encoding='utf-8') as f:
-                    json.dump(self.programs, f, ensure_ascii=False, indent=4)
-            except Exception as e:
-                messagebox.showerror("Ошибка", f"Не удалось сохранить прогресс: {e}")
+        if self.programs != self.start_programs:
+            result = messagebox.askyesno(
+                title="Подтверждение выхода",
+                message="Сохранить ли прогресс загрузки? (JSON-файл будет перезаписан)",
+                icon="question"
+            )
+            
+            if result:
+                try:
+                    if os.path.exists(self.json_name):
+                        backup_name = self.json_name + ".backup"
+                        try:
+                            import shutil
+                            shutil.copy2(self.json_name, backup_name)
+                        except:
+                            pass
+                    with open(self.json_name, "w", encoding='utf-8') as f:
+                        json.dump(self.programs, f, ensure_ascii=False, indent=4)
+                except Exception as e:
+                    messagebox.showerror("Ошибка", f"Не удалось сохранить прогресс: {e}")
         self.destroy()
 
     def setup_styles(self):
@@ -117,7 +119,8 @@ class App(tk.Tk):
                 with open(self.json_name, "w", encoding='utf-8') as f:
                     f.write(response.text)
             with open(self.json_name, "r", encoding='utf-8') as f:
-                self.programs = json.load(f)
+                self.start_programs = json.load(f)
+                self.programs = self.start_programs.copy()
         except Exception as e:
             messagebox.showerror("Ошибка", f"Ошибка при загрузке JSON-файла: {e}")
             sys.exit(1)
@@ -307,7 +310,7 @@ class App(tk.Tk):
         self.page_index = (self.page_index + 1) % len(self.undownloaded_programs_list)
         self.show_current_program()
 
-    def show_install_window(self, urls):
+    def show_install_window(self, urls, mods_urls):
         win = tk.Toplevel(self)
         win.title("Установка программы")
         win.iconbitmap(sys.argv[0])
@@ -318,21 +321,58 @@ class App(tk.Tk):
         y = (win.winfo_screenheight() // 2) - 100
         win.geometry(f"+{x}+{y}")
 
-        msg = "Чтобы установить программу, перейдите по ресурсам ниже:" if len(urls) > 1 \
-              else "Чтобы установить программу, перейдите по ссылке ниже:"
-        tk.Label(win, text=msg, font=("Arial", 10)).pack(pady=(20, 10))
+        canvas = tk.Canvas(win, borderwidth=0, highlightthickness=0)
+        scrollbar = ttk.Scrollbar(win, orient="vertical", command=canvas.yview)
+        canvas.configure(yscrollcommand=scrollbar.set)
 
-        frame = tk.Frame(win)
-        frame.pack(pady=5)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+        scrollable_frame = tk.Frame(canvas)
+        canvas_window = canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+        canvas.bind(
+            "<Configure>",
+            lambda e: canvas.itemconfig(canvas_window, width=e.width)
+        )
+        canvas.bind_all(
+            "<MouseWheel>",
+            lambda e: canvas.yview_scroll(int(-1 * (e.delta / 120)), "units")
+        )
+
+        installer_msg = "Чтобы установить программу, перейдите по ресурсам ниже:\n(иногда, несколько ресурсов могут вести на разные способы установки)"
+        tk.Label(scrollable_frame, text=installer_msg, font=("Arial", 10)).pack(pady=(20, 10))
+
+        installer_frame = tk.Frame(scrollable_frame)
+        installer_frame.pack(pady=5)
         for url in urls:
-            lbl = tk.Label(frame, text=url, fg="blue", cursor="hand2",
+            url_text = url if len(url) <= 64 else url[:64] + "..."
+            lbl = tk.Label(installer_frame, text=url_text, fg="blue", cursor="hand2",
                            font=("Arial", 9, "underline"))
             lbl.bind("<Button-1>", lambda e, u=url: webbrowser.open(u))
-            lbl.pack(anchor="center", pady=2)
+            lbl.pack(pady=2)
+
+        if len(mods_urls) > 0:
+            mods_msg = "Также можно установить модификации:"
+            tk.Label(scrollable_frame, text=mods_msg, font=("Arial", 10)).pack(pady=(20, 10))
+
+            mods_frame = tk.Frame(scrollable_frame)
+            mods_frame.pack(pady=5)
+            for url in mods_urls:
+                url_text = url if len(url) <= 64 else url[:64] + "..."
+                lbl = tk.Label(mods_frame, text=url_text, fg="blue", cursor="hand2",
+                            font=("Arial", 9, "underline"))
+                lbl.bind("<Button-1>", lambda e, u=url: webbrowser.open(u))
+                lbl.pack(pady=2)
 
     def download_program_by_name(self, program_name):
         urls = self.programs[program_name]["URLs"]
-        self.show_install_window(urls)
+        mods_urls = self.programs[program_name]["ModsURLs"]
+        self.show_install_window(urls, mods_urls)
 
     def download_program(self):
         if not self.undownloaded_programs_list:

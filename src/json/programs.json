@@ -4,6 +4,7 @@
         "URLs": [
             "https://learn.microsoft.com/ru-ru/cpp/windows/latest-supported-vc-redist?view=msvc-170"
         ],
+        "ModsURLs": [],
         "Weight": 0.05,
         "IsDownloaded": false
     },
@@ -12,6 +13,7 @@
         "URLs": [
             "https://www.rarlab.com/"
         ],
+        "ModsURLs": [],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -20,6 +22,7 @@
         "URLs": [
             "https://www.7-zip.org/"
         ],
+        "ModsURLs": [],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -40,6 +43,7 @@
             "https://github.com/Leadaxe/singbox-launcher",
             "https://github.com/Leadaxe/singbox-launcher/releases"
         ],
+        "ModsURLs": [],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -48,6 +52,7 @@
         "URLs": [
             "https://adderly.top/makutweaker"
         ],
+        "ModsURLs": [],
         "Weight": 0.09,
         "IsDownloaded": false
     },
@@ -56,6 +61,7 @@
         "URLs": [
             "https://www.qbittorrent.org/download"
         ],
+        "ModsURLs": [],
         "Weight": 0.05,
         "IsDownloaded": false
     },
@@ -66,6 +72,7 @@
             "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/ru-RU/ProPlus2019Retail.img",
             "https://rutracker.org/forum/viewtopic.php?t=6140745"
         ],
+        "ModsURLs": [],
         "Weight": 7.04,
         "IsDownloaded": false
     },
@@ -74,6 +81,7 @@
         "URLs": [
             "https://wps.com/office/windows/"
         ],
+        "ModsURLs": [],
         "Weight": 1.7,
         "IsDownloaded": false
     },
@@ -82,6 +90,7 @@
         "URLs": [
             "https://github.com/ONLYOFFICE/DesktopEditors/releases/latest"
         ],
+        "ModsURLs": [],
         "Weight": 0.58,
         "IsDownloaded": false
     },
@@ -90,6 +99,7 @@
         "URLs": [
             "https://www.firefox.com/ru/"
         ],
+        "ModsURLs": [],
         "Weight": 0.7,
         "IsDownloaded": false
     },
@@ -98,6 +108,7 @@
         "URLs": [
             "https://www.python.org/downloads/release/python-3119/"
         ],
+        "ModsURLs": [],
         "Weight": 0.03,
         "IsDownloaded": false
     },
@@ -106,6 +117,7 @@
         "URLs": [
             "https://git-scm.com/install/windows"
         ],
+        "ModsURLs": [],
         "Weight": 0.07,
         "IsDownloaded": false
     },
@@ -114,6 +126,7 @@
         "URLs": [
             "https://github.com/DanShiriNi/ExePyler"
         ],
+        "ModsURLs": [],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -122,6 +135,7 @@
         "URLs": [
             "https://code.visualstudio.com/"
         ],
+        "ModsURLs": [],
         "Weight": 0.1,
         "IsDownloaded": false
     },
@@ -130,6 +144,7 @@
         "URLs": [
             "https://visualstudio.microsoft.com/ru/downloads/"
         ],
+        "ModsURLs": [],
         "Weight": 3.24,
         "IsDownloaded": false
     },
@@ -139,6 +154,7 @@
             "https://www.microsoft.com/ru-ru/sql-server/sql-server-downloads#trysql",
             "https://learn.microsoft.com/ru-ru/ssms/install/install"
         ],
+        "ModsURLs": [],
         "Weight": 4.04,
         "IsDownloaded": false
     },
@@ -147,6 +163,7 @@
         "URLs": [
             "https://online.1c.ru/catalog/programs/program/28765768/"
         ],
+        "ModsURLs": [],
         "Weight": 0.52,
         "IsDownloaded": false
     },
@@ -156,6 +173,7 @@
             "https://docs.docker.com/desktop/setup/install/windows-install/",
             "https://www.docker.com/pricing/"
         ],
+        "ModsURLs": [],
         "Weight": 0.62,
         "IsDownloaded": false
     },
@@ -164,6 +182,7 @@
         "URLs": [
             "https://github.com/DanShiriNi/ffmpeg-installer"
         ],
+        "ModsURLs": [],
         "Weight": 0.23,
         "IsDownloaded": false
     },
@@ -183,6 +202,7 @@
         "URLs": [
             "https://github.com/jgraph/drawio-desktop/releases"
         ],
+        "ModsURLs": [],
         "Weight": 0.11,
         "IsDownloaded": false
     },
@@ -191,6 +211,7 @@
         "URLs": [
             "https://aimp.ru/?do=download&os=windows"
         ],
+        "ModsURLs": [],
         "Weight": 0.03,
         "IsDownloaded": false
     },
@@ -199,14 +220,16 @@
         "URLs": [
             "https://www.videolan.org/vlc/"
         ],
+        "ModsURLs": [],
         "Weight": 0.05,
         "IsDownloaded": false
     },
-    "FL Sudio": {
+    "FL Studio": {
         "Icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/fl-studio.png",
         "URLs": [
             "https://www.image-line.com/fl-studio/download"
         ],
+        "ModsURLs": [],
         "Weight": 0.99,
         "IsDownloaded": false
     },
@@ -215,6 +238,7 @@
         "URLs": [
             "https://www.capcut.com/activity/download_pc"
         ],
+        "ModsURLs": [],
         "Weight": 1.63,
         "IsDownloaded": false
     },
@@ -223,6 +247,7 @@
         "URLs": [
             "https://www.blackmagicdesign.com/products/davinciresolve#"
         ],
+        "ModsURLs": [],
         "Weight": 3.31,
         "IsDownloaded": false
     },
@@ -231,6 +256,7 @@
         "URLs": [
             "https://disk.yandex.ru/d/gCTlyC8RQm4V3Q"
         ],
+        "ModsURLs": [],
         "Weight": 0,
         "IsDownloaded": false
     },
@@ -239,6 +265,7 @@
         "URLs": [
             "https://obsproject.com/"
         ],
+        "ModsURLs": [],
         "Weight": 0.15,
         "IsDownloaded": false
     },
@@ -247,6 +274,7 @@
         "URLs": [
             "https://www.bricklink.com/v3/studio/download.page"
         ],
+        "ModsURLs": [],
         "Weight": 0.43,
         "IsDownloaded": false
     },
@@ -255,6 +283,7 @@
         "URLs": [
             "https://store.steampowered.com/about/"
         ],
+        "ModsURLs": [],
         "Weight": 0.59,
         "IsDownloaded": false
     },
@@ -263,6 +292,7 @@
         "URLs": [
             "https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"
         ],
+        "ModsURLs": [],
         "Weight": 0.23,
         "IsDownloaded": false
     },
@@ -301,6 +331,7 @@
         "URLs": [
             "https://www.java.com/ru/download/"
         ],
+        "ModsURLs": [],
         "Weight": 0.07,
         "IsDownloaded": false
     },
@@ -323,6 +354,7 @@
         "URLs": [
             "https://www.microsoft.com/store/apps/9PC9MFX9QCXS"
         ],
+        "ModsURLs": [],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -331,6 +363,7 @@
         "URLs": [
             "https://localsend.org/ru/download"
         ],
+        "ModsURLs": [],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -339,6 +372,7 @@
         "URLs": [
             "https://rufus.ie/ru/"
         ],
+        "ModsURLs": [],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -347,6 +381,7 @@
         "URLs": [
             "https://github.com/ventoy/Ventoy/releases/latest"
         ],
+        "ModsURLs": [],
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -355,6 +390,7 @@
         "URLs": [
             "https://www.voidtools.com"
         ],
+        "ModsURLs": [],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -363,6 +399,7 @@
         "URLs": [
             "https://github.com/BCUninstaller/Bulk-Crap-Uninstaller/releases"
         ],
+        "ModsURLs": [],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -371,6 +408,7 @@
         "URLs": [
             "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"
         ],
+        "ModsURLs": [],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -379,6 +417,7 @@
         "URLs": [
             "https://github.com/pwnapplehat/BitBroom/releases/latest"
         ],
+        "ModsURLs": [],
         "Weight": 0.12,
         "IsDownloaded": false
     },
@@ -387,6 +426,7 @@
         "URLs": [
             "https://github.com/winsiderss/systeminformer/releases#release-v2.39"
         ],
+        "ModsURLs": [],
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -395,6 +435,7 @@
         "URLs": [
             "https://github.com/Flow-Launcher/Flow.Launcher/releases/latest"
         ],
+        "ModsURLs": [],
         "Weight": 0.1,
         "IsDownloaded": false
     },
@@ -403,6 +444,7 @@
         "URLs": [
             "https://www.virtualbox.org/wiki/Downloads"
         ],
+        "ModsURLs": [],
         "Weight": 0.17,
         "IsDownloaded": false
     },
@@ -411,6 +453,7 @@
         "URLs": [
             "https://github.com/massgravel/Microsoft-Activation-Scripts"
         ],
+        "ModsURLs": [],
         "Weight": 0.01,
         "IsDownloaded": false
     }
