@@ -3,6 +3,7 @@ from tkinter import messagebox, ttk
 import os
 import sys
 import json
+import copy
 import requests
 import threading
 import webbrowser
@@ -229,7 +230,7 @@ class App(tk.Tk):
             with open(self.json_name, "r", encoding='utf-8') as f:
                 self.start_programs = json.load(f)
                 self.categories = list({category for item in self.start_programs.values() for category in item["Categories"]})
-                self.programs = self.start_programs.copy()
+                self.programs = copy.deepcopy(self.start_programs)
         except Exception as e:
             messagebox.showerror("Ошибка", f"Ошибка при загрузке JSON-файла: {e}")
             sys.exit(1)
