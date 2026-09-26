@@ -32,6 +32,7 @@ class DropdownCheckbox(ttk.Frame):
 
     # ---------- открытие/закрытие ----------
     def toggle(self):
+        """Переключает видимость всплывающего списка категорий."""
         if self.popup is not None and self.popup.winfo_exists():
             self.close()
             self.button.config(text="Сортировка ▾")
@@ -40,6 +41,7 @@ class DropdownCheckbox(ttk.Frame):
             self.button.config(text="Сортировка ▴")
 
     def open(self):
+        """Открывает всплывающий список категорий."""
         if self.popup is not None and self.popup.winfo_exists():
             return
 
