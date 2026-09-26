@@ -10,7 +10,10 @@ from PIL import Image, ImageTk
 
 
 class DropdownCheckbox(ttk.Frame):
+    """Создаёт выпадающий список категорий с флажками для фильтрации."""
+
     def __init__(self, master, categories, on_change=None, **kwargs):
+        """Инициализирует список категорий и обработчик их изменения."""
         super().__init__(master, **kwargs)
         self.categories = list(categories)
         self.on_change = on_change
@@ -66,13 +69,14 @@ class DropdownCheckbox(ttk.Frame):
         self.popup.geometry(f"+{x}+{y}")
 
     def close(self):
+        """Закрывает всплывающий список категорий."""
         if self.popup is not None and self.popup.winfo_exists():
             self.popup.destroy()
         self.popup = None
         self.button.config(text="Сортировка ▾")
 
-    # ---------- обработчики ----------
     def _on_check(self):
+        """Обновляет видимые категории и уведомляет внешний обработчик."""
         for cat in self.categories:
             self.visible_categories[cat] = self.vars[cat].get()
         if self.on_change:
@@ -81,7 +85,7 @@ class DropdownCheckbox(ttk.Frame):
             print(self.visible_categories)
 
     def _on_global_click(self, event):
-        """Закрываем список при клике вне его и вне кнопки."""
+        """Закрывает список при клике вне него и вне кнопки."""
         if self.popup is None or not self.popup.winfo_exists():
             return
         # Координаты клика
@@ -99,7 +103,10 @@ class DropdownCheckbox(ttk.Frame):
 
 
 class App(tk.Tk):
+    """Предоставляет главное окно приложения для выбора программ."""
+
     def __init__(self):
+        """Инициализирует окно, данные программ и элементы интерфейса."""
         super().__init__()
         self.setup_styles()
         self.center_window()
@@ -129,8 +136,8 @@ class App(tk.Tk):
         self.programs_listbox = None
 
         self.page_index = 0
-        self.loading_label = None  # Для хранения лейбла загрузки
-        self.install_loading_label = None  # Для хранения лейбла загрузки
+        self.loading_label = None
+        self.install_loading_label = None
 
         self.load_folders()
         self.load_json()
@@ -143,7 +150,7 @@ class App(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def on_closing(self):
-        """Обработчик закрытия окна"""
+        """Сохраняет прогресс по запросу и закрывает приложение."""
         if self.programs != self.start_programs:
             result = messagebox.askyesno(
                 title="Подтверждение выхода",
@@ -167,6 +174,7 @@ class App(tk.Tk):
         self.destroy()
 
     def setup_styles(self):
+        """Настраивает стили кнопок и элементов интерфейса."""
         style = ttk.Style(self)
         style.theme_use('clam')
         
@@ -181,6 +189,7 @@ class App(tk.Tk):
         style.map('TransparentBlue.TButton', background=[('active', '#e6e6e6')], relief=[('pressed', 'sunken')])
 
     def center_window(self):
+        """Размещает окно приложения по центру экрана."""
         self.update_idletasks()
         w = 600
         h = 600
@@ -189,10 +198,12 @@ class App(tk.Tk):
         self.geometry(f"{w}x{h}+{x}+{y}")
 
     def load_folders(self):
+        """Создаёт каталоги для иконок и файла данных."""
         os.makedirs("src/icons/", exist_ok=True)
         os.makedirs("src/json/", exist_ok=True)
 
     def load_json(self):
+        """Загружает список программ из локального или удалённого JSON-файла."""
         try:
             if not os.path.exists(self.json_name):
                 url = 'https://raw.githubusercontent.com/DanShiriNi/list-installer/main/src/json/programs.json'
@@ -226,11 +237,14 @@ class App(tk.Tk):
         ]
 
     def get_icon_cache_path(self, program_name):
+        """Возвращает путь к кэшированной иконке программы."""
         safe_name = program_name.lower().replace(' ', '_').replace(':', '')
         return f"src/icons/{safe_name}.png"
 
     def download_and_cache_icon(self, show_loading_label_func, program_name, callback):
+        """Загружает и кэширует иконку программы в фоновом потоке."""
         def task():
+            """Получает и сохраняет иконку, затем передаёт её интерфейсу."""
             icon_url = self.programs[program_name].get("Icon")
             if not icon_url:
                 self.after(0, callback, None)
@@ -270,6 +284,7 @@ class App(tk.Tk):
         threading.Thread(target=task, daemon=True).start()
 
     def _load_icon_from_file(self, path, callback):
+        """Читает иконку из файла, изменяет размер и вызывает callback."""
         try:
             img = Image.open(path)
             img = img.resize((256, 256), Image.LANCZOS)
@@ -280,7 +295,9 @@ class App(tk.Tk):
             callback(None)
 
     def update_program_icon(self, program_name):
+        """Обновляет иконку программы на основной странице."""
         def set_icon(photo):
+            """Показывает загруженную иконку текущей программы."""
             if self.program_name_label.cget("text") == program_name:
                 if photo:
                     self.hide_loading_label()
@@ -293,7 +310,7 @@ class App(tk.Tk):
         self.download_and_cache_icon(self.show_loading_label, program_name, set_icon)
     
     def show_loading_label(self):
-        """Показывает лейбл с текстом загрузки и скрывает лейбл иконки"""
+        """Показывает индикатор загрузки вместо иконки программы."""
         if not self.loading_label:
             # Создаём лейбл загрузки, если его ещё нет
             self.loading_label = tk.Label(
@@ -307,13 +324,15 @@ class App(tk.Tk):
         self.loading_label.pack(pady=5, before=self.program_name_label)
     
     def hide_loading_label(self):
-        """Скрывает лейбл загрузки и показывает лейбл иконки"""
+        """Скрывает индикатор загрузки и возвращает иконку программы."""
         if self.loading_label:
             self.loading_label.pack_forget()
         self.program_icon_label.pack(pady=5, before=self.program_name_label)
 
     def preload_all_icons(self):
+        """Запускает предварительную загрузку отсутствующих иконок."""
         def task():
+            """Сохраняет в кэш иконки программ, которых там ещё нет."""
             for prog_name, prog_data in self.programs.items():
                 cache_path = self.get_icon_cache_path(prog_name)
                 if os.path.exists(cache_path):
@@ -325,6 +344,7 @@ class App(tk.Tk):
         threading.Thread(target=task, daemon=True).start()
 
     def _save_icon_from_url(self, url, cache_path):
+        """Загружает и сохраняет иконку по URL."""
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
@@ -350,6 +370,7 @@ class App(tk.Tk):
             return False
 
     def show_current_program(self):
+        """Показывает текущую программу."""
         if len(self.undownloaded_programs_list) == 0:
             self.program_name_label.config(text="Все программы установлены!")
             self.download_button.config(state="disabled")
@@ -372,6 +393,7 @@ class App(tk.Tk):
         self.update_program_icon(program_name)
 
     def update_progress(self):
+        """Обновляет отображение количества установленных программ."""
         done = len(self.programs) - len(self.undownloaded_programs_list)
         total = len(self.programs)
         percent = (done / total * 100) if total else 0
@@ -382,6 +404,7 @@ class App(tk.Tk):
             self.program_list_progress.config(text=text)
 
     def reload_download(self):
+        """Сбрасывает отметки установки после подтверждения пользователя."""
         if not messagebox.askyesno(
             title="Подтверждение операции",
             message="Вы уверены, что хотите выполнить это действие?\nПрогресс установки начнётся с нуля."
@@ -396,21 +419,25 @@ class App(tk.Tk):
         self.go_to_download_page()
 
     def go_to_prev(self):
+        """Показывает предыдущую программу в списке."""
         if not self.undownloaded_programs_list:
             return
         self.page_index = (self.page_index - 1) % len(self.undownloaded_programs_list)
         self.show_current_program()
 
     def go_to_next(self):
+        """Показывает следующую программу в списке."""
         if not self.undownloaded_programs_list:
             return
         self.page_index = (self.page_index + 1) % len(self.undownloaded_programs_list)
         self.show_current_program()
 
     def update_install_program_icon(self, program_name):
+        """Обновляет иконку программы в окне установки."""
         install_icon_label = self.program_install_icon_label
 
         def set_icon(photo):
+            """Показывает иконку, если окно установки ещё актуально."""
             if not install_icon_label or not install_icon_label.winfo_exists():
                 return
             if self.program_install_icon_label is not install_icon_label:
@@ -450,13 +477,14 @@ class App(tk.Tk):
         self.install_loading_label.pack(pady=5, before=self.program_install_title_label)
     
     def hide_install_loading_label(self, install_icon_label=None):
-        """Скрывает лейбл загрузки и показывает лейбл иконки"""
+        """Скрывает индикатор загрузки и показывает иконку программы."""
         if self.install_loading_label:
             self.install_loading_label.pack_forget()
         if install_icon_label and install_icon_label.winfo_exists():
             install_icon_label.pack(pady=5, before=self.program_install_title_label)
 
     def show_install_window(self, program_name):
+        """Показывает окно со способами установки выбранной программы."""
         previous_frame = None
         for frame in (self.program_download_frame, self.program_list_frame):
             if frame.winfo_ismapped():
@@ -470,6 +498,7 @@ class App(tk.Tk):
         mousewheel_binding = None
 
         def close_install_frame():
+            """Закрывает окно установки и возвращает предыдущую страницу."""
             if mousewheel_binding is not None:
                 self.unbind_all("<MouseWheel>")
             install_frame.destroy()
@@ -495,6 +524,7 @@ class App(tk.Tk):
         canvas_window = canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 
         def update_scroll_region(event=None):
+            """Обновляет область прокрутки по размеру содержимого."""
             canvas.configure(scrollregion=canvas.bbox("all"))
             content_height = scrollable_frame.winfo_reqheight()
             if content_height <= canvas.winfo_height():
@@ -510,6 +540,7 @@ class App(tk.Tk):
         )
 
         def scroll_canvas(event):
+            """Прокручивает содержимое окна колесом мыши."""
             if scrollable_frame.winfo_reqheight() > canvas.winfo_height():
                 canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
@@ -535,15 +566,14 @@ class App(tk.Tk):
 
         installation_methods = self.programs[program_name]["URLs"]
 
-        # Фрейм для ссылок — создаём один раз, содержимое будем пересоздавать
         installer_frame = tk.Frame(scrollable_frame)
         installer_frame.pack(pady=5)
 
-        # Хранилище кнопок, чтобы менять их вид
         method_buttons = {}
 
 
         def show_links(method_name):
+            """Показывает ссылки выбранного способа установки."""
             # Очищаем фрейм со ссылками
             for widget in installer_frame.winfo_children():
                 widget.destroy()
@@ -602,12 +632,14 @@ class App(tk.Tk):
                 lbl.pack(pady=2)
 
     def download_program(self):
+        """Открывает окно установки текущей программы."""
         if not self.undownloaded_programs_list:
             return
         program_name = self.undownloaded_programs_list[self.page_index]
         self.show_install_window(program_name)
 
     def access_program(self):
+        """Отмечает текущую программу установленной и обновляет список."""
         if not self.undownloaded_programs_list:
             return
         prog_name = self.undownloaded_programs_list[self.page_index]
@@ -619,15 +651,18 @@ class App(tk.Tk):
         self.show_current_program()
 
     def go_to_download_page(self):
+        """Переключает интерфейс на страницу загрузки программ."""
         self.program_list_frame.pack_forget()
         self.program_download_frame.pack(fill="both", expand=True)
 
     def go_to_list_page(self):
+        """Переключает интерфейс на полный список программ."""
         self.program_download_frame.pack_forget()
         self.update_program_list()
         self.program_list_frame.pack(fill="both", expand=True)
 
     def update_program_list(self):
+        """Обновляет элементы списка программ с учётом фильтра установки."""
         if self.agree_only_undownloaded.get() == 0:
             items = [f"❌ {name}" if not data["IsDownloaded"] else f"✔ {name}"
                      for name, data in self.programs.items()]
@@ -636,12 +671,14 @@ class App(tk.Tk):
         self.programs_var.set(items)
 
     def select_program(self, event):
+        """Открывает окно установки выбранной в списке программы."""
         sel = self.programs_listbox.curselection()
         if sel:
             name = self.programs_listbox.get(sel[0])[2:]
             self.show_install_window(name)
 
     def filter_by_categories(self, visible_categories):
+        """Фильтрует список программ по выбранным категориям."""
         filtered_programs = []
         for name, data in self.programs.items():
             if any(visible_categories.get(cat, False) for cat in data["Categories"]):
@@ -653,6 +690,7 @@ class App(tk.Tk):
         self.programs_var.set(items)
 
     def load_structure(self):
+        """Создаёт страницы, панели, кнопки и список программ."""
         self.program_download_frame = tk.Frame(self)
 
         reload_button = ttk.Button(self.program_download_frame, text="⟳", style="WhiteBlue.TButton", command=self.reload_download, takefocus=False)
