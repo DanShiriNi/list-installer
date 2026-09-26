@@ -311,25 +311,42 @@ class App(tk.Tk):
 
         self.download_and_cache_icon(self.show_loading_label, program_name, set_icon)
     
-    def show_loading_label(self):
+    def show_loading_label(self, icon_label=None, title_label=None, loading_label_attr="loading_label"):
         """Показывает индикатор загрузки вместо иконки программы."""
-        if not self.loading_label:
-            # Создаём лейбл загрузки, если его ещё нет
-            self.loading_label = tk.Label(
-                self.program_icon_label.master, 
+        if icon_label is None:
+            icon_label = self.program_icon_label
+            title_label = self.program_name_label
+        elif not icon_label or not icon_label.winfo_exists():
+            return
+
+        loading_label = getattr(self, loading_label_attr)
+        if loading_label and (
+            not loading_label.winfo_exists()
+            or loading_label.master is not icon_label.master
+        ):
+            loading_label = None
+            setattr(self, loading_label_attr, None)
+        if not loading_label:
+            loading_label = tk.Label(
+                icon_label.master,
                 text="⏳ Загрузка...", 
                 font=("Arial", 14)
             )
+            setattr(self, loading_label_attr, loading_label)
         
-        # Скрываем лейбл иконки
-        self.program_icon_label.pack_forget()
-        self.loading_label.pack(pady=5, before=self.program_name_label)
+        icon_label.pack_forget()
+        loading_label.pack(pady=5, before=title_label)
     
-    def hide_loading_label(self):
+    def hide_loading_label(self, icon_label=None, title_label=None, loading_label_attr="loading_label"):
         """Скрывает индикатор загрузки и возвращает иконку программы."""
-        if self.loading_label:
-            self.loading_label.pack_forget()
-        self.program_icon_label.pack(pady=5, before=self.program_name_label)
+        if icon_label is None:
+            icon_label = self.program_icon_label
+            title_label = self.program_name_label
+        loading_label = getattr(self, loading_label_attr)
+        if loading_label:
+            loading_label.pack_forget()
+        if icon_label and icon_label.winfo_exists():
+            icon_label.pack(pady=5, before=title_label)
 
     def preload_all_icons(self):
         """Запускает предварительную загрузку отсутствующих иконок."""
@@ -446,7 +463,11 @@ class App(tk.Tk):
                 return
             try:
                 if photo:
-                    self.hide_install_loading_label(install_icon_label)
+                    self.hide_loading_label(
+                        install_icon_label,
+                        self.program_install_title_label,
+                        "install_loading_label",
+                    )
                     install_icon_label.config(image=photo, text="")
                     self.current_install_icon_image = photo
                 else:
@@ -455,35 +476,15 @@ class App(tk.Tk):
             except tk.TclError:
                 return
 
-        self.download_and_cache_icon(self.show_install_loading_label, program_name, set_icon)
-
-    def show_install_loading_label(self):
-        """Показывает лейбл с текстом загрузки и скрывает лейбл иконки"""
-        if not self.program_install_icon_label or not self.program_install_icon_label.winfo_exists():
-            return
-        if self.install_loading_label and (
-            not self.install_loading_label.winfo_exists()
-            or self.install_loading_label.master is not self.program_install_icon_label.master
-        ):
-            self.install_loading_label = None
-        if not self.install_loading_label:
-            # Создаём лейбл загрузки, если его ещё нет
-            self.install_loading_label = tk.Label(
-                self.program_install_icon_label.master, 
-                text="⏳ Загрузка...", 
-                font=("Arial", 14)
-            )
-        
-        # Скрываем лейбл иконки
-        self.program_install_icon_label.pack_forget()
-        self.install_loading_label.pack(pady=5, before=self.program_install_title_label)
-    
-    def hide_install_loading_label(self, install_icon_label=None):
-        """Скрывает индикатор загрузки и показывает иконку программы."""
-        if self.install_loading_label:
-            self.install_loading_label.pack_forget()
-        if install_icon_label and install_icon_label.winfo_exists():
-            install_icon_label.pack(pady=5, before=self.program_install_title_label)
+        self.download_and_cache_icon(
+            lambda: self.show_loading_label(
+                self.program_install_icon_label,
+                self.program_install_title_label,
+                "install_loading_label",
+            ),
+            program_name,
+            set_icon,
+        )
 
     def show_install_window(self, program_name):
         """Показывает окно со способами установки выбранной программы."""
@@ -557,7 +558,11 @@ class App(tk.Tk):
         self.program_install_icon_label = tk.Label(scrollable_frame, text="", width=256, height=256)
         self.program_install_icon_label.pack(pady=5)
 
-        self.show_install_loading_label()
+        self.show_loading_label(
+            self.program_install_icon_label,
+            self.program_install_title_label,
+            "install_loading_label",
+        )
         self.update_install_program_icon(program_name)
 
         installer_msg = "Чтобы установить программу, перейдите по ресурсам ниже:"
@@ -664,12 +669,15 @@ class App(tk.Tk):
         self.program_list_frame.pack(fill="both", expand=True)
 
     def update_program_list(self):
-        """Обновляет элементы списка программ с учётом фильтра установки."""
-        if self.agree_only_undownloaded.get() == 0:
-            items = [f"❌ {name}" if not data["IsDownloaded"] else f"✔ {name}"
-                     for name, data in self.programs.items()]
-        else:
-            items = [f"❌ {name}" for name in self.undownloaded_programs_list]
+        """Обновляет список с учётом выбранных категорий и статуса установки."""
+        items = []
+        for name, data in self.programs.items():
+            if not any(self.visible_categories.get(category, False) for category in data["Categories"]):
+                continue
+            if self.agree_only_undownloaded.get() and data["IsDownloaded"]:
+                continue
+            marker = "❌" if not data["IsDownloaded"] else "✔"
+            items.append(f"{marker} {name}")
         self.programs_var.set(items)
 
     def select_program(self, event):
@@ -681,15 +689,8 @@ class App(tk.Tk):
 
     def filter_by_categories(self, visible_categories):
         """Фильтрует список программ по выбранным категориям."""
-        filtered_programs = []
-        for name, data in self.programs.items():
-            if any(visible_categories.get(cat, False) for cat in data["Categories"]):
-                filtered_programs.append(name)
-        if self.agree_only_undownloaded.get() == 1:
-            filtered_programs = [name for name in filtered_programs if not self.programs[name]["IsDownloaded"]]
-        items = [f"❌ {name}" if not self.programs[name]["IsDownloaded"] else f"✔ {name}"
-                 for name in filtered_programs]
-        self.programs_var.set(items)
+        self.visible_categories = visible_categories.copy()
+        self.update_program_list()
 
     def load_structure(self):
         """Создаёт страницы, панели, кнопки и список программ."""
@@ -759,6 +760,7 @@ class App(tk.Tk):
         top_categories_agree_frame = tk.Frame(self.program_list_frame)
         top_categories_agree_frame.pack(fill=tk.X)
 
+        self.visible_categories = {category: True for category in self.categories}
         categories_checkbox = DropdownCheckbox(top_categories_agree_frame, self.categories, on_change=self.filter_by_categories)
         categories_checkbox.pack(side=tk.LEFT, fill=tk.Y)
 
