@@ -215,7 +215,7 @@ class App(tk.Tk):
                     f.write(response.text)
             with open(self.json_name, "r", encoding='utf-8') as f:
                 self.start_programs = json.load(f)
-                self.categories = list({cat for item in self.start_programs.values() for cat in item["Categories"]})
+                self.categories = list({category for item in self.start_programs.values() for category in item["Categories"]})
                 self.programs = self.start_programs.copy()
         except Exception as e:
             messagebox.showerror("Ошибка", f"Ошибка при загрузке JSON-файла: {e}")
@@ -456,7 +456,7 @@ class App(tk.Tk):
         if install_icon_label and install_icon_label.winfo_exists():
             install_icon_label.pack(pady=5, before=self.program_install_title_label)
 
-    def show_install_window(self, program_name, urls, mods_urls):
+    def show_install_window(self, program_name):
         previous_frame = None
         for frame in (self.program_download_frame, self.program_list_frame):
             if frame.winfo_ismapped():
@@ -527,17 +527,66 @@ class App(tk.Tk):
         self.show_install_loading_label()
         self.update_install_program_icon(program_name)
 
-        installer_msg = "Чтобы установить программу, перейдите по ресурсам ниже:\n(иногда, несколько ресурсов могут вести на разные способы установки)"
+        installer_msg = "Чтобы установить программу, перейдите по ресурсам ниже:"
         tk.Label(scrollable_frame, text=installer_msg, font=("Arial", 10)).pack(pady=(20, 10))
 
+        installation_method_frame = tk.Frame(scrollable_frame)
+        installation_method_frame.pack(pady=5)
+
+        installation_methods = self.programs[program_name]["URLs"]
+
+        # Фрейм для ссылок — создаём один раз, содержимое будем пересоздавать
         installer_frame = tk.Frame(scrollable_frame)
         installer_frame.pack(pady=5)
-        for url in urls:
-            url_text = url if len(url) <= 64 else url[:64] + "..."
-            lbl = tk.Label(installer_frame, text=url_text, fg="blue", cursor="hand2",
-                           font=("Arial", 9, "underline"))
-            lbl.bind("<Button-1>", lambda e, u=url: webbrowser.open(u))
-            lbl.pack(pady=2)
+
+        # Хранилище кнопок, чтобы менять их вид
+        method_buttons = {}
+
+
+        def show_links(method_name):
+            # Очищаем фрейм со ссылками
+            for widget in installer_frame.winfo_children():
+                widget.destroy()
+
+            # Обновляем подчёркивание у кнопок
+            for name, btn in method_buttons.items():
+                if name == method_name:
+                    btn.config(font=("Arial", 10, "underline"))
+                else:
+                    btn.config(font=("Arial", 10))
+
+            # Показываем ссылки выбранного метода
+            for url in installation_methods[method_name]:
+                url_text = url if len(url) <= 64 else url[:64] + "..."
+                lbl = tk.Label(
+                    installer_frame,
+                    text=url_text,
+                    fg="blue",
+                    cursor="hand2",
+                    font=("Arial", 9, "underline"),
+                )
+                lbl.bind("<Button-1>", lambda e, u=url: webbrowser.open(u))
+                lbl.pack(pady=2)
+
+
+        # Создаём кнопки методов
+        for method_name in installation_methods:
+            btn = tk.Button(
+                installation_method_frame,
+                text=method_name,
+                font=("Arial", 10),
+                cursor="hand2",
+                command=lambda m=method_name: show_links(m),
+            )
+            btn.pack(side="left", fill=tk.BOTH, expand=True)
+            method_buttons[method_name] = btn
+
+        # По умолчанию выбираем первый метод
+        if installation_methods:
+            first = next(iter(installation_methods))
+            show_links(first)
+
+        mods_urls = self.programs[program_name]["ModsURLs"]
 
         if len(mods_urls) > 0:
             mods_msg = "Также можно установить модификации:"
@@ -552,16 +601,11 @@ class App(tk.Tk):
                 lbl.bind("<Button-1>", lambda e, u=url: webbrowser.open(u))
                 lbl.pack(pady=2)
 
-    def download_program_by_name(self, program_name):
-        urls = self.programs[program_name]["URLs"]
-        mods_urls = self.programs[program_name]["ModsURLs"]
-        self.show_install_window(program_name, urls, mods_urls)
-
     def download_program(self):
         if not self.undownloaded_programs_list:
             return
         program_name = self.undownloaded_programs_list[self.page_index]
-        self.download_program_by_name(program_name)
+        self.show_install_window(program_name)
 
     def access_program(self):
         if not self.undownloaded_programs_list:
@@ -595,7 +639,7 @@ class App(tk.Tk):
         sel = self.programs_listbox.curselection()
         if sel:
             name = self.programs_listbox.get(sel[0])[2:]
-            self.download_program_by_name(name)
+            self.show_install_window(name)
 
     def filter_by_categories(self, visible_categories):
         filtered_programs = []

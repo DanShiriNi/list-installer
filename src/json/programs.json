@@ -1,9 +1,11 @@
 {
     "Visual C++ Redistributable": {
         "Icon": "https://www.rw-designer.com/icon-image/23790-32x32x4.png",
-        "URLs": [
-            "https://learn.microsoft.com/ru-ru/cpp/windows/latest-supported-vc-redist?view=msvc-170"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://learn.microsoft.com/ru-ru/cpp/windows/latest-supported-vc-redist?view=msvc-170"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Драйверы и зависимости"
@@ -13,9 +15,11 @@
     },
     "WinRAR": {
         "Icon": "https://www.rw-designer.com/icon-image/21764-256x256x32.png",
-        "URLs": [
-            "https://www.rarlab.com/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.rarlab.com/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Архиваторы"
@@ -25,9 +29,11 @@
     },
     "7-zip": {
         "Icon": "https://raw.githubusercontent.com/RipplePiam/7zip-Theme/refs/heads/main/SFX%20Icon/SFX%20Icon.ico",
-        "URLs": [
-            "https://www.7-zip.org/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.7-zip.org/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Архиваторы"
@@ -37,9 +43,11 @@
     },
     "Happ": {
         "Icon": "https://avatars.githubusercontent.com/u/195639782?s=200&v=4",
-        "URLs": [
-            "https://github.com/Happ-proxy/happ-desktop/releases/"
-        ],
+        "URLs": {
+            "Через GitHub": [
+                "https://github.com/Happ-proxy/happ-desktop/releases/latest"
+            ]
+        },
         "ModsURLs": [
             "happ://routing/onadd/eyJOYW1lIjoiUm9zY29tVlBOLVBlcnNvbmFsIiwiR2xvYmFsUHJveHkiOiJ0cnVlIiwiVXNlQ2h1bmtGaWxlcyI6InRydWUiLCJSZW1vdGVEbnMiOiIxLjEuMS4xIiwiRG9tZXN0aWNEbnMiOiIxLjEuMS4xIiwiUmVtb3RlRE5TVHlwZSI6IkRvSCIsIlJlbW90ZUROU0RvbWFpbiI6Imh0dHBzOi8vMS4xLjEuMS9kbnMtcXVlcnkiLCJSZW1vdGVETlNJUCI6IjEuMS4xLjEiLCJEb21lc3RpY0ROU1R5cGUiOiJEb0giLCJEb21lc3RpY0ROU0RvbWFpbiI6Imh0dHBzOi8vMS4xLjEuMS9kbnMtcXVlcnkiLCJEb21lc3RpY0ROU0lQIjoiMS4xLjEuMSIsIkdlb2lwdXJsIjoiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL25vdmV2OS9oYXBwLWdlb0BiYjk2YzE3M2ZhNzMxYjkxMDk3NDZlNGIyNWI3NTJkNzg0MzBlNmVjL2dlb2lwLmRhdCIsIkdlb3NpdGV1cmwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvbm92ZXY5L2hhcHAtZ2VvQGJiOTZjMTczZmE3MzFiOTEwOTc0NmU0YjI1Yjc1MmQ3ODQzMGU2ZWMvZ2Vvc2l0ZS5kYXQiLCJMYXN0VXBkYXRlZCI6IjE3NzY1ODAwMDAiLCJEbnNIb3N0cyI6eyJsa2ZsMi5uYWxvZy5ydSI6IjIxMy4yNC42NC4xNzUiLCJsa25wZC5uYWxvZy5ydSI6IjIxMy4yNC42NC4xODEifSwiUm91dGVPcmRlciI6ImJsb2NrLXByb3h5LWRpcmVjdCIsIkRpcmVjdFNpdGVzIjpbImdlb3NpdGU6cHJpdmF0ZSIsImdlb3NpdGU6Y2F0ZWdvcnktcnUiLCJnZW9zaXRlOndoaXRlbGlzdCIsImdlb3NpdGU6bWljcm9zb2Z0IiwiZ2Vvc2l0ZTphcHBsZSIsImdlb3NpdGU6ZXBpY2dhbWVzIiwiZ2Vvc2l0ZTpyaW90IiwiZ2Vvc2l0ZTplc2NhcGVmcm9tdGFya292IiwiZ2Vvc2l0ZTpzdGVhbSIsImdlb3NpdGU6dHdpdGNoIiwiZ2Vvc2l0ZTpwaW50ZXJlc3QiLCJnZW9zaXRlOmZhY2VpdCIsImRvbWFpbjptYWduaXQucnUiLCJkb21haW46bWdjLWxveWFsdHkucnUiXSwiRGlyZWN0SXAiOlsiZ2VvaXA6cHJpdmF0ZSIsImdlb2lwOmRpcmVjdCJdLCJQcm94eVNpdGVzIjpbImdlb3NpdGU6Z29vZ2xlLXBsYXkiLCJnZW9zaXRlOmdpdGh1YiIsImdlb3NpdGU6dHdpdGNoLWFkcyIsImdlb3NpdGU6eW91dHViZSIsImdlb3NpdGU6dGVsZWdyYW0iXSwiUHJveHlJcCI6W10sIkJsb2NrU2l0ZXMiOlsiZ2Vvc2l0ZTp3aW4tc3B5IiwiZ2Vvc2l0ZTp0b3JyZW50IiwiZ2Vvc2l0ZTpjYXRlZ29yeS1hZHMiXSwiQmxvY2tJcCI6W10sIkRvbWFpblN0cmF0ZWd5IjoiSVBJZk5vbk1hdGNoIiwiRmFrZUROUyI6ImZhbHNlIn0="
         ],
@@ -51,10 +59,11 @@
     },
     "Singbox Launcher": {
         "Icon": "https://github.com/Leadaxe/singbox-launcher/blob/main/assets/app.png?raw=true",
-        "URLs": [
-            "https://github.com/Leadaxe/singbox-launcher",
-            "https://github.com/Leadaxe/singbox-launcher/releases"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://github.com/Leadaxe/singbox-launcher/releases/latest"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "VPN"
@@ -62,11 +71,29 @@
         "Weight": 0.02,
         "IsDownloaded": false
     },
+    "Zapret": {
+        "Icon": "https://images.steamusercontent.com/ugc/14005570200838415997/48C17C61A4690AB853B3114A9D900CEF0BAF6FD3/?imw=128&imh=128",
+        "URLs": {
+            "Основной": [
+                "https://github.com/Flowseal/zapret-discord-youtube/releases/latest"
+            ]
+        },
+        "ModsURLs": [
+            "https://github.com/Flowseal/tg-ws-proxy/releases/latest"
+        ],
+        "Categories": [
+            "VPN"
+        ],
+        "Weight": 0.12,
+        "IsDownloaded": false
+    },
     "MakuTweaker": {
         "Icon": "https://adderly.top/icons/1.png",
-        "URLs": [
-            "https://adderly.top/makutweaker"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://adderly.top/makutweaker"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Твикеры, оптимизация и обслуживание системы"
@@ -76,9 +103,11 @@
     },
     "qBittorrent": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/New_qBittorrent_Logo.svg/1280px-New_qBittorrent_Logo.svg.png",
-        "URLs": [
-            "https://www.qbittorrent.org/download"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.qbittorrent.org/download"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Торрент-клиенты"
@@ -88,11 +117,17 @@
     },
     "Microsoft Office": {
         "Icon": "https://images.icon-icons.com/1156/PNG/512/1486565573-microsoft-office_81557.png",
-        "URLs": [
-            "https://www.microsoft.com/ru-ru/microsoft-365/get-office-and-microsoft-365-oem-download-page",
-            "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/ru-RU/ProPlus2019Retail.img",
-            "https://rutracker.org/forum/viewtopic.php?t=6140745"
-        ],
+        "URLs": {
+            "С проверкой на наличие купленной лицензии": [
+                "https://www.microsoft.com/ru-ru/microsoft-365/get-office-and-microsoft-365-oem-download-page"
+            ],
+            "Образ без лицензии": [
+                "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/ru-RU/ProPlus2019Retail.img"
+            ],
+            "Торрент (йо-хо-хоу)": [
+                "https://rutracker.org/forum/viewtopic.php?t=6140745"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Офисные пакеты"
@@ -102,9 +137,11 @@
     },
     "WPS Office": {
         "Icon": "https://i2.wp.com/is2-ssl.mzstatic.com/image/thumb/Purple122/v4/7b/fd/25/7bfd25cc-017e-04f1-c359-df2e44771625/wpsoffice.png/1200x630bb.png",
-        "URLs": [
-            "https://wps.com/office/windows/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://wps.com/office/windows/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Офисные пакеты"
@@ -114,9 +151,11 @@
     },
     "Only Office": {
         "Icon": "https://images.icon-icons.com/3053/PNG/512/onlyoffice_macos_bigsur_icon_189875.png",
-        "URLs": [
-            "https://github.com/ONLYOFFICE/DesktopEditors/releases/latest"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.onlyoffice.com/download-desktop"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Офисные пакеты"
@@ -126,9 +165,11 @@
     },
     "FireFox": {
         "Icon": "https://images.icon-icons.com/2552/PNG/512/firefox_browser_logo_icon_152991.png",
-        "URLs": [
-            "https://www.firefox.com/ru/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.firefox.com/ru/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Браузеры"
@@ -138,9 +179,11 @@
     },
     "Python 3.11": {
         "Icon": "https://images.icon-icons.com/2699/PNG/512/python_logo_icon_168886.png",
-        "URLs": [
-            "https://www.python.org/downloads/release/python-3119/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.python.org/downloads/release/python-3119/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования"
@@ -150,9 +193,11 @@
     },
     "Git": {
         "Icon": "https://images.icon-icons.com/2699/PNG/512/git_scm_logo_icon_170096.png",
-        "URLs": [
-            "https://git-scm.com/install/windows"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://git-scm.com/install/windows"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования"
@@ -162,9 +207,11 @@
     },
     "ExePyler": {
         "Icon": "https://raw.githubusercontent.com/DanShiriNi/ExePyler/refs/heads/main/icon.ico",
-        "URLs": [
-            "https://github.com/DanShiriNi/ExePyler"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://github.com/DanShiriNi/ExePyler"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования"
@@ -174,9 +221,11 @@
     },
     "Visual Studio Code": {
         "Icon": "https://images.icon-icons.com/2107/PNG/512/file_type_vscode_icon_130084.png",
-        "URLs": [
-            "https://code.visualstudio.com/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://code.visualstudio.com/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования"
@@ -186,9 +235,11 @@
     },
     "Visual Studio": {
         "Icon": "https://img.icons8.com/?size=512&id=y7WGoWNuIWac&format=png",
-        "URLs": [
-            "https://visualstudio.microsoft.com/ru/downloads/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://visualstudio.microsoft.com/ru/downloads/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования"
@@ -198,10 +249,12 @@
     },
     "Microsoft SQL Server Management Studio": {
         "Icon": "https://upload.wikimedia.org/wikipedia/en/b/bc/MSSQL_SSMS_21_icon.png",
-        "URLs": [
-            "https://www.microsoft.com/ru-ru/sql-server/sql-server-downloads#trysql",
-            "https://learn.microsoft.com/ru-ru/ssms/install/install"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.microsoft.com/ru-ru/sql-server/sql-server-downloads#trysql",
+                "https://learn.microsoft.com/ru-ru/ssms/install/install"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования"
@@ -211,9 +264,11 @@
     },
     "1С:Предприятие 8.3, учебная версия": {
         "Icon": "https://decast.com/local/templates/decast/components/bitrix/news.detail/iwannbiot/images/1c.webp",
-        "URLs": [
-            "https://online.1c.ru/catalog/programs/program/28765768/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://online.1c.ru/catalog/programs/program/28765768/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования"
@@ -223,10 +278,12 @@
     },
     "Docker": {
         "Icon": "https://cdn-icons-png.flaticon.com/512/15466/15466088.png",
-        "URLs": [
-            "https://docs.docker.com/desktop/setup/install/windows-install/",
-            "https://www.docker.com/pricing/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://docs.docker.com/desktop/setup/install/windows-install/",
+                "https://www.docker.com/pricing/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования"
@@ -236,9 +293,11 @@
     },
     "FFmpeg": {
         "Icon": "https://img.icons8.com/?size=512&id=32418&format=png",
-        "URLs": [
-            "https://github.com/DanShiriNi/ffmpeg-installer"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://github.com/DanShiriNi/ffmpeg-installer"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Мультимедиа"
@@ -248,9 +307,11 @@
     },
     "Paint.NET": {
         "Icon": "https://avatars.githubusercontent.com/u/11067286?s=200&v=4",
-        "URLs": [
-            "https://www.dotpdn.com/downloads/pdn.html"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.dotpdn.com/downloads/pdn.html"
+            ]
+        },
         "ModsURLs": [
             "https://forums.getpaint.net/applications/core/interface/file/attachment.php?id=10208"
         ],
@@ -262,9 +323,11 @@
     },
     "Draw.io": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Diagrams.net_Logo.svg/250px-Diagrams.net_Logo.svg.png",
-        "URLs": [
-            "https://github.com/jgraph/drawio-desktop/releases"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://github.com/jgraph/drawio-desktop/releases/latest"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Графические редакторы"
@@ -274,9 +337,11 @@
     },
     "AIMP": {
         "Icon": "https://images.icon-icons.com/195/PNG/256/Aimp_23644.png",
-        "URLs": [
-            "https://aimp.ru/?do=download&os=windows"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://aimp.ru/?do=download&os=windows"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Мультимедиа"
@@ -284,11 +349,13 @@
         "Weight": 0.03,
         "IsDownloaded": false
     },
-    "VLC": {
+    "VLC Media Player": {
         "Icon": "https://images.icon-icons.com/2699/PNG/512/videolan_vlc_logo_icon_168259.png",
-        "URLs": [
-            "https://www.videolan.org/vlc/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.videolan.org/vlc/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Мультимедиа"
@@ -298,9 +365,11 @@
     },
     "FL Studio": {
         "Icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/fl-studio.png",
-        "URLs": [
-            "https://www.image-line.com/fl-studio/download"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.image-line.com/fl-studio/download"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Мультимедиа"
@@ -310,9 +379,11 @@
     },
     "CapCut": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Capcut1.png/120px-Capcut1.png",
-        "URLs": [
-            "https://www.capcut.com/activity/download_pc"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.capcut.com/activity/download_pc"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Мультимедиа"
@@ -322,9 +393,11 @@
     },
     "DaVinci Resolve": {
         "Icon": "https://images.icon-icons.com/3053/PNG/512/davinci_resolve_macos_bigsur_icon_190261.png",
-        "URLs": [
-            "https://www.blackmagicdesign.com/products/davinciresolve#"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.blackmagicdesign.com/products/davinciresolve#"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Мультимедиа"
@@ -334,9 +407,11 @@
     },
     "Sounds Folder": {
         "Icon": "https://images.icon-icons.com/2313/PNG/512/folder_file_music_audio_sound_media_multimedia_icon_142000.png",
-        "URLs": [
-            "https://disk.yandex.ru/d/gCTlyC8RQm4V3Q"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://disk.yandex.ru/d/gCTlyC8RQm4V3Q"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Мультимедиа"
@@ -346,9 +421,11 @@
     },
     "OBS": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/OBS_Studio_Logo.svg/960px-OBS_Studio_Logo.svg.png",
-        "URLs": [
-            "https://obsproject.com/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://obsproject.com/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Мультимедиа"
@@ -358,9 +435,11 @@
     },
     "BrickLink Designer Studio": {
         "Icon": "https://arturomoncadatorres.com/multimedia/icons/studio.png",
-        "URLs": [
-            "https://www.bricklink.com/v3/studio/download.page"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.bricklink.com/v3/studio/download.page"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Моделирование"
@@ -370,9 +449,11 @@
     },
     "Steam": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/960px-Steam_icon_logo.svg.png",
-        "URLs": [
-            "https://store.steampowered.com/about/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://store.steampowered.com/about/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Игры и игровые платформы"
@@ -382,9 +463,11 @@
     },
     "GTA: San Andreas": {
         "Icon": "https://cdn2.steamgriddb.com/icon/28eeb4998e282cee80f46cd5a67b7e30/32/512x512.png",
-        "URLs": [
-            "https://archive.org/details/hlm-gtasa_202404"
-        ],
+        "URLs": {
+            "Через Wayback Machine": [
+                "https://archive.org/details/hlm-gtasa_202404"
+            ]
+        },
         "ModsURLs": [
             "https://silentsblog.com/mods/gta-sa/#asiloader",
             "https://vk.ru/msklocalisations",
@@ -401,9 +484,11 @@
     },
     "GTA: Vice City": {
         "Icon": "https://upload.wikimedia.org/wikipedia/fr/thumb/f/f0/Grand_Theft_Auto_Vice_City_Logo.png/500px-Grand_Theft_Auto_Vice_City_Logo.png",
-        "URLs": [
-            "https://archive.org/details/grandtheftautovicecity_pc"
-        ],
+        "URLs": {
+            "Через Wayback Machine": [
+                "https://archive.org/details/grandtheftautovicecity_pc"
+            ]
+        },
         "ModsURLs": [
             "https://gamesvoice.ru/product/gtavice",
             "https://github.com/CookiePLMonster/SilentPatch/releases/latest",
@@ -418,9 +503,11 @@
     },
     "Java": {
         "Icon": "https://images.icon-icons.com/2108/PNG/512/java_icon_130901.png",
-        "URLs": [
-            "https://www.java.com/ru/download/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.java.com/ru/download/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Инструменты программирования",
@@ -431,12 +518,20 @@
     },
     "Minecraft": {
         "Icon": "https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png",
-        "URLs": [
-            "https://www.minecraft.net/ru-ru/store/minecraft-java-bedrock-edition-pc?tabs=%7B%22details%22%3A0%7D",
-            "https://prismlauncher.org/download/windows/",
-            "https://pineconemc.ru/download/",
-            "https://legacylauncher.ru/ru"
-        ],
+        "URLs": {
+            "Официальный сайт с проверкой на наличие лицензии": [
+                "https://www.minecraft.net/ru-ru/store/minecraft-java-bedrock-edition-pc?tabs=%7B%22details%22%3A0%7D"
+            ],
+            "Prism Launcher (улучшенный лаунчер)": [
+                "https://prismlauncher.org/download/windows/"
+            ],
+            "Pinecone MC (Prism Launcher, но с проверкой на наличие аккаунта на Ely.by)": [
+                "https://pineconemc.ru/download/"
+            ],
+            "Legacy Launcher (пиратский лаунчер, с проверкой на наличие аккаунта на Ely.by)": [
+                "https://legacylauncher.ru/ru"
+            ]
+        },
         "ModsURLs": [
             "https://modrinth.com/modpack/optimized-3d-pixel-edit"
         ],
@@ -448,9 +543,11 @@
     },
     "Porthole - Local Port Sharing": {
         "Icon": "https://images.steamusercontent.com/ugc/11207659337737696531/34B170A77EE1D9DFC0504987D231BAA2E8958104/?imw=128&imh=128",
-        "URLs": [
-            "https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Игры и игровые платформы"
@@ -460,9 +557,14 @@
     },
     "JE2PE": {
         "Icon": "https://raw.githubusercontent.com/kbinani/je2be-desktop/refs/heads/main/resource/icon-large.png",
-        "URLs": [
-            "https://www.microsoft.com/store/apps/9PC9MFX9QCXS"
-        ],
+        "URLs": {
+            "Через Microsoft Store": [
+                "https://www.microsoft.com/store/apps/9PC9MFX9QCXS"
+            ],
+            "Через GitHub (у кого не работает Microsoft Store)": [
+                "https://github.com/kbinani/je2be-desktop/releases/latest"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Игры и игровые платформы"
@@ -472,9 +574,11 @@
     },
     "LocalSend": {
         "Icon": "https://raw.githubusercontent.com/localsend/localsend/refs/heads/main/app/assets/img/logo-512.png",
-        "URLs": [
-            "https://localsend.org/ru/download"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://localsend.org/ru/download"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Системные утилиты и виртуализация"
@@ -484,9 +588,11 @@
     },
     "Rufus": {
         "Icon": "https://rufus.ie/pics/rufus-512.png",
-        "URLs": [
-            "https://rufus.ie/ru/"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://rufus.ie/ru/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Загрузка iso-образов"
@@ -496,9 +602,11 @@
     },
     "Ventoy": {
         "Icon": "https://raw.githubusercontent.com/ventoy/Ventoy/refs/heads/master/ICON/logo_512.png",
-        "URLs": [
-            "https://github.com/ventoy/Ventoy/releases/latest"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.ventoy.net/en/download.html"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Загрузка iso-образов"
@@ -508,9 +616,11 @@
     },
     "Everything": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/6/68/Everything_%28software%29_icon.png",
-        "URLs": [
-            "https://www.voidtools.com"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.voidtools.com"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Системные утилиты и виртуализация"
@@ -520,9 +630,11 @@
     },
     "Bulk-Crap-Uninstaller": {
         "Icon": "https://avatars.githubusercontent.com/u/291887161?s=200&v=4",
-        "URLs": [
-            "https://github.com/BCUninstaller/Bulk-Crap-Uninstaller/releases"
-        ],
+        "URLs": {
+            "Через GitHub": [
+                "https://github.com/BCUninstaller/Bulk-Crap-Uninstaller/releases/latest"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Твикеры, оптимизация и обслуживание системы",
@@ -533,9 +645,11 @@
     },
     "Autoruns": {
         "Icon": "https://raw.githubusercontent.com/LegnaOS/WindowsIcons/refs/heads/main/Icons/applications/autoruns.ico",
-        "URLs": [
-            "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Твикеры, оптимизация и обслуживание системы",
@@ -546,9 +660,11 @@
     },
     "Kudu": {
         "Icon": "https://raw.githubusercontent.com/AdventDevInc/kudu/main/logo.png",
-        "URLs": [
-            "https://github.com/pwnapplehat/BitBroom/releases/latest"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://usekudu.com/download"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Твикеры, оптимизация и обслуживание системы",
@@ -559,9 +675,11 @@
     },
     "Process Hacker 2": {
         "Icon": "https://upload.wikimedia.org/wikipedia/ru/0/0c/Process_Hacker_Logo.png",
-        "URLs": [
-            "https://github.com/winsiderss/systeminformer/releases#release-v2.39"
-        ],
+        "URLs": {
+            "Через GitHub": [
+                "https://github.com/winsiderss/systeminformer/releases#release-v2.39"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Твикеры, оптимизация и обслуживание системы",
@@ -572,9 +690,11 @@
     },
     "Flow Launcher": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/4/40/Flow_Launcher_Logo.png",
-        "URLs": [
-            "https://github.com/Flow-Launcher/Flow.Launcher/releases/latest"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.flowlauncher.com/"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Системные утилиты и виртуализация"
@@ -584,9 +704,11 @@
     },
     "VirtualBox": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/VirtualBox_2024_Logo.svg/960px-VirtualBox_2024_Logo.svg.png",
-        "URLs": [
-            "https://www.virtualbox.org/wiki/Downloads"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://www.virtualbox.org/wiki/Downloads"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Системные утилиты и виртуализация"
@@ -596,9 +718,11 @@
     },
     "Microsoft Activation Scripts": {
         "Icon": "https://camo.githubusercontent.com/d010db59ee5f338bc18b852df982e73cac8b6aff17b9ddfb4867d57a820a8475/68747470733a2f2f6d61737367726176652e6465762f696d672f6c6f676f5f736d616c6c2e706e67",
-        "URLs": [
-            "https://github.com/massgravel/Microsoft-Activation-Scripts"
-        ],
+        "URLs": {
+            "Основной": [
+                "https://github.com/massgravel/Microsoft-Activation-Scripts"
+            ]
+        },
         "ModsURLs": [],
         "Categories": [
             "Системные утилиты и виртуализация"
