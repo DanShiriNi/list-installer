@@ -290,7 +290,17 @@ class App(tk.Tk):
         """Читает иконку из файла, изменяет размер и вызывает callback."""
         try:
             img = Image.open(path)
-            img = img.resize((256, 256), Image.LANCZOS)
+            width, height = img.size
+
+            # Если хотя бы одна сторона меньше 128 пикселей — используем NEAREST,
+            # чтобы сохранить чёткость пиксельных/маленьких иконок.
+            if width < 128 or height < 128:
+                resample_filter = Image.Resampling.NEAREST if hasattr(Image, "Resampling") else Image.NEAREST
+            # Иначе — LANCZOS для качественного сглаживания больших изображений.
+            else:
+                resample_filter = Image.Resampling.LANCZOS if hasattr(Image, "Resampling") else Image.LANCZOS
+
+            img = img.resize((256, 256), resample_filter)
             photo = ImageTk.PhotoImage(img)
             callback(photo)
         except Exception as e:
