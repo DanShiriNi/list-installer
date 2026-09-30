@@ -729,5 +729,33 @@
         ],
         "Weight": 0.01,
         "IsDownloaded": false
+    },
+    "Telegram": {
+        "Icon": "https://images.icon-icons.com/2429/PNG/512/telegram_logo_icon_147228.png",
+        "URLs": {
+            "Основной": [
+                "https://telegram.org/desktop"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Мессенджеры"
+        ],
+        "Weight": 0.06,
+        "IsDownloaded": false
+    },
+    "Komet": {
+        "Icon": "https://raw.githubusercontent.com/KometTeam/Komet/refs/heads/main/assets/komet.png",
+        "URLs": {
+            "Основной": [
+                "https://komet.pw/#download"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Мессенджеры"
+        ],
+        "Weight": 0.08,
+        "IsDownloaded": false
     }
 }
