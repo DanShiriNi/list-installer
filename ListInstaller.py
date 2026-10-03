@@ -127,6 +127,8 @@ class App(tk.Tk):
         self.program_list_frame = None
         self.program_icon_label = None
         self.program_install_icon_label = None
+        self.program_install_description_label = None
+        self.program_description_label = None
         self.current_icon_image = None
         self.current_install_icon_image = None
         self.program_name_label = None
@@ -141,6 +143,7 @@ class App(tk.Tk):
         self.page_index = 0
         self.loading_label = None
         self.install_loading_label = None
+        self.install_window_close_handler = None
 
         self.load_folders()
         self.load_json()
@@ -153,14 +156,17 @@ class App(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def on_closing(self):
-        """Сохраняет прогресс по запросу и закрывает приложение."""
+        """Завершает работу приложения, предлагая сохранить прогресс загрузки."""
         if self.programs != self.start_programs:
-            result = messagebox.askyesno(
+            result = messagebox.askyesnocancel(
                 title="Подтверждение выхода",
                 message="Сохранить ли прогресс загрузки? (JSON-файл будет перезаписан)",
                 icon="question"
             )
             
+            if result is None:
+                return
+
             if result:
                 try:
                     if os.path.exists(self.json_name):
@@ -403,6 +409,7 @@ class App(tk.Tk):
         """Показывает текущую программу."""
         if len(self.undownloaded_programs_list) == 0:
             self.program_name_label.config(text="Все программы установлены!")
+            self.program_description_label.config(text="")
             self.download_button.config(state="disabled")
             self.hide_loading_label()
             self.program_icon_label.config(image="", text="✅")
@@ -413,6 +420,8 @@ class App(tk.Tk):
         program_name = self.undownloaded_programs_list[self.page_index]
         self.program_name_label.config(text=program_name)
         self.program_categories_label.config(text="\n".join(self.programs[program_name]['Categories']))
+        description = self.programs[program_name].get('Description', '')
+        self.program_description_label.config(text=description)
 
         program_weight = self.programs[program_name]['Weight']
         if program_weight < 1:
@@ -513,11 +522,15 @@ class App(tk.Tk):
 
         def close_install_frame():
             """Закрывает окно установки и возвращает предыдущую страницу."""
+            if self.install_window_close_handler is close_install_frame:
+                self.install_window_close_handler = None
             if mousewheel_binding is not None:
                 self.unbind_all("<MouseWheel>")
             install_frame.destroy()
             if previous_frame and previous_frame.winfo_exists():
                 previous_frame.pack(fill=tk.BOTH, expand=True)
+
+        self.install_window_close_handler = close_install_frame
 
         close_button = tk.Button(
             install_frame,
@@ -563,8 +576,26 @@ class App(tk.Tk):
             lambda e: scroll_canvas(e) if canvas.winfo_exists() else None
         )
 
-        self.program_install_title_label = tk.Label(scrollable_frame, text=f"Установка программы\n{program_name}", font=("Arial", 14, "bold"))
+        self.program_install_title_label = tk.Label(
+            scrollable_frame,
+            text=f"Установка программы\n{program_name}",
+            font=("Arial", 14, "bold"),
+            wraplength=560,
+            justify=tk.CENTER,
+        )
         self.program_install_title_label.pack(pady=(10, 5))
+
+        description = self.programs[program_name].get("Description", "")
+        if description:
+            self.program_install_description_label = tk.Label(
+                scrollable_frame,
+                text=f"{description}",
+                font=("Arial", 10),
+                justify=tk.CENTER,
+                wraplength=584,
+                anchor="w",
+            )
+            self.program_install_description_label.pack(pady=(0, 10))
 
         self.program_install_icon_label = tk.Label(scrollable_frame, text="", width=256, height=256)
         self.program_install_icon_label.pack(pady=5)
@@ -577,34 +608,79 @@ class App(tk.Tk):
         self.update_install_program_icon(program_name)
 
         installer_msg = "Чтобы установить программу, перейдите по ресурсам ниже:"
-        tk.Label(scrollable_frame, text=installer_msg, font=("Arial", 10)).pack(pady=(20, 10))
-
-        installation_method_frame = tk.Frame(scrollable_frame)
-        installation_method_frame.pack(pady=5)
+        tk.Label(scrollable_frame, text=installer_msg, font=("Arial", 10, "bold")).pack(pady=(20, 10))
 
         installation_methods = self.programs[program_name]["URLs"]
 
-        installer_frame = tk.Frame(scrollable_frame)
-        installer_frame.pack(pady=5)
+        methods_frame = tk.Frame(scrollable_frame)
+        methods_frame.pack(pady=5, fill=tk.X)
+        method_tabs_row = tk.Frame(methods_frame)
+        method_tabs_row.pack(fill=tk.X)
+        method_tabs_row.grid_columnconfigure(0, weight=1)
+        method_tabs_row.grid_columnconfigure(2, weight=1)
+        border_color = "#9e9a91"
+        left_tab_rule = tk.Frame(
+            method_tabs_row,
+            bg=border_color,
+            height=1,
+            cursor="arrow",
+            takefocus=False,
+        )
+        left_tab_rule.grid(row=0, column=0, sticky="sew")
+        method_tabs = tk.Frame(method_tabs_row)
+        method_tabs.grid(row=0, column=1)
+        right_tab_rule = tk.Frame(
+            method_tabs_row,
+            bg=border_color,
+            height=1,
+            cursor="arrow",
+            takefocus=False,
+        )
+        right_tab_rule.grid(row=0, column=2, sticky="sew")
+        methods_content = tk.Frame(methods_frame)
+        methods_content.pack(fill=tk.X)
+        content_edges = (
+            tk.Frame(methods_content, bg=border_color, width=1, cursor="arrow", takefocus=False),
+            tk.Frame(methods_content, bg=border_color, width=1, cursor="arrow", takefocus=False),
+        )
+        content_edges[0].place(x=0, y=0, relheight=1)
+        content_edges[1].place(relx=1, x=-1, y=0, relheight=1)
+        content_bottom_border = tk.Frame(
+            methods_frame,
+            bg=border_color,
+            height=1,
+            cursor="arrow",
+            takefocus=False,
+        )
+        content_bottom_border.pack(fill=tk.X)
+        content_bottom_border.pack_propagate(False)
+        method_buttons = []
+        for method_name, urls in installation_methods.items():
+            installer_frame = tk.Frame(methods_content)
+            method_tab = tk.Frame(method_tabs, bg=self.cget("bg"), takefocus=False)
+            method_tab.pack(side=tk.LEFT)
+            method_label = tk.Label(
+                method_tab,
+                text=method_name,
+                bg=self.cget("bg"),
+                cursor="hand2",
+                padx=8,
+                pady=4,
+            )
+            method_label.pack()
+            tab_edges = {
+                "top": tk.Frame(method_tab, bg=border_color, height=1),
+                "left": tk.Frame(method_tab, bg=border_color, width=1),
+                "right": tk.Frame(method_tab, bg=border_color, width=1),
+                "bottom": tk.Frame(method_tab, bg=border_color, height=1),
+            }
+            tab_edges["top"].place(x=0, y=0, relwidth=1)
+            tab_edges["left"].place(x=0, y=0, relheight=1)
+            tab_edges["right"].place(relx=1, x=-1, y=0, relheight=1)
+            tab_edges["bottom"].place(x=0, rely=1, y=-1, relwidth=1)
+            method_buttons.append((method_tab, method_label, installer_frame, tab_edges))
 
-        method_buttons = {}
-
-
-        def show_links(method_name):
-            """Показывает ссылки выбранного способа установки."""
-            # Очищаем фрейм со ссылками
-            for widget in installer_frame.winfo_children():
-                widget.destroy()
-
-            # Обновляем подчёркивание у кнопок
-            for name, btn in method_buttons.items():
-                if name == method_name:
-                    btn.config(font=("Arial", 10, "underline"))
-                else:
-                    btn.config(font=("Arial", 10))
-
-            # Показываем ссылки выбранного метода
-            for url in installation_methods[method_name]:
+            for url in urls:
                 url_text = url if len(url) <= 64 else url[:64] + "..."
                 lbl = tk.Label(
                     installer_frame,
@@ -614,36 +690,43 @@ class App(tk.Tk):
                     font=("Arial", 9, "underline"),
                 )
                 lbl.bind("<Button-1>", lambda e, u=url: webbrowser.open(u))
-                lbl.pack(pady=2)
+                lbl.pack(anchor=tk.CENTER, pady=2)
 
+        def select_method(selected_frame):
+            """Показывает содержимое выбранного метода установки."""
+            for _, _, frame, edges in method_buttons:
+                frame.pack_forget()
+                for edge_name, edge in edges.items():
+                    if edge_name == "bottom" and frame is not selected_frame:
+                        edge.place(x=0, rely=1, y=-1, relwidth=1)
+                    elif edge_name != "bottom" and frame is selected_frame:
+                        if edge_name == "top":
+                            edge.place(x=0, y=0, relwidth=1)
+                        elif edge_name == "left":
+                            edge.place(x=0, y=0, relheight=1)
+                        else:
+                            edge.place(relx=1, x=-1, y=0, relheight=1)
+                    else:
+                        edge.place_forget()
+            selected_frame.pack(fill=tk.X, padx=0, pady=0)
 
-        # Создаём кнопки методов
-        for method_name in installation_methods:
-            btn = tk.Button(
-                installation_method_frame,
-                text=method_name,
-                font=("Arial", 10),
-                cursor="hand2",
-                command=lambda m=method_name: show_links(m),
-            )
-            btn.pack(side="left", fill=tk.BOTH, expand=True)
-            method_buttons[method_name] = btn
+        for tab, label, frame, _ in method_buttons:
+            tab.bind("<Button-1>", lambda event, target=frame: select_method(target))
+            label.bind("<Button-1>", lambda event, target=frame: select_method(target))
 
-        # По умолчанию выбираем первый метод
-        if installation_methods:
-            first = next(iter(installation_methods))
-            show_links(first)
+        if method_buttons:
+            select_method(method_buttons[0][2])
 
         mods_urls = self.programs[program_name]["ModsURLs"]
 
         if len(mods_urls) > 0:
             mods_msg = "Также можно установить модификации:"
-            tk.Label(scrollable_frame, text=mods_msg, font=("Arial", 10)).pack(pady=(20, 10))
+            tk.Label(scrollable_frame, text=mods_msg, font=("Arial", 10, "bold")).pack(pady=(10, 10))
 
             mods_frame = tk.Frame(scrollable_frame)
             mods_frame.pack(pady=5)
             for url in mods_urls:
-                url_text = url if len(url) <= 72 else url[:72] + "..."
+                url_text = url if len(url) <= 80 else url[:80] + "..."
                 lbl = tk.Label(mods_frame, text=url_text, fg="blue", cursor="hand2",
                             font=("Arial", 9, "underline"))
                 lbl.bind("<Button-1>", lambda e, u=url: webbrowser.open(u))
@@ -722,14 +805,35 @@ class App(tk.Tk):
         program_frame = tk.Frame(self.program_download_frame)
         program_frame.grid(column=1, row=1, sticky="nsew")
 
-        self.program_categories_label = tk.Label(program_frame, text="", font=("Arial", 10))
+        self.program_categories_label = tk.Label(
+            program_frame,
+            text="",
+            font=("Arial", 10),
+            wraplength=400,
+            justify=tk.CENTER,
+        )
         self.program_categories_label.pack()
 
         self.program_icon_label = tk.Label(program_frame, text="", width=256, height=256)
         self.program_icon_label.pack(pady=5)
 
-        self.program_name_label = tk.Label(program_frame, text="", font=("Arial", 14, "bold"))
+        self.program_name_label = tk.Label(
+            program_frame,
+            text="",
+            font=("Arial", 14, "bold"),
+            wraplength=400,
+            justify=tk.CENTER,
+        )
         self.program_name_label.pack()
+
+        self.program_description_label = tk.Label(
+            program_frame,
+            text="",
+            font=("Arial", 10),
+            wraplength=420,
+            justify=tk.CENTER,
+        )
+        self.program_description_label.pack(pady=(4, 0))
 
         install_frame = tk.Frame(self.program_download_frame)
         install_frame.grid(column=0, row=2, columnspan=3, sticky="ewns")

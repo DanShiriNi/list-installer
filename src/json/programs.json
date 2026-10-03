@@ -10,6 +10,7 @@
         "Categories": [
             "Драйверы и зависимости"
         ],
+        "Description": "Драйвера, которые необходимы для многих игр.",
         "Weight": 0.05,
         "IsDownloaded": false
     },
@@ -24,6 +25,7 @@
         "Categories": [
             "Архиваторы"
         ],
+        "Description": "Самый популярный архиватор в мире. Минус: при запуске выводит рекламу оплаты лицензии.",
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -38,6 +40,7 @@
         "Categories": [
             "Архиваторы"
         ],
+        "Description": "Второй самый полулярный архиватор в мире. Минус: устаревший дизайн.",
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -54,6 +57,22 @@
         "Categories": [
             "VPN"
         ],
+        "Description": "Самый популярный VPN-клиент.",
+        "Weight": 0.12,
+        "IsDownloaded": false
+    },
+    "INCY": {
+        "Icon": "https://incy.cc/apple-touch-icon.png",
+        "URLs": {
+            "Основной": [
+                "https://incy.cc/#downloads"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "VPN"
+        ],
+        "Description": "VPN-клиент, который даже лучше, чем «Happ» (обновления ядра прилетают быстрее)",
         "Weight": 0.12,
         "IsDownloaded": false
     },
@@ -68,6 +87,7 @@
         "Categories": [
             "VPN"
         ],
+        "Description": "VPN-клиент / Ядро VPN-клиента. Работает даже на старых компьютерах. Минус: неудобный интерфейс.",
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -84,6 +104,7 @@
         "Categories": [
             "VPN"
         ],
+        "Description": "Инструмент, улучшающий проходимость сети, чтобы открывались Discord, YouTube и подобные сайты.",
         "Weight": 0.12,
         "IsDownloaded": false
     },
@@ -98,7 +119,23 @@
         "Categories": [
             "Твикеры, оптимизация и обслуживание системы"
         ],
+        "Description": "Сборник твикеров (улучшений настроек системы) от российского блогера / сборщика образов операционной системы Windows.",
         "Weight": 0.09,
+        "IsDownloaded": false
+    },
+    "Chris Titus Tech's Windows Utility": {
+        "Icon": "https://cttstore.com/cdn/shop/files/CTT-Logo-Shadowed.png",
+        "URLs": {
+            "Основной": [
+                "https://github.com/ChrisTitusTech/winutil/releases/latest"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Твикеры, оптимизация и обслуживание системы"
+        ],
+        "Description": "Сборник твикеров (улучшений настроек системы), где разобраны (скорее всего) все исправления и улучшения для операционной системы Windows.",
+        "Weight": 0.01,
         "IsDownloaded": false
     },
     "qBittorrent": {
@@ -112,6 +149,7 @@
         "Categories": [
             "Торрент-клиенты"
         ],
+        "Description": "Торрент-клиент с открытым исходным кодом.",
         "Weight": 0.05,
         "IsDownloaded": false
     },
@@ -132,6 +170,7 @@
         "Categories": [
             "Офисные пакеты"
         ],
+        "Description": "Сборник офисных программ (создание и редактирование документов, презентаций, таблиц, базы данных и т.д.). Минус: платный и слишком дорогой.",
         "Weight": 7.04,
         "IsDownloaded": false
     },
@@ -146,6 +185,7 @@
         "Categories": [
             "Офисные пакеты"
         ],
+        "Description": "Сборник офисных программ (создание и редактирование документов, презентаций, таблиц, и .pdf-файлов). Плюс: бесплатный. Минусы: есть подписки, не открыт исходный код.",
         "Weight": 1.7,
         "IsDownloaded": false
     },
@@ -160,10 +200,11 @@
         "Categories": [
             "Офисные пакеты"
         ],
+        "Description": "Сборник офисных программ (создание и редактирование документов, презентаций, таблиц, и .pdf-файлов). Плюсы: бесплатный, открытый исходный код. Минус: пока не исправлен баг с fronted-частью после начала редактирования.",
         "Weight": 0.58,
         "IsDownloaded": false
     },
-    "FireFox": {
+    "Mozilla FireFox": {
         "Icon": "https://images.icon-icons.com/2552/PNG/512/firefox_browser_logo_icon_152991.png",
         "URLs": {
             "Основной": [
@@ -174,7 +215,53 @@
         "Categories": [
             "Браузеры"
         ],
+        "Description": "Один из самых популярных браузеров с открытым исходным кодом и поддержкой кастомизации.",
         "Weight": 0.7,
+        "IsDownloaded": false
+    },
+    "Google Chrome": {
+        "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/250px-Google_Chrome_icon_%28February_2022%29.svg.png",
+        "URLs": {
+            "Основной": [
+                "https://www.google.com/chrome/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Браузеры"
+        ],
+        "Description": "Самый популярный браузер на базе Chromium с широким набором расширений. Минус: закрытый исходный код и слежка за пользователями.",
+        "Weight": 0.48,
+        "IsDownloaded": false
+    },
+    "Yandex Browser": {
+        "Icon": "https://avatars.mds.yandex.net/get-lpc/1635340/39c5721c-c160-4260-abba-ec2ebb7abf7c/orig",
+        "URLs": {
+            "Основной": [
+                "https://browser.yandex.ru/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Браузеры"
+        ],
+        "Description": "Браузер с интеграцией сервисов Яндекса и удобными встроенными функциями. Минус: закрытый исходный код и слежка за пользователями.",
+        "Weight": 0.7,
+        "IsDownloaded": false
+    },
+    "Brave Private Browser": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/archive/1/1e/20200204084524%21Brave_icon_app.png",
+        "URLs": {
+            "Основной": [
+                "https://brave.com/ru/download/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Браузеры"
+        ],
+        "Description": "Браузер с блокировкой рекламы и встроенной защитой приватности. Минус: некоторых функций нет в бесплатной версии.",
+        "Weight": 0.15,
         "IsDownloaded": false
     },
     "Python 3.11": {
@@ -186,8 +273,9 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования"
+            "Инструменты программирования и моделирования"
         ],
+        "Description": "Один из самых популярных языков программирования. В основном используется для создания API и ИИ, анализа данных и автоматизации задач. Минус: некомпилируемый.",
         "Weight": 0.03,
         "IsDownloaded": false
     },
@@ -200,8 +288,9 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования"
+            "Инструменты программирования и моделирования"
         ],
+        "Description": "Система контроля версий для совместной разработки и хранения истории проектов.",
         "Weight": 0.07,
         "IsDownloaded": false
     },
@@ -214,8 +303,9 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования"
+            "Инструменты программирования и моделирования"
         ],
+        "Description": "Утилита для упаковки Python-скриптов в исполняемые .exe-файлы. Минус: нет цифровой подписи.",
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -228,9 +318,25 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования"
+            "Инструменты программирования и моделирования"
         ],
-        "Weight": 0.1,
+        "Description": "Лёгкий редактор кода с расширениями, отладкой и поддержкой множества языков. Минус: слежка за пользователями.",
+        "Weight": 0.18,
+        "IsDownloaded": false
+    },
+    "Visual Studio Codium": {
+        "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/VSCodium.svg/250px-VSCodium.svg.png",
+        "URLs": {
+            "Основной": [
+                "https://vscodium.com/#install"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования и моделирования"
+        ],
+        "Description": "Лёгкий редактор кода с расширениями, отладкой и поддержкой множества языков. Плюс: нет слежки за пользователями.",
+        "Weight": 0.17,
         "IsDownloaded": false
     },
     "Visual Studio": {
@@ -242,8 +348,9 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования"
+            "Инструменты программирования и моделирования"
         ],
+        "Description": "Полноценная IDE для разработки на .NET, C++, C# и других языках.",
         "Weight": 3.24,
         "IsDownloaded": false
     },
@@ -257,8 +364,9 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования"
+            "Инструменты программирования и моделирования"
         ],
+        "Description": "Среда управления базами данных Microsoft SQL Server.",
         "Weight": 4.04,
         "IsDownloaded": false
     },
@@ -271,9 +379,40 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования"
+            "Инструменты программирования и моделирования"
         ],
+        "Description": "Учебная версия платформы 1С для освоения автоматизации бизнеса и разработки решений.",
         "Weight": 0.52,
+        "IsDownloaded": false
+    },
+    "Unity": {
+        "Icon": "https://paragonintel.com/wp-content/uploads/2024/09/Unity-Software.png",
+        "URLs": {
+            "Основной": [
+                "https://godotengine.org/download/windows/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования и моделирования"
+        ],
+        "Description": "Движок для создания игр и поддержкой 2D/3D. Минус: сложность освоения и требование мощного компьютера.",
+        "Weight": 0.09,
+        "IsDownloaded": false
+    },
+    "Godot Game Engine": {
+        "Icon": "https://raw.githubusercontent.com/godotengine/godot/refs/heads/master/main/app_icon.png",
+        "URLs": {
+            "Основной": [
+                "https://godotengine.org/download/windows/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования и моделирования"
+        ],
+        "Description": "Движок для создания игр и поддержкой 2D/3D.",
+        "Weight": 0.09,
         "IsDownloaded": false
     },
     "Docker": {
@@ -286,8 +425,9 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования"
+            "Инструменты программирования и моделирования"
         ],
+        "Description": "Платформа для контейнеризации приложений и запуска их в изолированных средах.",
         "Weight": 0.62,
         "IsDownloaded": false
     },
@@ -302,6 +442,7 @@
         "Categories": [
             "Мультимедиа"
         ],
+        "Description": "Набор кодеков для конвертации, упаковки и обработки видео и аудио.",
         "Weight": 0.23,
         "IsDownloaded": false
     },
@@ -318,21 +459,69 @@
         "Categories": [
             "Графические редакторы"
         ],
+        "Description": "Лёгкий графический редактор для быстрой обработки изображений и рисунков. Минус: не поддерживает векторные изображения и PSD (но можно установить моды).",
         "Weight": 0.02,
         "IsDownloaded": false
     },
-    "Draw.io": {
-        "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Diagrams.net_Logo.svg/250px-Diagrams.net_Logo.svg.png",
+    "Photopea": {
+        "Icon": "https://www.photopea.com/promo/icon512.png",
         "URLs": {
             "Основной": [
-                "https://github.com/jgraph/drawio-desktop/releases/latest"
+                "https://www.photopea.com/"
             ]
         },
         "ModsURLs": [],
         "Categories": [
             "Графические редакторы"
         ],
+        "Description": "Бесплатный онлайн-редактор изображений с поддержкой PSD и интерфейсом, похожим на Photoshop.",
+        "Weight": 0,
+        "IsDownloaded": false
+    },
+    "Draw.io": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Diagrams.net_Logo.svg/250px-Diagrams.net_Logo.svg.png",
+        "URLs": {
+            "Основной": [
+                "https://www.drawio.com/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Графические редакторы"
+        ],
+        "Description": "Инструмент для создания диаграмм, схем и блок-схем.",
         "Weight": 0.11,
+        "IsDownloaded": false
+    },
+    "Blender": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Blender_logo_no_text.svg/1280px-Blender_logo_no_text.svg.png",
+        "URLs": {
+            "Основной": [
+                "https://www.blender.org/download/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования и моделирования"
+        ],
+        "Description": "Профессиональный пакет для 3D-моделирования, анимации и рендера.",
+        "Weight": 0.34,
+        "IsDownloaded": false
+    },
+    "Obsidian": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/2023_Obsidian_logo.svg/960px-2023_Obsidian_logo.svg.png",
+        "URLs": {
+            "Основной": [
+                "https://obsidian.md/download"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования и моделирования",
+            "Системные утилиты и виртуализация"
+        ],
+        "Description": "Заметки и база знаний с локальными файлами, Markdown и связями между записями.",
+        "Weight": 0.31,
         "IsDownloaded": false
     },
     "AIMP": {
@@ -346,6 +535,7 @@
         "Categories": [
             "Мультимедиа"
         ],
+        "Description": "Аудиоплеер с открытым исходным кодом и поддержкой множества форматов и удобной организацией медиатеки.",
         "Weight": 0.03,
         "IsDownloaded": false
     },
@@ -360,6 +550,25 @@
         "Categories": [
             "Мультимедиа"
         ],
+        "Description": "Универсальный медиаплеер для видео, аудио и потокового контента, даже радио можно послушать.",
+        "Weight": 0.05,
+        "IsDownloaded": false
+    },
+    "MPV Player": {
+        "Icon": "https://raw.githubusercontent.com/mpv-player/mpv.io/master/source/images/mpv-logo-128.png",
+        "URLs": {
+            "Основной": [
+                "https://github.com/mpv-player/mpv/releases/latest"
+            ]
+        },
+        "ModsURLs": [
+            "https://github.com/Samillion/ModernZ/releases/latest",
+            "https://github.com/gaesa/mpv-hold-accelerate/releases/latest"
+        ],
+        "Categories": [
+            "Мультимедиа"
+        ],
+        "Description": "Лёгкий мультимедийный плеер с высокой производительностью и кастомизацией. Даже лучше, чем VLC Media Player. Минус: сложность настройки и отсутствие официального GUI.",
         "Weight": 0.05,
         "IsDownloaded": false
     },
@@ -374,7 +583,23 @@
         "Categories": [
             "Мультимедиа"
         ],
+        "Description": "Профессиональный инструмент для создания музыки и обработки звука. Минус: многие функции есть только в платной версии.",
         "Weight": 0.99,
+        "IsDownloaded": false
+    },
+    "Audacity": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Audacity.svg/250px-Audacity.svg.png",
+        "URLs": {
+            "Основной": [
+                "https://www.audacityteam.org/download/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
+        "Description": "Бесплатный аудиоредактор для записи и обработки аудио. Минус: устаревший интерфейс и отсутствие некоторых функций.",
+        "Weight": 0.03,
         "IsDownloaded": false
     },
     "CapCut": {
@@ -388,6 +613,7 @@
         "Categories": [
             "Мультимедиа"
         ],
+        "Description": "Бесплатная программа для видеомонтажа с шаблонами, эффектами и ускоренной обработкой. Минусы: некоторые функции доступны только в платной версии, а также отсутствие некоторых продвинутых функций и слишком большая библиотека эффектов и переходов (многие бесполезные), из-за которой можно заблудиться.",
         "Weight": 1.63,
         "IsDownloaded": false
     },
@@ -402,6 +628,7 @@
         "Categories": [
             "Мультимедиа"
         ],
+        "Description": "Профессиональная программа для видеомонтажа. Минусы: сложность освоения и ограниченные возможности в бесплатной версии (например, продвинутый трекинг объектов).",
         "Weight": 3.31,
         "IsDownloaded": false
     },
@@ -416,6 +643,7 @@
         "Categories": [
             "Мультимедиа"
         ],
+        "Description": "Папка с подборкой мелодий и звуковых эффектов для использования в монтаже.",
         "Weight": 0,
         "IsDownloaded": false
     },
@@ -430,7 +658,23 @@
         "Categories": [
             "Мультимедиа"
         ],
+        "Description": "Программа для записи экрана, трансляций и стриминга. Минусы: сложность в настройке и малая производительность на слабых ПК.",
         "Weight": 0.15,
+        "IsDownloaded": false
+    },
+    "Bandicam": {
+        "Icon": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Bandicam-official-icon.png",
+        "URLs": {
+            "Основной": [
+                "https://www.bandicam.com/ru/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Мультимедиа"
+        ],
+        "Description": "Программа для записи экрана, трансляций и стриминга. Плюсы: простота использования и высокая производительность даже на слабых ПК. Минус: водяной знак в бесплатной версии.",
+        "Weight": 0.06,
         "IsDownloaded": false
     },
     "BrickLink Designer Studio": {
@@ -444,6 +688,7 @@
         "Categories": [
             "Моделирование"
         ],
+        "Description": "Приложение для проектирования и сборки моделей / наборов LEGO.",
         "Weight": 0.43,
         "IsDownloaded": false
     },
@@ -458,6 +703,7 @@
         "Categories": [
             "Игры и игровые платформы"
         ],
+        "Description": "Крупнейшая игровая платформа для покупки, запуска и организации игр.",
         "Weight": 0.59,
         "IsDownloaded": false
     },
@@ -479,6 +725,7 @@
         "Categories": [
             "Игры и игровые платформы"
         ],
+        "Description": "Та самая ГТА: СА))",
         "Weight": 3.98,
         "IsDownloaded": false
     },
@@ -498,6 +745,7 @@
         "Categories": [
             "Игры и игровые платформы"
         ],
+        "Description": "Культовая ГТА, стоящая почти на равне с GTA: San Andreas.",
         "Weight": 4.58,
         "IsDownloaded": false
     },
@@ -510,9 +758,10 @@
         },
         "ModsURLs": [],
         "Categories": [
-            "Инструменты программирования",
+            "Инструменты программирования и моделирования",
             "Драйверы и зависимости"
         ],
+        "Description": "Среда выполнения и платформа для приложений, игр и инструментов на Java. (я её сюда из-за Minecraft добавил)",
         "Weight": 0.07,
         "IsDownloaded": false
     },
@@ -533,11 +782,13 @@
             ]
         },
         "ModsURLs": [
-            "https://modrinth.com/modpack/optimized-3d-pixel-edit"
+            "https://modrinth.com/modpack/optimized-3d-pixel-edit",
+            "https://www.curseforge.com/minecraft/mc-mods/luxium"
         ],
         "Categories": [
             "Игры и игровые платформы"
         ],
+        "Description": "МАЙНКРААААААААФТ!",
         "Weight": 0.67,
         "IsDownloaded": false
     },
@@ -552,6 +803,7 @@
         "Categories": [
             "Игры и игровые платформы"
         ],
+        "Description": "Утилита для соединения друзей из Steam через локальную сеть, чтобы играть в игры по \"локальной\" сети (например, Майнкрафт).",
         "Weight": 0.23,
         "IsDownloaded": false
     },
@@ -569,6 +821,7 @@
         "Categories": [
             "Игры и игровые платформы"
         ],
+        "Description": "Инструмент для конвертации миров Minecraft из Java Edition в Bedrock Edition и наоборот.",
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -583,6 +836,7 @@
         "Categories": [
             "Системные утилиты и виртуализация"
         ],
+        "Description": "Приложение для быстрого обмена файлами между устройствами в локальной сети.",
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -597,6 +851,7 @@
         "Categories": [
             "Загрузка iso-образов"
         ],
+        "Description": "Утилита для записи ISO-образов на флешки (создание загрузочных носителей). Минус: разрешена запись лишь одного ISO-образа на флешку, без мультизагрузки.",
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -611,6 +866,7 @@
         "Categories": [
             "Загрузка iso-образов"
         ],
+        "Description": "Создатель мультизагрузочных USB-носителей с поддержкой нескольких ISO-образов.",
         "Weight": 0.02,
         "IsDownloaded": false
     },
@@ -625,6 +881,7 @@
         "Categories": [
             "Системные утилиты и виртуализация"
         ],
+        "Description": "Самый быстрый поиск файлов на устройстве с минимальным потреблением ресурсов.",
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -640,6 +897,7 @@
             "Твикеры, оптимизация и обслуживание системы",
             "Системные утилиты и виртуализация"
         ],
+        "Description": "Утилита для удаления программ с очисткой остатков установок и мусора.",
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -655,6 +913,7 @@
             "Твикеры, оптимизация и обслуживание системы",
             "Системные утилиты и виртуализация"
         ],
+        "Description": "Проверка и управление автозагрузкой программ, служб и задач.",
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -670,6 +929,7 @@
             "Твикеры, оптимизация и обслуживание системы",
             "Системные утилиты и виртуализация"
         ],
+        "Description": "Бесплатное средство для оптимизации системы (это бесплатный аналог «CCleaner»).",
         "Weight": 0.12,
         "IsDownloaded": false
     },
@@ -685,6 +945,7 @@
             "Твикеры, оптимизация и обслуживание системы",
             "Системные утилиты и виртуализация"
         ],
+        "Description": "Расширенный мониторинг процессов, служб и ресурсов системы и пониманием, какие процессы их запустили.",
         "Weight": 0.01,
         "IsDownloaded": false
     },
@@ -699,7 +960,38 @@
         "Categories": [
             "Системные утилиты и виртуализация"
         ],
+        "Description": "Быстрый поиск и запуск программ, вместо стандартного меню Пуск.",
         "Weight": 0.1,
+        "IsDownloaded": false
+    },
+    "Wallpaper Engine": {
+        "Icon": "https://images.steamusercontent.com/ugc/1796366854781097705/0AA1BA3D337504B1E63BF1EBA301E6B84FAAFD60/",
+        "URLs": {
+            "Основной": [
+                "https://store.steampowered.com/app/431960/Wallpaper_Engine/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
+        "Description": "Приложение для добавления живых обоев. Минус: платная программа.",
+        "Weight": 1.68,
+        "IsDownloaded": false
+    },
+    "Sucrose Wallpaper Engine": {
+        "Icon": "https://raw.githubusercontent.com/Taiizor/Sucrose/develop/.images/Logo.png",
+        "URLs": {
+            "Основной": [
+                "https://sucrose.dev/ru#download"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
+        "Description": "Бесплатное приложение для добавления живых обоев.",
+        "Weight": 0.32,
         "IsDownloaded": false
     },
     "VirtualBox": {
@@ -713,6 +1005,7 @@
         "Categories": [
             "Системные утилиты и виртуализация"
         ],
+        "Description": "Бесплатная программа для создания и запуска виртуальных машин.",
         "Weight": 0.17,
         "IsDownloaded": false
     },
@@ -727,7 +1020,23 @@
         "Categories": [
             "Системные утилиты и виртуализация"
         ],
+        "Description": "(Ай-ай-ай) Скрипты для активации Windows и Microsoft Office в автоматическом режиме.",
         "Weight": 0.01,
+        "IsDownloaded": false
+    },
+    "KeePassXC": {
+        "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/KeePassXC.svg/250px-KeePassXC.svg.png",
+        "URLs": {
+            "Основной": [
+                "https://keepassxc.org/download/#windows"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
+        "Description": "Менеджер паролей с безопасным хранением и локальным доступом к данным.",
+        "Weight": 0.04,
         "IsDownloaded": false
     },
     "Telegram": {
@@ -741,6 +1050,7 @@
         "Categories": [
             "Мессенджеры"
         ],
+        "Description": "Клиент для мессенджера «Telegram».",
         "Weight": 0.06,
         "IsDownloaded": false
     },
@@ -755,6 +1065,7 @@
         "Categories": [
             "Мессенджеры"
         ],
+        "Description": "Клиент для мессенджера «Max» без слежки.",
         "Weight": 0.08,
         "IsDownloaded": false
     }
