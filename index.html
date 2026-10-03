@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Установка программ</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: Arial, sans-serif;
+        background: #e0e0e0;
+        min-height: 100vh;
+    }
+    .app {
+        width: 100%;
+        height: 100vh;
+        background: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+    }
+    button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        outline: none;
+    }
+
+    /* ---------- Кнопки ---------- */
+    .btn {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 10px 14px;
+        border-radius: 4px;
+        transition: background 0.15s;
+    }
+    .btn-white-blue {
+        background: #fff;
+        color: #0078D7;
+        border: 1px solid #ccc;
+    }
+    .btn-white-blue:hover { background: #e6e6e6; }
+    .btn-blue {
+        background: #0078D7;
+        color: #fff;
+        font-size: 16px;
+    }
+    .btn-blue:hover { background: #005a9e; }
+    .btn-blue:disabled { background: #a0c8e8; cursor: not-allowed; }
+    .btn-green {
+        background: #2e8b2e;
+        color: #fff;
+        font-size: 16px;
+    }
+    .btn-green:hover { background: #1e6b1e; }
+    .btn-transparent-blue {
+        background: transparent;
+        color: #0078D7;
+        font-size: 42px;
+        font-weight: bold;
+        padding: 0 10px;
+    }
+    .btn-transparent-blue:hover { background: #e0e8f0; }
+    .btn-transparent-blue:active { background: #c0d0e0; }
+
+    /* ---------- Страницы ---------- */
+    .page { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+    .page.active { display: flex; }
+
+    /* ---------- Страница загрузки ---------- */
+    .download-header, .list-header {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        background: #fff;
+        border-bottom: 1px solid #ccc;
+    }
+    .progress-text {
+        font-size: 14px;
+        padding: 10px;
+        background: #fff;
+        text-align: center;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .download-body {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr) 64px;
+        align-items: stretch;
+        overflow: hidden;
+        background: #f0f0f0;
+    }
+    .program-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: 0;
+        overflow: hidden;
+        padding: 8px 10px;
+    }
+    .program-categories {
+        font-size: 12px;
+        color: #555;
+        white-space: pre-line;
+        margin-bottom: 6px;
+    }
+    .program-details {
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-y: auto;
+    }
+    @media (min-height: 560px) {
+        .program-details { justify-content: center; }
+    }
+    .program-icon {
+        width: 256px;
+        height: 256px;
+        flex: 0 0 256px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 6px 0;
+    }
+    .program-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .program-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 6px;
+        color: #111;
+    }
+    .program-description {
+        font-size: 13px;
+        color: #333;
+        line-height: 1.4;
+        max-width: 420px;
+    }
+    .download-footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        background: #e8e8e8;
+    }
+    .download-footer .btn { padding: 14px; }
+    #btn-prev, #btn-next {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    /* ---------- Страница списка ---------- */
+    .list-filters {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 10px;
+        background: #e8e8e8;
+        border-bottom: 1px solid #ccc;
+        gap: 8px;
+    }
+    .list-filters label {
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+    }
+    .program-list {
+        flex: 1;
+        overflow-y: auto;
+        background: #fff;
+    }
+    .program-list-item {
+        padding: 8px 12px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.1s;
+    }
+    .program-list-item:hover { background: #e0eefc; }
+    .program-list-item .marker {
+        font-size: 14px;
+        width: 18px;
+        text-align: center;
+    }
+    .program-list-item .marker.done { color: #2e8b2e; }
+    .program-list-item .marker.undone { color: #c00; }
+
+    /* ---------- Dropdown категорий ---------- */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-btn {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        font-size: 13px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .dropdown-btn:hover { background: #f5f5f5; }
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 100;
+        min-width: 260px;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 6px;
+    }
+    .dropdown-menu.open { display: block; }
+    .dropdown-menu label {
+        display: block;
+        padding: 5px 8px;
+        font-size: 13px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    .dropdown-menu label:hover { background: #e0eefc; }
+
+    /* ---------- Модалка установки ---------- */
+    .modal-overlay {
+        display: none;
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 200;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+        background: #f0f0f0;
+        width: 94%;
+        max-height: 94%;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        border: 1px solid #999;
+    }
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 14px;
+        border-bottom: 1px solid #ccc;
+        background: #e8e8e8;
+    }
+    .modal-header h2 { font-size: 15px; font-weight: bold; }
+    .modal-close {
+        background: transparent;
+        font-size: 22px;
+        color: #333;
+        padding: 0 8px;
+        border-radius: 4px;
+    }
+    .modal-close:hover { background: #d00; color: #fff; }
+    .modal-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+    }
+    .install-icon {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .install-icon img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .install-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+    .install-description {
+        text-align: center;
+        font-size: 13px;
+        color: #333;
+        margin-bottom: 16px;
+        line-height: 1.4;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .install-section-title {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 14px 0 8px;
+        text-align: center;
+    }
+
+    /* ---------- Табы способов установки ---------- */
+    .methods-tabs {
+        display: flex;
+        border-bottom: 1px solid #9e9a91;
+        margin-bottom: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .methods-tab {
+        background: #e8e8e8;
+        padding: 8px 16px;
+        font-size: 13px;
+        cursor: pointer;
+        border: 1px solid #9e9a91;
+        border-bottom: none;
+        margin: 0 2px;
+        border-radius: 4px 4px 0 0;
+        position: relative;
+        top: 1px;
+    }
+    .methods-tab.active {
+        background: #fff;
+        border-bottom: 1px solid #fff;
+        font-weight: bold;
+    }
+    .methods-content {
+        border: 1px solid #9e9a91;
+        border-top: none;
+        padding: 14px;
+        background: #fff;
+        border-radius: 0 0 4px 4px;
+        text-align: center;
+    }
+    .methods-content a {
+        display: block;
+        color: #0078D7;
+        text-decoration: underline;
+        font-size: 13px;
+        padding: 4px 0;
+        word-break: break-all;
+    }
+    .methods-content a:hover { color: #005a9e; }
+    .mods-list a {
+        display: block;
+        color: #0078D7;
+        text-decoration: underline;
+        font-size: 13px;
+        padding: 3px 0;
+        word-break: break-all;
+    }
+
+    .loading-text { font-size: 14px; color: #666; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #f0f0f0; }
+    ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #999; }
+</style>
+</head>
+<body>
+<div class="app">
+
+    <!-- ============ Страница загрузки ============ -->
+    <div id="page-download" class="page active">
+        <div class="download-header">
+            <button class="btn btn-white-blue" id="btn-reload" title="Сбросить прогресс">⟳</button>
+            <div class="progress-text" id="progress-text">Готово: 0/0 (0.0%)</div>
+            <button class="btn btn-white-blue" id="btn-to-list" title="Список программ">☰</button>
+        </div>
+
+        <div class="download-body">
+            <button class="btn btn-transparent-blue" id="btn-prev">&lt;</button>
+            <div class="program-center">
+                <div class="program-categories" id="dl-categories"></div>
+                <div class="program-details">
+                    <div class="program-icon" id="dl-icon">
+                        <span class="loading-text">⏳</span>
+                    </div>
+                    <div class="program-name" id="dl-name"></div>
+                    <div class="program-description" id="dl-description"></div>
+                </div>
+            </div>
+            <button class="btn btn-transparent-blue" id="btn-next">&gt;</button>
+        </div>
+
+        <div class="download-footer">
+            <button class="btn btn-blue" id="btn-install">Установить</button>
+            <button class="btn btn-green" id="btn-done">✔ Установлено</button>
+        </div>
+    </div>
+
+    <!-- ============ Страница списка ============ -->
+    <div id="page-list" class="page">
+        <div class="list-header">
+            <button class="btn btn-white-blue" id="btn-reload2" title="Сбросить прогресс">⟳</button>
+            <div class="progress-text" id="progress-text2">Готово: 0/0 (0.0%)</div>
+            <button class="btn btn-white-blue" id="btn-to-download" title="Назад">⊡</button>
+        </div>
+
+        <div class="list-filters">
+            <div class="dropdown" id="categories-dropdown">
+                <button class="dropdown-btn" id="cat-btn">Сортировка ▾</button>
+                <div class="dropdown-menu" id="cat-menu"></div>
+            </div>
+            <label>
+                <input type="checkbox" id="only-undownloaded">
+                Только не установленные
+            </label>
+        </div>
+
+        <div class="program-list" id="program-list"></div>
+    </div>
+
+    <!-- ============ Модалка установки ============ -->
+    <div class="modal-overlay" id="install-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Установка программы</h2>
+                <button class="modal-close" id="modal-close">×</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const PROGRAMS_JSON_URL = 'https://raw.githubusercontent.com/DanShiriNi/list-installer/main/src/json/programs.json';
+
+/* ============================================================
+   Старая встроенная копия каталога (не используется при запуске)
+   ============================================================ */
+const INITIAL_PROGRAMS = {
+ "Visual C++ Redistributable ": {
+ "Icon":  "https://www.rw-designer.com/icon-image/23790-32x32x4.png",
+ "URLs": { "Основной": ["https://learn.microsoft.com/ru-ru/cpp/windows/latest-supported-vc-redist?view=msvc-170"] },
+ "ModsURLs": [], "Categories": ["Драйверы и зависимости"],
+ "Description": "Драйвера, которые необходимы для многих игр.", "Weight": 0.05, "IsDownloaded": false
+},
+ "WinRAR": {
+ "Icon": "https://www.rw-designer.com/icon-image/21764-256x256x32.png",
+ "URLs": { "Основной": ["https://www.rarlab.com/"] },
+ "ModsURLs": [], "Categories": ["Архиваторы"],
+ "Description": "Самый популярный архиватор в мире. Минус: при запуске выводит рекламу оплаты лицензии.", "Weight": 0.01, "IsDownloaded": false
+},
+ "7-zip": {
+ "Icon": "https://raw.githubusercontent.com/RipplePiam/7zip-Theme/refs/heads/main/SFX%20Icon/SFX%20Icon.ico",
+ "URLs": { "Основной": ["https://www.7-zip.org/"] },
+ "ModsURLs": [], "Categories": ["Архиваторы"],
+ "Description": "Второй самый популярный архиватор в мире. Минус: устаревший дизайн.", "Weight": 0.01, "IsDownloaded": false
+},
+ "Happ": {
+ "Icon": "https://avatars.githubusercontent.com/u/195639782?s=200&v=4",
+ "URLs": { "Через GitHub": ["https://github.com/Happ-proxy/happ-desktop/releases/latest"] },
+ "ModsURLs": ["happ://routing/onadd/eyJOYW1lIjoiUm9zY29tVlBOLVBlcnNvbmFsIiwiR2xvYmFsUHJveHkiOiJ0cnVlIiwiVXNlQ2h1bmtGaWxlcyI6InRydWUiLCJSZW1vdGVEbnMiOiIxLjEuMS4xIiwiRG9tZXN0aWNEbnMiOiIxLjEuMS4xIiwiUmVtb3RlRE5TVHlwZSI6IkRvSCIsIlJlbW90ZUROU0RvbWFpbiI6Imh0dHBzOi8vMS4xLjEuMS9kbnMtcXVlcnkiLCJSZW1vdGVETlNJUCI6IjEuMS4xLjEiLCJEb21lc3RpY0ROU1R5cGUiOiJEb0giLCJEb21lc3RpY0ROU0RvbWFpbiI6Imh0dHBzOi8vMS4xLjEuMS9kbnMtcXVlcnkiLCJEb21lc3RpY0ROU0lQIjoiMS4xLjEuMSIsIkdlb2lwdXJsIjoiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL25vdmV2OS9oYXBwLWdlb0BiYjk2YzE3M2ZhNzMxYjkxMDk3NDZlNGIyNWI3NTJkNzg0MzBlNmVjL2dlb2lwLmRhdCIsIkdlb3NpdGV1cmwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvbm92ZXY5L2hhcHAtZ2VvQGJiOTZjMTczZmE3MzFiOTEwOTc0NmU0YjI1Yjc1MmQ3ODQzMGU2ZWMvZ2Vvc2l0ZS5kYXQiLCJMYXN0VXBkYXRlZCI6IjE3NzY1ODAwMDAiLCJEbnNIb3N0cyI6eyJsa2ZsMi5uYWxvZy5ydSI6IjIxMy4yNC42NC4xNzUiLCJsa25wZC5uYWxvZy5ydSI6IjIxMy4yNC42NC4xODEifSwiUm91dGVPcmRlciI6ImJsb2NrLXByb3h5LWRpcmVjdCIsIkRpcmVjdFNpdGVzIjpbImdlb3NpdGU6cHJpdmF0ZSIsImdlb3NpdGU6Y2F0ZWdvcnktcnUiLCJnZW9zaXRlOndoaXRlbGlzdCIsImdlb3NpdGU6bWljcm9zb2Z0IiwiZ2Vvc2l0ZTphcHBsZSIsImdlb3NpdGU6ZXBpY2dhbWVzIiwiZ2Vvc2l0ZTpyaW90IiwiZ2Vvc2l0ZTplc2NhcGVmcm9tdGFya292IiwiZ2Vvc2l0ZTpzdGVhbSIsImdlb3NpdGU6dHdpdGNoIiwiZ2Vvc2l0ZTpwaW50ZXJlc3QiLCJnZW9zaXRlOmZhY2VpdCIsImRvbWFpbjptYWduaXQucnUiLCJkb21haW46bWdjLWxveWFsdHkucnUiXSwiRGlyZWN0SXAiOlsiZ2VvaXA6cHJpdmF0ZSIsImdlb2lwOmRpcmVjdCJdLCJQcm94eVNpdGVzIjpbImdlb3NpdGU6Z29vZ2xlLXBsYXkiLCJnZW9zaXRlOmdpdGh1YiIsImdlb3NpdGU6dHdpdGNoLWFkcyIsImdlb3NpdGU6eW91dHViZSIsImdlb3NpdGU6dGVsZWdyYW0iXSwiUHJveHlJcCI6W10sIkJsb2NrU2l0ZXMiOlsiZ2Vvc2l0ZTp3aW4tc3B5IiwiZ2Vvc2l0ZTp0b3JyZW50IiwiZ2Vvc2l0ZTpjYXRlZ29yeS1hZHMiXSwiQmxvY2tJcCI6W10sIkRvbWFpblN0cmF0ZWd5IjoiSVBJZk5vbk1hdGNoIiwiRmFrZUROUyI6ImZhbHNlIn0="],
+ "Categories": ["VPN"],
+ "Description": "Самый популярный VPN-клиент.", "Weight": 0.12, "IsDownloaded": false
+},
+ "INCY": {
+ "Icon": "https://incy.cc/apple-touch-icon.png",
+ "URLs": { "Основной": ["https://incy.cc/#downloads"] },
+ "ModsURLs": [], "Categories": ["VPN"],
+ "Description": "VPN-клиент, который даже лучше, чем «Happ» (обновления ядра прилетают быстрее)", "Weight": 0.12, "IsDownloaded": false
+},
+ "Singbox Launcher": {
+ "Icon": "https://github.com/Leadaxe/singbox-launcher/blob/main/assets/app.png?raw=true",
+ "URLs": { "Основной": ["https://github.com/Leadaxe/singbox-launcher/releases/latest"] },
+ "ModsURLs": [], "Categories": ["VPN"],
+ "Description": "VPN-клиент / Ядро VPN-клиента. Работает даже на старых компьютерах. Минус: неудобный интерфейс.", "Weight": 0.02, "IsDownloaded": false
+},
+ "Zapret": {
+ "Icon": "https://images.steamusercontent.com/ugc/14005570200838415997/48C17C61A4690AB853B3114A9D900CEF0BAF6FD3/?imw=128&imh=128",
+ "URLs": { "Основной": ["https://github.com/Flowseal/zapret-discord-youtube/releases/latest"] },
+ "ModsURLs": ["https://github.com/Flowseal/tg-ws-proxy/releases/latest"],
+ "Categories": ["VPN"],
+ "Description": "Инструмент, улучшающий проходимость сети, чтобы открывались Discord, YouTube и подобные сайты.", "Weight": 0.12, "IsDownloaded": false
+},
+ "MakuTweaker": {
+ "Icon": "https://adderly.top/icons/1.png",
+ "URLs": { "Основной": ["https://adderly.top/makutweaker"] },
+ "ModsURLs": [], "Categories": ["Твикеры, оптимизация и обслуживание системы"],
+ "Description": "Сборник твикеров (улучшений настроек системы) от российского блогера / сборщика образов операционной системы Windows.", "Weight": 0.09, "IsDownloaded": false
+},
+ "Chris Titus Tech's Windows Utility": {
+ "Icon": "https://cttstore.com/cdn/shop/files/CTT-Logo-Shadowed.png",
+ "URLs": { "Основной": ["https://github.com/ChrisTitusTech/winutil/releases/latest"] },
+ "ModsURLs": [], "Categories": ["Твикеры, оптимизация и обслуживание системы"],
+ "Description": "Сборник твикеров (улучшений настроек системы), где разобраны (скорее всего) все исправления и улучшения для операционной системы Windows.", "Weight": 0.01, "IsDownloaded": false
+},
+ "qBittorrent": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/New_qBittorrent_Logo.svg/1280px-New_qBittorrent_Logo.svg.png",
+ "URLs": { "Основной": ["https://www.qbittorrent.org/download"] },
+ "ModsURLs": [], "Categories": ["Торрент-клиенты"],
+ "Description": "Торрент-клиент с открытым исходным кодом.", "Weight": 0.05, "IsDownloaded": false
+},
+ "Microsoft Office": {
+ "Icon": "https://images.icon-icons.com/1156/PNG/512/1486565573-microsoft-office_81557.png",
+ "URLs": {
+  "С проверкой на наличие купленной лицензии": ["https://www.microsoft.com/ru-ru/microsoft-365/get-office-and-microsoft-365-oem-download-page"],
+  "Образ без лицензии": ["https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/ru-RU/ProPlus2019Retail.img"],
+  "Торрент (йо-хо-хоу)": ["https://rutracker.org/forum/viewtopic.php?t=6140745"]
+ },
+ "ModsURLs": [], "Categories": ["Офисные пакеты"],
+ "Description": "Сборник офисных программ (создание и редактирование документов, презентаций, таблиц, базы данных и т.д.). Минус: платный и слишком дорогой.", "Weight": 7.04, "IsDownloaded": false
+},
+ "WPS Office": {
+ "Icon": "https://i2.wp.com/is2-ssl.mzstatic.com/image/thumb/Purple122/v4/7b/fd/25/7bfd25cc-017e-04f1-c359-df2e44771625/wpsoffice.png/1200x630bb.png",
+ "URLs": { "Основной": ["https://wps.com/office/windows/"] },
+ "ModsURLs": [], "Categories": ["Офисные пакеты"],
+ "Description": "Сборник офисных программ (создание и редактирование документов, презентаций, таблиц, и .pdf-файлов). Плюс: бесплатный. Минусы: есть подписки, не открыт исходный код.", "Weight": 1.7, "IsDownloaded": false
+},
+ "Only Office": {
+ "Icon": "https://images.icon-icons.com/3053/PNG/512/onlyoffice_macos_bigsur_icon_189875.png",
+ "URLs": { "Основной": ["https://www.onlyoffice.com/download-desktop"] },
+ "ModsURLs": [], "Categories": ["Офисные пакеты"],
+ "Description": "Сборник офисных программ (создание и редактирование документов, презентаций, таблиц, и .pdf-файлов). Плюсы: бесплатный, открытый исходный код. Минус: пока не исправлен баг с front ed-частью после начала редактирования.", "Weight": 0.58, "IsDownloaded": false
+},
+ "Mozilla FireFox": {
+ "Icon": "https://images.icon-icons.com/2552/PNG/512/firefox_browser_logo_icon_152991.png",
+ "URLs": { "Основной": ["https://www.firefox.com/ru/"] },
+ "ModsURLs": [], "Categories": ["Браузеры"],
+ "Description": "Один из самых популярных браузеров с открытым исходным кодом и поддержкой кастомизации.", "Weight": 0.7, "IsDownloaded": false
+},
+ "Google Chrome": {
+ "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/250px-Google_Chrome_icon_%28February_2022%29.svg.png",
+ "URLs": { "Основной": ["https://www.google.com/chrome/"] },
+ "ModsURLs": [], "Categories": ["Браузеры"],
+ "Description": "Самый популярный браузер на базе Chromium с широким набором расширений. Минус: закрытый исходный код и слежка за пользователями.", "Weight": 0.48, "IsDownloaded": false
+},
+ "Yandex Browser": {
+ "Icon": "https://avatars.mds.yandex.net/get-lpc/1635340/39c5721c-c160-4260-abba-ec2ebb7abf7c/orig",
+ "URLs": { "Основной": ["https://browser.yandex.ru/"] },
+ "ModsURLs": [], "Categories": ["Браузеры"],
+ "Description": "Браузер с интеграцией сервисов Яндекса и удобными встроенными функциями. Минус: закрытый исходный код и слежка за пользователями.", "Weight": 0.7, "IsDownloaded": false
+},
+ "Brave Private Browser": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/archive/1/1e/20200204084524%21Brave_icon_app.png",
+ "URLs": { "Основной": ["https://brave.com/ru/download/"] },
+ "ModsURLs": [], "Categories": ["Браузеры"],
+ "Description": "Браузер с блокировкой рекламы и встроенной защитой приватности. Минус: некоторых функций нет в бесплатной версии.", "Weight": 0.15, "IsDownloaded": false
+},
+ "Python 3.11": {
+ "Icon": "https://images.icon-icons.com/2699/PNG/512/python_logo_icon_168886.png",
+ "URLs": { "Основной": ["https://www.python.org/downloads/release/python-3119/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Один из самых популярных языков программирования. В основном используется для создания API и ИИ, анализа данных и автоматизации задач. Минус: некомпилируемый.", "Weight": 0.03, "IsDownloaded": false
+},
+ "Git": {
+ "Icon": "https://images.icon-icons.com/2699/PNG/512/git_scm_logo_icon_170096.png",
+ "URLs": { "Основной": ["https://git-scm.com/install/windows"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Система контроля версий для совместной разработки и хранения истории проектов.", "Weight": 0.07, "IsDownloaded": false
+},
+ "ExePyler": {
+ "Icon": "https://raw.githubusercontent.com/DanShiriNi/ExePyler/refs/heads/main/icon.ico",
+ "URLs": { "Основной": ["https://github.com/DanShiriNi/ExePyler"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Утилита для упаковки Python-скриптов в исполняемые .exe-файлы. Минус: нет цифровой подписи.", "Weight": 0.02, "IsDownloaded": false
+},
+ "Visual Studio Code": {
+ "Icon": "https://images.icon-icons.com/2107/PNG/512/file_type_vscode_icon_130084.png",
+ "URLs": { "Основной": ["https://code.visualstudio.com/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Лёгкий редактор кода с расширениями, отладкой и поддержкой множества языков. Минус: слежка за пользователями.", "Weight": 0.18, "IsDownloaded": false
+},
+ "Visual Studio Codium": {
+ "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/VSCodium.svg/250px-VSCodium.svg.png",
+ "URLs": { "Основной": ["https://vscodium.com/#install"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Лёгкий редактор кода с расширениями, отладкой и поддержкой множества языков. Плюс: нет слежки за пользователями.", "Weight": 0.17, "IsDownloaded": false
+},
+ "Visual Studio": {
+ "Icon": "https://img.icons8.com/?size=512&id=y7WGoWNuIWac&format=png",
+ "URLs": { "Основной": ["https://visualstudio.microsoft.com/ru/downloads/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Полноценная IDE для разработки на .NET, C++, C# и других языках.", "Weight": 3.24, "IsDownloaded": false
+},
+ "Microsoft SQL Server Management Studio": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/en/b/bc/MSSQL_SSMS_21_icon.png",
+ "URLs": { "Основной": ["https://www.microsoft.com/ru-ru/sql-server/sql-server-downloads#trysql", "https://learn.microsoft.com/ru-ru/ssms/install/install"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Среда управления базами данных Microsoft SQL Server.", "Weight": 4.04, "IsDownloaded": false
+},
+ "1С:Предприятие 8.3, учебная версия": {
+ "Icon": "https://decast.com/local/templates/decast/components/bitrix/news.detail/iwannbiot/images/1c.webp",
+ "URLs": { "Основной": ["https://online.1c.ru/catalog/programs/program/28765768/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Учебная версия платформы 1С для освоения автоматизации бизнеса и разработки решений.", "Weight": 0.52, "IsDownloaded": false
+},
+ "Unity": {
+ "Icon": "https://paragonintel.com/wp-content/uploads/2024/09/Unity-Software.png",
+ "URLs": { "Основной": ["https://godotengine.org/download/windows/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Движок для создания игр и поддержкой 2D/3D. Минус: сложность освоения и требование мощного компьютера.", "Weight": 0.09, "IsDownloaded": false
+},
+ "Godot Game Engine": {
+ "Icon": "https://raw.githubusercontent.com/godotengine/godot/refs/heads/master/main/app_icon.png",
+ "URLs": { "Основной": ["https://godotengine.org/download/windows/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Движок для создания игр и поддержкой 2D/3D.", "Weight": 0.09, "IsDownloaded": false
+},
+ "Docker": {
+ "Icon": "https://cdn-icons-png.flaticon.com/512/15466/15466088.png",
+ "URLs": { "Основной": ["https://docs.docker.com/desktop/setup/install/windows-install/", "https://www.docker.com/pricing/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Платформа для контейнеризации приложений и запуска их в изолированных средах.", "Weight": 0.62, "IsDownloaded": false
+},
+ "FFmpeg": {
+ "Icon": "https://img.icons8.com/?size=512&id=32418&format=png",
+ "URLs": { "Основной": ["https://github.com/DanShiriNi/ffmpeg-installer"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Набор кодеков для конвертации, упаковки и обработки видео и аудио.", "Weight": 0.23, "IsDownloaded": false
+},
+ "Paint.NET": {
+ "Icon": "https://avatars.githubusercontent.com/u/11067286?s=200&v=4",
+ "URLs": { "Основной": ["https://www.dotpdn.com/downloads/pdn.html"] },
+ "ModsURLs": ["https://forums.getpaint.net/applications/core/interface/file/attachment.php?id=10208"],
+ "Categories": ["Графические редакторы"],
+ "Description": "Лёгкий графический редактор для быстрой обработки изображений и рисунков. Минус: не поддерживает векторные изображения и PSD (но можно установить моды).", "Weight": 0.02, "IsDownloaded": false
+},
+ "Photopea": {
+ "Icon": "https://www.photopea.com/promo/icon512.png",
+ "URLs": { "Основной": ["https://www.photopea.com/"] },
+ "ModsURLs": [], "Categories": ["Графические редакторы"],
+ "Description": "Бесплатный онлайн-редактор изображений с поддержкой PSD и интерфейсом, похожим на Photoshop.", "Weight": 0, "IsDownloaded": false
+},
+ "Draw.io": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Diagrams.net_Logo.svg/250px-Diagrams.net_Logo.svg.png",
+ "URLs": { "Основной": ["https://www.drawio.com/"] },
+ "ModsURLs": [], "Categories": ["Графические редакторы"],
+ "Description": "Инструмент для создания диаграмм, схем и блок-схем.", "Weight": 0.11, "IsDownloaded": false
+},
+ "Blender": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Blender_logo_no_text.svg/1280px-Blender_logo_no_text.svg.png",
+ "URLs": { "Основной": ["https://www.blender.org/download/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования"],
+ "Description": "Профессиональный пакет для 3D-моделирования, анимации и рендера.", "Weight": 0.34, "IsDownloaded": false
+},
+ "Obsidian": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/2023_Obsidian_logo.svg/960px-2023_Obsidian_logo.svg.png",
+ "URLs": { "Основной": ["https://obsidian.md/download"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования", "Системные утилиты и виртуализация"],
+ "Description": "Заметки и база знаний с локальными файлами, Markdown и связями между записями.", "Weight": 0.31, "IsDownloaded": false
+},
+ "AIMP": {
+ "Icon": "https://images.icon-icons.com/195/PNG/256/Aimp_23644.png",
+ "URLs": { "Основной": ["https://aimp.ru/?do=download&os=windows"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Аудиоплеер с открытым исходным кодом и поддержкой множества форматов и удобной организацией медиатеки.", "Weight": 0.03, "IsDownloaded": false
+},
+ "VLC Media Player": {
+ "Icon": "https://images.icon-icons.com/2699/PNG/512/videolan_vlc_logo_icon_168259.png",
+ "URLs": { "Основной": ["https://www.videolan.org/vlc/"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Универсальный медиаплеер для видео, аудио и потокового контента, даже радио можно послушать.", "Weight": 0.05, "IsDownloaded": false
+},
+ "MPV Player": {
+ "Icon": "https://raw.githubusercontent.com/mpv-player/mpv.io/master/source/images/mpv-logo-128.png",
+ "URLs": { "Основной": ["https://github.com/mpv-player/mpv/releases/latest"] },
+ "ModsURLs": ["https://github.com/Samillion/ModernZ/releases/latest", "https://github.com/gaesa/mpv-hold-accelerate/releases/latest"],
+ "Categories": ["Мультимедиа"],
+ "Description": "Лёгкий мультимедийный плеер с высокой производительностью и кастомизацией. Даже лучше, чем VLC Media Player. Минус: сложность настройки и отсутствие официального GUI.", "Weight": 0.05, "IsDownloaded": false
+},
+ "FL Studio": {
+ "Icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/fl-studio.png",
+ "URLs": { "Основной": ["https://www.image-line.com/fl-studio/download"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Профессиональный инструмент для создания музыки и обработки звука. Минус: многие функции есть только в платной версии.", "Weight": 0.99, "IsDownloaded": false
+},
+ "Audacity": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Audacity.svg/250px-Audacity.svg.png",
+ "URLs": { "Основной": ["https://www.audacityteam.org/download/"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Бесплатный аудиоредактор для записи и обработки аудио. Минус: устаревший интерфейс и отсутствие некоторых функций.", "Weight": 0.03, "IsDownloaded": false
+},
+ "CapCut": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Capcut1.png/120px-Capcut1.png",
+ "URLs": { "Основной": ["https://www.capcut.com/activity/download_pc"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Бесплатная программа для видеомонтажа с шаблонами, эффектами и ускоренной обработкой. Минусы: некоторые функции доступны только в платной версии, а также отсутствие некоторых продвинутых функций и слишком большая библиотека эффектов и переходов.", "Weight": 1.63, "IsDownloaded": false
+},
+ "DaVinci Resolve": {
+ "Icon": "https://images.icon-icons.com/3053/PNG/512/davinci_resolve_macos_bigsur_icon_190261.png",
+ "URLs": { "Основной": ["https://www.blackmagicdesign.com/products/davinciresolve#"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Профессиональная программа для видеомонтажа. Минусы: сложность освоения и ограниченные возможности в бесплатной версии.", "Weight": 3.31, "IsDownloaded": false
+},
+ "Sounds Folder": {
+ "Icon": "https://images.icon-icons.com/2313/PNG/512/folder_file_music_audio_sound_media_multimedia_icon_142000.png",
+ "URLs": { "Основной": ["https://disk.yandex.ru/d/gCTlyC8RQm4V3Q"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Папка с подборкой мелодий и звуковых эффектов для использования в монтаже.", "Weight": 0, "IsDownloaded": false
+},
+ "OBS": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/OBS_Studio_Logo.svg/960px-OBS_Studio_Logo.svg.png",
+ "URLs": { "Основной": ["https://obsproject.com/"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Программа для записи экрана, трансляций и стриминга. Минусы: сложность в настройке и малая производительность на слабых ПК.", "Weight": 0.15, "IsDownloaded": false
+},
+ "Bandicam": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Bandicam-official-icon.png",
+ "URLs": { "Основной": ["https://www.bandicam.com/ru/"] },
+ "ModsURLs": [], "Categories": ["Мультимедиа"],
+ "Description": "Программа для записи экрана, трансляций и стриминга. Плюсы: простота использования и высокая производительность даже на слабых ПК. Минус: водяной знак в бесплатной версии.", "Weight": 0.06, "IsDownloaded": false
+},
+ "BrickLink Designer Studio": {
+ "Icon": "https://arturomoncadatorres.com/multimedia/icons/studio.png",
+ "URLs": { "Основной": ["https://www.bricklink.com/v3/studio/download.page"] },
+ "ModsURLs": [], "Categories": ["Моделирование"],
+ "Description": "Приложение для проектирования и сборки моделей / наборов LEGO.", "Weight": 0.43, "IsDownloaded": false
+},
+ "Steam": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/960px-Steam_icon_logo.svg.png",
+ "URLs": { "Основной": ["https://store.steampowered.com/about/"] },
+ "ModsURLs": [], "Categories": ["Игры и игровые платформы"],
+ "Description": "Крупнейшая игровая платформа для покупки, запуска и организации игр.", "Weight": 0.59, "IsDownloaded": false
+},
+ "GTA: San Andreas": {
+ "Icon": "https://cdn2.steamgriddb.com/icon/28eeb4998e282cee80f46cd5a67b7e30/32/512x512.png",
+ "URLs": { "Через Wayback Machine": ["https://archive.org/details/hlm-gtasa_202404"] },
+ "ModsURLs": ["https://silentsblog.com/mods/gta-sa/#asiloader", "https://vk.ru/msklocalisations", "https://github.com/CookiePLMonster/SilentPatch/releases/latest", "https://github.com/ThirteenAG/WidescreenFixesPack/releases/tag/gtasa", "https://www.mixmods.com.br/2022/08/iii-vc-sa-framerate-vigilante/", "https://github.com/juicermv/GTA-GPS-Redux/releases/latest"],
+ "Categories": ["Игры и игровые платформы"],
+ "Description": "Та самая ГТА: СА))", "Weight": 3.98, "IsDownloaded": false
+},
+ "GTA: Vice City": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/fr/thumb/f/f0/Grand_Theft_Auto_Vice_City_Logo.png/500px-Grand_Theft_Auto_Vice_City_Logo.png",
+ "URLs": { "Через Wayback Machine": ["https://archive.org/details/grandtheftautovicecity_pc"] },
+ "ModsURLs": ["https://gamesvoice.ru/product/gtavice", "https://github.com/CookiePLMonster/SilentPatch/releases/latest", "https://github.com/ThirteenAG/WidescreenFixesPack/releases/tag/gtavc", "https://www.mixmods.com.br/2022/08/iii-vc-sa-framerate-vigilante/"],
+ "Categories": ["Игры и игровые платформы"],
+ "Description": "Культовая ГТА, стоящая почти на равне с GTA: San Andreas.", "Weight": 4.58, "IsDownloaded": false
+},
+ "Java": {
+ "Icon": "https://images.icon-icons.com/2108/PNG/512/java_icon_130901.png",
+ "URLs": { "Основной": ["https://www.java.com/ru/download/"] },
+ "ModsURLs": [], "Categories": ["Инструменты программирования и моделирования", "Драйверы и зависимости"],
+ "Description": "Среда выполнения и платформа для приложений, игр и инструментов на Java. (я её сюда из-за Minecraft добавил)", "Weight": 0.07, "IsDownloaded": false
+},
+ "Minecraft": {
+ "Icon": "https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png",
+ "URLs": {
+  "Официальный сайт с проверкой на наличие лицензии": ["https://www.minecraft.net/ru-ru/store/minecraft-java-bedrock-edition-pc?tabs=%7B%22details%22%3A0%7D"],
+  "Prism Launcher (улучшенный лаунчер)": ["https://prismlauncher.org/download/windows/"],
+  "Pinecone MC (Prism Launcher, но с проверкой на наличие аккаунта на Ely.by)": ["https://pineconemc.ru/download/"],
+  "Legacy Launcher (пиратский лаунчер, с проверкой на наличие аккаунта на Ely.by)": ["https://legacylauncher.ru/ru"]
+ },
+ "ModsURLs": ["https://modrinth.com/modpack/optimized-3d-pixel-edit", "https://www.curseforge.com/minecraft/mc-mods/luxium"],
+ "Categories": ["Игры и игровые платформы"],
+ "Description": "МАЙНКРААААААААФТ!", "Weight": 0.67, "IsDownloaded": false
+},
+ "Porthole - Local Port Sharing": {
+ "Icon": "https://images.steamusercontent.com/ugc/11207659337737696531/34B170A77EE1D9DFC0504987D231BAA2E8958104/?imw=128&imh=128",
+ "URLs": { "Основной": ["https://store.steampowered.com/app/4963920/Porthole__Local_Port_Sharing/"] },
+ "ModsURLs": [], "Categories": ["Игры и игровые платформы"],
+ "Description": "Утилита для соединения друзей из Steam через локальную сеть, чтобы играть в игры по \"локальной\" сети (например, Майнкрафт).", "Weight": 0.23, "IsDownloaded": false
+},
+ "JE2PE": {
+ "Icon": "https://raw.githubusercontent.com/kbinani/je2be-desktop/refs/heads/main/resource/icon-large.png",
+ "URLs": {
+  "Через Microsoft Store": ["https://www.microsoft.com/store/apps/9PC9MFX9QCXS"],
+  "Через GitHub (у кого не работает Microsoft Store)": ["https://github.com/kbinani/je2be-desktop/releases/latest"]
+ },
+ "ModsURLs": [], "Categories": ["Игры и игровые платформы"],
+ "Description": "Инструмент для конвертации миров Minecraft из Java Edition в Bedrock Edition и наоборот.", "Weight": 0.02, "IsDownloaded": false
+},
+ "LocalSend": {
+ "Icon": "https://raw.githubusercontent.com/localsend/localsend/refs/heads/main/app/assets/img/logo-512.png",
+ "URLs": { "Основной": ["https://localsend.org/ru/download"] },
+ "ModsURLs": [], "Categories": ["Системные утилиты и виртуализация"],
+ "Description": "Приложение для быстрого обмена файлами между устройствами в локальной сети.", "Weight": 0.02, "IsDownloaded": false
+},
+ "Rufus": {
+ "Icon": "https://rufus.ie/pics/rufus-512.png",
+ "URLs": { "Основной": ["https://rufus.ie/ru/"] },
+ "ModsURLs": [], "Categories": ["Загрузка iso-образов"],
+ "Description": "Утилита для записи ISO-образов на флешки (создание загрузочных носителей). Минус: разрешена запись лишь одного ISO-образа на флешку, без мультизагрузки.", "Weight": 0.01, "IsDownloaded": false
+},
+ "Ventoy": {
+ "Icon": "https://raw.githubusercontent.com/ventoy/Ventoy/refs/heads/master/ICON/logo_512.png",
+ "URLs": { "Основной": ["https://www.ventoy.net/en/download.html"] },
+ "ModsURLs": [], "Categories": ["Загрузка iso-образов"],
+ "Description": "Создатель мультизагрузочных USB-носителей с поддержкой нескольких ISO-образов.", "Weight": 0.02, "IsDownloaded": false
+},
+ "Everything": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/6/68/Everything_%28software%29_icon.png",
+ "URLs": { "Основной": ["https://www.voidtools.com"] },
+ "ModsURLs": [], "Categories": ["Системные утилиты и виртуализация"],
+ "Description": "Самый быстрый поиск файлов на устройстве с минимальным потреблением ресурсов.", "Weight": 0.01, "IsDownloaded": false
+},
+ "Bulk-Crap-Uninstaller": {
+ "Icon": "https://avatars.githubusercontent.com/u/291887161?s=200&v=4",
+ "URLs": { "Через GitHub": ["https://github.com/BCUninstaller/Bulk-Crap-Uninstaller/releases/latest"] },
+ "ModsURLs": [], "Categories": ["Твикеры, оптимизация и обслуживание системы", "Системные утилиты и виртуализация"],
+ "Description": "Утилита для удаления программ с очисткой остатков установок и мусора.", "Weight": 0.01, "IsDownloaded": false
+},
+ "Autoruns": {
+ "Icon": "https://raw.githubusercontent.com/LegnaOS/WindowsIcons/refs/heads/main/Icons/applications/autoruns.ico",
+ "URLs": { "Основной": ["https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns"] },
+ "ModsURLs": [], "Categories": ["Твикеры, оптимизация и обслуживание системы", "Системные утилиты и виртуализация"],
+ "Description": "Проверка и управление автозагрузкой программ, служб и задач.", "Weight": 0.01, "IsDownloaded": false
+},
+ "Kudu": {
+ "Icon": "https://raw.githubusercontent.com/AdventDevInc/kudu/main/logo.png",
+ "URLs": { "Основной": ["https://usekudu.com/download"] },
+ "ModsURLs": [], "Categories": ["Твикеры, оптимизация и обслуживание системы", "Системные утилиты и виртуализация"],
+ "Description": "Бесплатное средство для оптимизации системы (это бесплатный аналог «CCleaner»).", "Weight": 0.12, "IsDownloaded": false
+},
+ "Process Hacker 2": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/ru/0/0c/Process_Hacker_Logo.png",
+ "URLs": { "Через GitHub": ["https://github.com/winsiderss/systeminformer/releases#release-v2.39"] },
+ "ModsURLs": [], "Categories": ["Твикеры, оптимизация и обслуживание системы", "Системные утилиты и виртуализация"],
+ "Description": "Расширенный мониторинг процессов, служб и ресурсов системы и пониманием, какие процессы их запустили.", "Weight": 0.01, "IsDownloaded": false
+},
+ "Flow Launcher": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/4/40/Flow_Launcher_Logo.png",
+ "URLs": { "Основной": ["https://www.flowlauncher.com/"] },
+ "ModsURLs": [], "Categories": ["Системные утилиты и виртуализация"],
+ "Description": "Быстрый поиск и запуск программ, вместо стандартного меню Пуск.", "Weight": 0.1, "IsDownloaded": false
+},
+ "Wallpaper Engine": {
+ "Icon": "https://images.steamusercontent.com/ugc/1796366854781097705/0AA1BA3D337504B1E63BF1EBA301E6B84FAAFD60/",
+ "URLs": { "Основной": ["https://store.steampowered.com/app/431960/Wallpaper_Engine/"] },
+ "ModsURLs": [], "Categories": ["Системные утилиты и виртуализация"],
+ "Description": "Приложение для добавления живых обоев. Минус: платная программа.", "Weight": 1.68, "IsDownloaded": false
+},
+ "Sucrose Wallpaper Engine": {
+ "Icon": "https://raw.githubusercontent.com/Taiizor/Sucrose/develop/.images/Logo.png",
+ "URLs": { "Основной": ["https://sucrose.dev/ru#download"] },
+ "ModsURLs": [], "Categories": ["Системные утилиты и виртуализация"],
+ "Description": "Бесплатное приложение для добавления живых обоев.", "Weight": 0.32, "IsDownloaded": false
+},
+ "VirtualBox": {
+ "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/VirtualBox_2024_Logo.svg/960px-VirtualBox_2024_Logo.svg.png",
+ "URLs": { "Основной": ["https://www.virtualbox.org/wiki/Downloads"] },
+ "ModsURLs": [], "Categories": ["Системные утилиты и виртуализация"],
+ "Description": "Бесплатная программа для создания и запуска виртуальных машин.", "Weight": 0.17, "IsDownloaded": false
+},
+ "Microsoft Activation Scripts": {
+ "Icon": "https://camo.githubusercontent.com/d010db59ee5f338bc18b852df982e73cac8b6aff17b9ddfb4867d57a820a8475/68747470733a2f2f6d61737367726176652e6465762f696d672f6c6f676f5f736d616c6c2e706e67",
+ "URLs": { "Основной": ["https://github.com/massgravel/Microsoft-Activation-Scripts"] },
+ "ModsURLs": [], "Categories": ["Системные утилиты и виртуализация"],
+ "Description": "(Ай-ай-ай) Скрипты для активации Windows и Microsoft Office в автоматическом режиме.", "Weight": 0.01, "IsDownloaded": false
+},
+ "KeePassXC": {
+ "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/KeePassXC.svg/250px-KeePassXC.svg.png",
+ "URLs": { "Основной": ["https://keepassxc.org/download/#windows"] },
+ "ModsURLs": [], "Categories": ["Системные утилиты и виртуализация"],
+ "Description": "Менеджер паролей с безопасным хранением и локальным доступом к данным.", "Weight": 0.04, "IsDownloaded": false
+},
+ "Telegram": {
+ "Icon": "https://images.icon-icons.com/2429/PNG/512/telegram_logo_icon_147228.png",
+ "URLs": { "Основной": ["https://telegram.org/desktop"] },
+ "ModsURLs": [], "Categories": ["Мессенджеры"],
+ "Description": "Клиент для мессенджера «Telegram».", "Weight": 0.06, "IsDownloaded": false
+},
+ "Komet": {
+ "Icon": "https://raw.githubusercontent.com/KometTeam/Komet/refs/heads/main/assets/komet.png",
+ "URLs": { "Основной": ["https://komet.pw/#download"] },
+ "ModsURLs": [], "Categories": ["Мессенджеры"],
+ "Description": "Клиент для мессенджера «Max» без слежки.", "Weight": 0.08, "IsDownloaded": false
+}
+};
+
+const STORAGE_KEY = 'list-installer-progress-v2';
+
+let programs = {};
+let undownloadedList = [];
+let pageIndex = 0;
+let categories = [];
+let visibleCategories = {};
+
+/* ---------- Загрузка и сохранение прогресса ---------- */
+function loadProgress() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return {};
+        return JSON.parse(raw);
+    } catch (e) { return {}; }
+}
+
+function saveProgress() {
+    const progress = {};
+    for (const [name, data] of Object.entries(programs)) {
+        progress[name] = !!data.IsDownloaded;
+    }
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); } catch(e) {}
+}
+
+/* ---------- Инициализация ---------- */
+async function init() {
+    const response = await fetch(PROGRAMS_JSON_URL);
+    if (!response.ok) {
+        throw new Error(`Не удалось загрузить каталог программ (HTTP ${response.status})`);
+    }
+
+    const loadedPrograms = await response.json();
+    if (!loadedPrograms || typeof loadedPrograms !== 'object' || Array.isArray(loadedPrograms)) {
+        throw new Error('Каталог программ должен быть JSON-объектом');
+    }
+    programs = loadedPrograms;
+    
+    // Восстановить прогресс из localStorage
+    const saved = loadProgress();
+    for (const name in programs) {
+        if (saved[name] !== undefined) {
+            programs[name].IsDownloaded = saved[name];
+        }
+    }
+
+    // Собрать уникальные категории
+    const catSet = new Set();
+    for (const p of Object.values(programs)) {
+        (p.Categories || []).forEach(c => catSet.add(c));
+    }
+    categories = Array.from(catSet).sort();
+    visibleCategories = {};
+    categories.forEach(c => visibleCategories[c] = true);
+
+    buildCategoriesMenu();
+    rebuildUndownloaded();
+    updateProgress();
+    showCurrentProgram();
+}
+
+function rebuildUndownloaded() {
+    undownloadedList = Object.keys(programs).filter(n => !programs[n].IsDownloaded);
+    if (pageIndex >= undownloadedList.length) {
+        pageIndex = Math.max(0, undownloadedList.length - 1);
+    }
+}
+
+function updateProgress() {
+    const done = Object.values(programs).filter(p => p.IsDownloaded).length;
+    const total = Object.keys(programs).length;
+    const percent = total ? (done / total * 100).toFixed(1) : '0.0';
+    const text = `Готово: ${done}/${total} (${percent}%)`;
+    document.getElementById('progress-text').textContent = text;
+    document.getElementById('progress-text2').textContent = text;
+}
+
+/* ---------- Страница загрузки ---------- */
+function showCurrentProgram() {
+    const nameEl = document.getElementById('dl-name');
+    const descEl = document.getElementById('dl-description');
+    const iconEl = document.getElementById('dl-icon');
+    const catEl = document.getElementById('dl-categories');
+    const installBtn = document.getElementById('btn-install');
+
+    if (undownloadedList.length === 0) {
+        nameEl.textContent = 'Все программы установлены!';
+        descEl.textContent = '';
+        catEl.textContent = '';
+        iconEl.innerHTML = '<span style="font-size:80px;">✅</span>';
+        installBtn.disabled = true;
+        installBtn.textContent = 'Установить';
+        return;
+    }
+    installBtn.disabled = false;
+
+    const name = undownloadedList[pageIndex];
+    const data = programs[name];
+
+    nameEl.textContent = name;
+    descEl.textContent = data.Description || '';
+    catEl.textContent = (data.Categories || []).join('\n');
+
+    const weight = data.Weight || 0;
+    if (weight < 1) {
+        installBtn.textContent = `Установить (~${Math.round(weight * 1024)} MB)`;
+    } else {
+        installBtn.textContent = `Установить (~${weight} GB)`;
+    }
+
+    // Иконка (прямая загрузка по URL, без кэширования на диск)
+    iconEl.innerHTML = '<span class="loading-text">⏳</span>';
+    if (data.Icon) {
+        const img = new Image();
+        img.onload = () => { 
+            iconEl.innerHTML = ''; 
+            iconEl.appendChild(img); 
+        };
+        img.onerror = () => { 
+            iconEl.innerHTML = '<span style="font-size:60px;">❌</span>'; 
+        };
+        img.src = data.Icon;
+    } else {
+        iconEl.innerHTML = '<span style="font-size:60px;">❌</span>';
+    }
+}
+
+function goPrev() {
+    if (!undownloadedList.length) return;
+    pageIndex = (pageIndex - 1 + undownloadedList.length) % undownloadedList.length;
+    showCurrentProgram();
+}
+
+function goNext() {
+    if (!undownloadedList.length) return;
+    pageIndex = (pageIndex + 1) % undownloadedList.length;
+    showCurrentProgram();
+}
+
+function markDone() {
+    if (!undownloadedList.length) return;
+    const name = undownloadedList[pageIndex];
+    programs[name].IsDownloaded = true;
+    saveProgress();
+    rebuildUndownloaded();
+    updateProgress();
+    showCurrentProgram();
+    renderList();
+}
+
+function resetProgress() {
+    if (!confirm('Вы уверены, что хотите выполнить это действие?\nПрогресс установки начнётся с нуля.')) return;
+    for (const p of Object.values(programs)) p.IsDownloaded = false;
+    saveProgress();
+    rebuildUndownloaded();
+    pageIndex = 0;
+    updateProgress();
+    showCurrentProgram();
+    renderList();
+    showPage('download');
+}
+
+/* ---------- Переключение страниц ---------- */
+function showPage(page) {
+    document.getElementById('page-download').classList.toggle('active', page === 'download');
+    document.getElementById('page-list').classList.toggle('active', page === 'list');
+    if (page === 'list') renderList();
+}
+
+/* ---------- Страница списка ---------- */
+function buildCategoriesMenu() {
+    const menu = document.getElementById('cat-menu');
+    menu.innerHTML = '';
+    categories.forEach(cat => {
+        const lbl = document.createElement('label');
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.checked = visibleCategories[cat];
+        cb.addEventListener('change', () => {
+            visibleCategories[cat] = cb.checked;
+            renderList();
+        });
+        lbl.appendChild(cb);
+        lbl.appendChild(document.createTextNode(' ' + cat));
+        menu.appendChild(lbl);
+    });
+}
+
+function renderList() {
+    const list = document.getElementById('program-list');
+    const onlyUndownloaded = document.getElementById('only-undownloaded').checked;
+    list.innerHTML = '';
+
+    for (const [name, data] of Object.entries(programs)) {
+        const cats = data.Categories || [];
+        const visible = cats.some(c => visibleCategories[c]);
+        if (!visible) continue;
+        if (onlyUndownloaded && data.IsDownloaded) continue;
+
+        const item = document.createElement('div');
+        item.className = 'program-list-item';
+
+        const marker = document.createElement('span');
+        marker.className = 'marker ' + (data.IsDownloaded ? 'done' : 'undone');
+        marker.textContent = data.IsDownloaded ? '✔' : '❌';
+
+        const text = document.createElement('span');
+        text.textContent = name;
+
+        item.appendChild(marker);
+        item.appendChild(text);
+        item.addEventListener('click', () => openInstallModal(name));
+        list.appendChild(item);
+    }
+
+    if (!list.children.length) {
+        const empty = document.createElement('div');
+        empty.style.padding = '20px';
+        empty.style.textAlign = 'center';
+        empty.style.color = '#888';
+        empty.textContent = 'Нет программ по выбранным фильтрам';
+        list.appendChild(empty);
+    }
+}
+
+/* ---------- Модалка установки ---------- */
+function openInstallModal(programName) {
+    const data = programs[programName];
+    const modal = document.getElementById('install-modal');
+    const body = document.getElementById('modal-body');
+    body.innerHTML = '';
+
+    // Иконка
+    const iconWrap = document.createElement('div');
+    iconWrap.className = 'install-icon';
+    iconWrap.innerHTML = '<span class="loading-text">⏳</span>';
+    if (data.Icon) {
+        const img = new Image();
+        img.onload = () => { iconWrap.innerHTML = ''; iconWrap.appendChild(img); };
+        img.onerror = () => { iconWrap.innerHTML = '<span style="font-size:40px;">❌</span>'; };
+        img.src = data.Icon;
+    } else {
+        iconWrap.innerHTML = '<span style="font-size:40px;">❌</span>';
+    }
+    body.appendChild(iconWrap);
+
+    // Заголовок
+    const title = document.createElement('div');
+    title.className = 'install-title';
+    title.textContent = programName;
+    body.appendChild(title);
+
+    // Описание
+    if (data.Description) {
+        const desc = document.createElement('div');
+        desc.className = 'install-description';
+        desc.textContent = data.Description;
+        body.appendChild(desc);
+    }
+
+    // Способы установки
+    const urls = data.URLs || {};
+    const urlKeys = Object.keys(urls);
+    if (urlKeys.length) {
+        const sectionTitle = document.createElement('div');
+        sectionTitle.className = 'install-section-title';
+        sectionTitle.textContent = 'Чтобы установить программу, перейдите по ресурсам ниже:';
+        body.appendChild(sectionTitle);
+
+        // Табы
+        const tabs = document.createElement('div');
+        tabs.className = 'methods-tabs';
+        const contents = document.createElement('div');
+        contents.className = 'methods-content';
+
+        const panels = [];
+        urlKeys.forEach((method, idx) => {
+            const tab = document.createElement('div');
+            tab.className = 'methods-tab' + (idx === 0 ? ' active' : '');
+            tab.textContent = method;
+            tabs.appendChild(tab);
+
+            const panel = document.createElement('div');
+            panel.style.display = idx === 0 ? 'block' : 'none';
+            (urls[method] || []).forEach(url => {
+                const a = document.createElement('a');
+                a.href = url;
+                a.target = '_blank';
+                a.rel = 'noopener';
+                a.textContent = url.length > 64 ? url.slice(0, 64) + '...' : url;
+                panel.appendChild(a);
+            });
+            contents.appendChild(panel);
+            panels.push({ tab, panel });
+
+            tab.addEventListener('click', () => {
+                panels.forEach(p => {
+                    p.tab.classList.remove('active');
+                    p.panel.style.display = 'none';
+                });
+                tab.classList.add('active');
+                panel.style.display = 'block';
+            });
+        });
+
+        body.appendChild(tabs);
+        body.appendChild(contents);
+    }
+
+    // Модификации
+    const mods = data.ModsURLs || [];
+    if (mods.length) {
+        const modsTitle = document.createElement('div');
+        modsTitle.className = 'install-section-title';
+        modsTitle.textContent = 'Также можно установить модификации:';
+        body.appendChild(modsTitle);
+
+        const modsList = document.createElement('div');
+        modsList.className = 'mods-list';
+        mods.forEach(url => {
+            const a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.textContent = url.length > 80 ? url.slice(0, 80) + '...' : url;
+            modsList.appendChild(a);
+        });
+        body.appendChild(modsList);
+    }
+
+    modal.classList.add('active');
+}
+
+function closeInstallModal() {
+    document.getElementById('install-modal').classList.remove('active');
+}
+
+/* ---------- Привязка событий ---------- */
+document.getElementById('btn-prev').addEventListener('click', goPrev);
+document.getElementById('btn-next').addEventListener('click', goNext);
+document.getElementById('btn-install').addEventListener('click', () => {
+    if (!undownloadedList.length) return;
+    openInstallModal(undownloadedList[pageIndex]);
+});
+document.getElementById('btn-done').addEventListener('click', markDone);
+document.getElementById('btn-reload').addEventListener('click', resetProgress);
+document.getElementById('btn-reload2').addEventListener('click', resetProgress);
+document.getElementById('btn-to-list').addEventListener('click', () => showPage('list'));
+document.getElementById('btn-to-download').addEventListener('click', () => showPage('download'));
+document.getElementById('modal-close').addEventListener('click', closeInstallModal);
+document.getElementById('install-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'install-modal') closeInstallModal();
+});
+
+// Dropdown категорий
+const catBtn = document.getElementById('cat-btn');
+const catMenu = document.getElementById('cat-menu');
+catBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = catMenu.classList.toggle('open');
+    catBtn.textContent = isOpen ? 'Сортировка ▴' : 'Сортировка ▾';
+});
+document.addEventListener('click', (e) => {
+    if (!document.getElementById('categories-dropdown').contains(e.target)) {
+        catMenu.classList.remove('open');
+        catBtn.textContent = 'Сортировка ▾';
+    }
+});
+document.getElementById('only-undownloaded').addEventListener('change', renderList);
+
+// Клавиши стрелок
+document.addEventListener('keydown', (e) => {
+    if (document.getElementById('install-modal').classList.contains('active')) {
+        if (e.key === 'Escape') closeInstallModal();
+        return;
+    }
+    if (!document.getElementById('page-download').classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') goPrev();
+    if (e.key === 'ArrowRight') goNext();
+});
+
+/* ---------- Старт ---------- */
+init().catch(error => {
+    console.error('Не удалось запустить каталог программ:', error);
+    document.getElementById('dl-name').textContent = 'Не удалось загрузить каталог программ';
+    document.getElementById('dl-description').textContent = error.message;
+    document.getElementById('btn-install').disabled = true;
+    document.getElementById('btn-done').disabled = true;
+});
+</script>
+</body>
+</html>

@@ -209,6 +209,10 @@ self.json_name = "src/json/programs.json"
 img = img.resize((256, 256), resample_filter)
 ```
 
+## Веб-версия
+
+Если вы не хотите скачивать или запускать `.exe`-файл либо не доверяете ему, можете посмотреть приложение в Deploy: [danshirini.github.io/list-installer](https://danshirini.github.io/list-installer/).
+
 ## Сборка под Windows
 
 При необходимости проект можно упаковать в `.exe`-сборку через инструменты вроде PyInstaller:
