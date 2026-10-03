@@ -77,7 +77,7 @@
         "IsDownloaded": false
     },
     "Singbox Launcher": {
-        "Icon": "https://github.com/Leadaxe/singbox-launcher/blob/main/assets/app.png",
+        "Icon": "https://raw.githubusercontent.com/Leadaxe/singbox-launcher/refs/heads/main/assets/app.png",
         "URLs": {
             "Основной": [
                 "https://github.com/Leadaxe/singbox-launcher/releases/latest"

@@ -295,8 +295,9 @@ class App(tk.Tk):
     def _load_icon_from_file(self, path, callback):
         """Читает иконку из файла, изменяет размер и вызывает callback."""
         try:
-            img = Image.open(path)
+            img = Image.open(path).convert("RGBA")
             width, height = img.size
+            target_size = (256, 256)
 
             # Если хотя бы одна сторона меньше 128 пикселей — используем NEAREST,
             # чтобы сохранить чёткость пиксельных/маленьких иконок.
@@ -306,7 +307,16 @@ class App(tk.Tk):
             else:
                 resample_filter = Image.Resampling.LANCZOS if hasattr(Image, "Resampling") else Image.LANCZOS
 
-            img = img.resize((256, 256), resample_filter)
+            scale = min(target_size[0] / width, target_size[1] / height)
+            resized_size = (max(1, round(width * scale)), max(1, round(height * scale)))
+            img = img.resize(resized_size, resample_filter)
+            canvas = Image.new("RGBA", target_size, (0, 0, 0, 0))
+            position = (
+                (target_size[0] - resized_size[0]) // 2,
+                (target_size[1] - resized_size[1]) // 2,
+            )
+            canvas.alpha_composite(img, dest=position)
+            img = canvas
             photo = ImageTk.PhotoImage(img)
             callback(photo)
         except Exception as e:

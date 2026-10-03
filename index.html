@@ -959,6 +959,11 @@ function updateProgress() {
     document.getElementById('progress-text2').textContent = text;
 }
 
+function setIconResampling(img) {
+    const hasSmallSide = img.naturalWidth < 128 || img.naturalHeight < 128;
+    img.style.imageRendering = hasSmallSide ? 'pixelated' : 'high-quality';
+}
+
 /* ---------- Страница загрузки ---------- */
 function showCurrentProgram() {
     const nameEl = document.getElementById('dl-name');
@@ -997,6 +1002,7 @@ function showCurrentProgram() {
     if (data.Icon) {
         const img = new Image();
         img.onload = () => { 
+            setIconResampling(img);
             iconEl.innerHTML = ''; 
             iconEl.appendChild(img); 
         };
@@ -1120,7 +1126,11 @@ function openInstallModal(programName) {
     iconWrap.innerHTML = '<span class="loading-text">⏳</span>';
     if (data.Icon) {
         const img = new Image();
-        img.onload = () => { iconWrap.innerHTML = ''; iconWrap.appendChild(img); };
+        img.onload = () => {
+            setIconResampling(img);
+            iconWrap.innerHTML = '';
+            iconWrap.appendChild(img);
+        };
         img.onerror = () => { iconWrap.innerHTML = '<span style="font-size:40px;">❌</span>'; };
         img.src = data.Icon;
     } else {
