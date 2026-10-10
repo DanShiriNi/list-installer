@@ -279,6 +279,37 @@
         "Weight": 0.03,
         "IsDownloaded": false
     },
+    "Java": {
+        "Icon": "https://images.icon-icons.com/2108/PNG/512/java_icon_130901.png",
+        "URLs": {
+            "Основной": [
+                "https://www.java.com/ru/download/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования и моделирования",
+            "Драйверы и зависимости"
+        ],
+        "Description": "Среда выполнения и платформа для приложений, игр и инструментов на Java. (я её сюда из-за Minecraft добавил)",
+        "Weight": 0.07,
+        "IsDownloaded": false
+    },
+    "Open Java Development Kit": {
+        "Icon": "https://dottech.org/wp-content/uploads/2016/06/jdk.png",
+        "URLs": {
+            "Основной": [
+                "https://adoptium.net/temurin/releases"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Инструменты программирования и моделирования"
+        ],
+        "Description": "Бесплатная и открытая реализация Java Development Kit для компиляции, запуска и разработки Java-приложений.",
+        "Weight": 0.11,
+        "IsDownloaded": false
+    },
     "Git": {
         "Icon": "https://images.icon-icons.com/2699/PNG/512/git_scm_logo_icon_170096.png",
         "URLs": {
@@ -749,22 +780,6 @@
         "Weight": 4.58,
         "IsDownloaded": false
     },
-    "Java": {
-        "Icon": "https://images.icon-icons.com/2108/PNG/512/java_icon_130901.png",
-        "URLs": {
-            "Основной": [
-                "https://www.java.com/ru/download/"
-            ]
-        },
-        "ModsURLs": [],
-        "Categories": [
-            "Инструменты программирования и моделирования",
-            "Драйверы и зависимости"
-        ],
-        "Description": "Среда выполнения и платформа для приложений, игр и инструментов на Java. (я её сюда из-за Minecraft добавил)",
-        "Weight": 0.07,
-        "IsDownloaded": false
-    },
     "Minecraft": {
         "Icon": "https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png",
         "URLs": {
@@ -1033,8 +1048,7 @@
         "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Ghidra_logo.svg/960px-Ghidra_logo.svg.png",
         "URLs": {
             "Основной": [
-                "https://github.com/NationalSecurityAgency/ghidra/releases/latest",
-                "https://www.oracle.com/java/technologies/downloads/"
+                "https://github.com/NationalSecurityAgency/ghidra/releases/latest"
             ]
         },
         "ModsURLs": [],
