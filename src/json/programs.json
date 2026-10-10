@@ -1033,7 +1033,8 @@
         "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Ghidra_logo.svg/960px-Ghidra_logo.svg.png",
         "URLs": {
             "Основной": [
-                "https://github.com/NationalSecurityAgency/ghidra/releases/latest"
+                "https://github.com/NationalSecurityAgency/ghidra/releases/latest",
+                "https://www.oracle.com/java/technologies/downloads/"
             ]
         },
         "ModsURLs": [],
