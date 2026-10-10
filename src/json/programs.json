@@ -877,7 +877,11 @@
                 "https://www.voidtools.com"
             ]
         },
-        "ModsURLs": [],
+        "ModsURLs": [
+            "https://www.voidtools.com/ru-ru/downloads/#cli",
+            "https://github.com/srwi/EverythingToolbar/releases/latest"
+
+        ],
         "Categories": [
             "Системные утилиты и виртуализация"
         ],
@@ -1007,6 +1011,38 @@
         ],
         "Description": "Бесплатная программа для создания и запуска виртуальных машин.",
         "Weight": 0.17,
+        "IsDownloaded": false
+    },
+    "dnSpy": {
+        "Icon": "https://raw.githubusercontent.com/dnSpy/dnSpy/refs/heads/master/dnSpy/dnSpy/Images/dnSpy.ico",
+        "URLs": {
+            "Основной": [
+                "https://github.com/dnSpy/dnSpy/releases/latest"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Декомпиляторы",
+            "Системные утилиты и виртуализация"
+        ],
+        "Description": "Программа для декомпиляции dll-файлов.",
+        "Weight": 0.09,
+        "IsDownloaded": false
+    },
+    "Ghidra": {
+        "Icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Ghidra_logo.svg/960px-Ghidra_logo.svg.png",
+        "URLs": {
+            "Основной": [
+                "https://github.com/NationalSecurityAgency/ghidra/releases/latest"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Декомпиляторы",
+            "Системные утилиты и виртуализация"
+        ],
+        "Description": "Программа для декомпиляции файлов.",
+        "Weight": 0.54,
         "IsDownloaded": false
     },
     "Microsoft Activation Scripts": {
