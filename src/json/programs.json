@@ -204,6 +204,26 @@
         "Weight": 0.58,
         "IsDownloaded": false
     },
+    "ArtCraft Launcher": {
+        "Icon": "https://raw.githubusercontent.com/storytold/craft-launcher/main/assets/app-icon/hicolor/256x256/apps/ai.storyteller.artcraft-launcher.png",
+        "URLs": {
+            "Основной": [
+                "https://getartcraft.com/apps"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Офисные пакеты",
+            "Системные утилиты и виртуализация",
+            "Декомпиляторы",
+            "Инструменты программирования и моделирования",
+            "Графические редакторы",
+            "Моделирование"
+        ],
+        "Description": "Сборник программ (создание и редактирование документов, презентаций, таблиц, .pdf-файлов, видео, фото, 3D-моделей, векторных изображений и т.п.). Плюсы: бесплатный, открытый исходный код. Минусы: создаётся с помощью ИИ, большинство функций ещё не реализованы в программах, баги.",
+        "Weight": 0.01,
+        "IsDownloaded": false
+    },
     "Mozilla FireFox": {
         "Icon": "https://images.icon-icons.com/2552/PNG/512/firefox_browser_logo_icon_152991.png",
         "URLs": {
@@ -494,19 +514,21 @@
         "Weight": 0.02,
         "IsDownloaded": false
     },
-    "Photopea": {
-        "Icon": "https://www.photopea.com/promo/icon512.png",
+    "GIMP": {
+        "Icon": "https://www.gimp.org/images/frontpage/wilber-big.png",
         "URLs": {
             "Основной": [
-                "https://www.photopea.com/"
+                "https://www.gimp.org/downloads/"
             ]
         },
-        "ModsURLs": [],
+        "ModsURLs": [
+            "https://github.com/Diolinux/PhotoGIMP/#-windows"
+        ],
         "Categories": [
             "Графические редакторы"
         ],
-        "Description": "Бесплатный онлайн-редактор изображений с поддержкой PSD и интерфейсом, похожим на Photoshop.",
-        "Weight": 0,
+        "Description": "Бесплатный редактор изображений с открытым исходным кодом.",
+        "Weight": 0.18,
         "IsDownloaded": false
     },
     "Draw.io": {
@@ -522,6 +544,21 @@
         ],
         "Description": "Инструмент для создания диаграмм, схем и блок-схем.",
         "Weight": 0.11,
+        "IsDownloaded": false
+    },
+    "StykAnimate": {
+        "Icon": "https://raw.githubusercontent.com/filippocalippo/StykAnimate-App/refs/heads/main/web/icons/icon-512.png",
+        "URLs": {
+            "Основной": [
+                "https://stykanimate.com/download/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Графические редакторы"
+        ],
+        "Description": "Простой инструмент для создания 2D-анимаций.",
+        "Weight": 0.13,
         "IsDownloaded": false
     },
     "Blender": {
@@ -883,6 +920,39 @@
         ],
         "Description": "Создатель мультизагрузочных USB-носителей с поддержкой нескольких ISO-образов.",
         "Weight": 0.02,
+        "IsDownloaded": false
+    },
+    "rEFInd_GUI": {
+        "Icon": "https://raw.githubusercontent.com/jlobue10/rEFInd_GUI/refs/heads/main/GUI/UEFI_icon.png",
+        "URLs": {
+            "Основной": [
+                "https://github.com/jlobue10/rEFInd_GUI/releases/latest"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация"
+        ],
+        "Description": "Загрузочное меню и утилита управления для компьютеров, основанных на технологии UEFI (запуск одной из нескольких операционных систем на одном компьютере).",
+        "Weight": 0.05,
+        "IsDownloaded": false
+    },
+    "ImgBurn": {
+        "Icon": "https://thumb.wikimedia.org/wikipedia/ru/thumb/f/fc/ImgBurn_logo.png/250px-ImgBurn_logo.png",
+        "URLs": {
+            "Основной": [
+                "https://www.imgburn.com/index.php?act=download",
+                "https://download.imgburn.com/translations/russian.zip"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Системные утилиты и виртуализация",
+            "Архиваторы",
+            "Загрузка iso-образов"
+        ],
+        "Description": "Создатель ISO-образов.",
+        "Weight": 0.01,
         "IsDownloaded": false
     },
     "Everything": {
