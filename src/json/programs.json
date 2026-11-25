@@ -138,6 +138,22 @@
         "Weight": 0.01,
         "IsDownloaded": false
     },
+    "Windhawk": {
+        "Icon": "https://raw.githubusercontent.com/ramensoftware/windhawk/refs/heads/main/src/windhawk-core/ui/icons/icon.ico",
+        "URLs": {
+            "Основной": [
+                "https://windhawk.net/"
+            ]
+        },
+        "ModsURLs": [],
+        "Categories": [
+            "Твикеры, оптимизация и обслуживание системы",
+            "Системные утилиты и виртуализация"
+        ],
+        "Description": "Сборник твикеров (улучшений настроек системы) и модов для Windows 10/11.",
+        "Weight": 0.02,
+        "IsDownloaded": false
+    },
     "qBittorrent": {
         "Icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/New_qBittorrent_Logo.svg/1280px-New_qBittorrent_Logo.svg.png",
         "URLs": {
